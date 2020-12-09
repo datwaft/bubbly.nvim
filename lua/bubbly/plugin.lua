@@ -92,10 +92,10 @@
    -- Path bubble
    local function path_bubble(inactive)
       return bubble_factory{
-         isinactive or { data = vim.bo.ro and 'RO', color = 'lightgrey', style = 'bold' },
-         isinactive or { data = vim.bo.ma or '', color = 'darkgrey' },
+         inactive or { data = vim.bo.ro and 'RO', color = 'lightgrey', style = 'bold' },
+         inactive or { data = vim.bo.ma or '', color = 'darkgrey' },
          { data = '%.30f', color = inactive or 'white' },
-         isinactive or { data = vim.bo.mod and '+', color = 'lightgrey' },
+         inactive or { data = vim.bo.mod and '+', color = 'lightgrey' },
       }
    end
    -- Signify bubble
