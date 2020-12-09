@@ -6,8 +6,6 @@
 -- ========
 -- Preamble
 -- ========
-   -- Module namespace declaration
-   local M = {}
    -- Character definition
    local left = vim.g.bubbly_left or ''
    local right = vim.g.bubbly_right or ''
