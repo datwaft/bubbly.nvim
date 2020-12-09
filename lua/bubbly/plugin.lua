@@ -125,10 +125,14 @@
       statusline = statusline .. mode_bubble(inactive) .. ' '
       statusline = statusline .. path_bubble(inactive) .. ' '
       do local instance = signify_bubble(inactive)
-         statusline = statusline .. instance .. ' '
+         if instance ~= '' then
+            statusline = statusline .. instance .. ' '
+         end
       end
       do local instance = paste_bubble(inactive)
-         statusline = statusline .. instance .. ' '
+         if instance ~= '' then
+            statusline = statusline .. instance .. ' '
+         end
       end
       return statusline
    end
