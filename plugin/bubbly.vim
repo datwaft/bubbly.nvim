@@ -3,7 +3,7 @@
 " ==================
 " Created by: datwaft [github.com/datwaft]
 
-lua _G.statusline = require('bubbly.plugin')
+lua _G.statusline = require('bubbly.plugin').statusline
 augroup BubblyRender
   autocmd!
   autocmd WinEnter,BufEnter * setlocal statusline=%!v:lua.statusline()
