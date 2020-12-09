@@ -42,7 +42,7 @@
             -- normalize style
             if not e.style or type(e.style) ~= 'string' then e.style = '' end
             -- normalize color
-            if not e.color or type(e.style) ~= 'string' then e.color = 'lightgrey' end
+            if not e.color or type(e.color) ~= 'string' then e.color = 'lightgrey' end
             -- render left delimiter
             if isfirst then bubble = bubble .. render_delimiter(left, e.color) end
             -- render data style
