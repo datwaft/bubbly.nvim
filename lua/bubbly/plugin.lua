@@ -38,6 +38,7 @@
       local isfirst = true
       local bubble = ''
       for i, e in ipairs(list) do
+         dump('index: ' .. type(i), 'element: ' .. type(e) )
          if e and type(e) == 'table' and e.data and type(e.data) == 'string' and e.data ~= '' then
             -- check if element is the last one
             local islast = islast(i)
