@@ -127,6 +127,14 @@
          { data = vim.g.coc_status, color = 'lightgrey', style = bold },
       }
    end
+   -- Filetype bubble
+   local function filetype_bubble(inactive)
+      if inactive then return '' end
+      local filetype = vim.bo.filetype
+      if filetype == '' then filetype = 'no ft'
+      else filetype = filetype:lower() end
+      return bubble_factory{{ data = filetype, color = 'blue' }}
+   end
 -- ============
 -- Finalization
 -- ============
@@ -146,6 +154,14 @@
          end
       end
       do local instance = coc_bubble(inactive)
+         if instance ~= '' then
+            statusline = statusline .. instance .. ' '
+         end
+      end
+
+      statusline = statusline .. '%='
+
+      do local instance = filetype_bubble(inactive)
          if instance ~= '' then
             statusline = statusline .. instance .. ' '
          end
