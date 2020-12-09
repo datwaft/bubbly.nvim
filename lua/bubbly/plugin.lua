@@ -69,16 +69,22 @@
       local color
       local style = 'bold'
       if mode == 'n' then
+         data = 'NORMAL'
          if not inactive then color = 'green' end
       elseif mode == 'i' then
+         data = 'INSERT'
          if not inactive then color = 'blue' end
       elseif mode == 'v' or mode == 'V' or mode == '^V' then
+         data = 'VISUAL'
          if not inactive then color = 'red' end
       elseif mode == 'c' then
+         data = 'COMMAND'
          if not inactive then color = 'red' end
       elseif mode == 't' then
+         data = 'TERMINAL'
          if not inactive then color = 'blue' end
       elseif mode == 'R' then
+         data = 'REPLACE'
          if not inactive then color = 'yellow' end
       else
          if not inactive then color = 'white' end
@@ -98,6 +104,7 @@
 -- Statusline definition
 -- =====================
    M.statusline = function(inactive)
+      if inactive and type(inactive) ~= 'boolean' then inactive = true end
       local statusline = ''
       statusline = statusline .. mode_bubble(inactive) .. ' '
       statusline = statusline .. path_bubble(inactive) .. ' '
