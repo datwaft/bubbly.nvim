@@ -135,6 +135,13 @@
       else filetype = filetype:lower() end
       return bubble_factory{{ data = filetype, color = 'blue' }}
    end
+   -- Progress bubble
+   local function progress_bubble(inactive)
+      return bubble_factory{
+         { data = '%-8.(%l:%c%)', color = 'lightgrey' },
+         { data = '%P', color = ( inactive or 'darkgrey' ) },
+      }
+   end
 -- ============
 -- Finalization
 -- ============
@@ -166,5 +173,7 @@
             statusline = statusline .. instance .. ' '
          end
       end
+      statusline = statusline .. progress_bubble(inactive) .. ' '
+
       return statusline
    end
