@@ -60,21 +60,21 @@
 -- ============
    return function()
       local palette = {
-         background = "#34343c",
-         foreground = "#c5cdd9",
-         black = "#3e4249",
-         red = "#ec7279",
-         green = "#a0c980",
-         yellow = "#deb974",
-         blue = "#6cb6eb",
-         purple = "#d38aea",
-         cyan = "#5dbbc1",
-         white = "#c5cdd9",
-         lightgrey = "#57595e",
-         darkgrey = "#404247",
+         background = "Black",
+         foreground = "White",
+         black = "Black",
+         red = "Red",
+         green = "Green",
+         yellow = "Yellow",
+         blue = "Blue",
+         purple = "Magenta",
+         cyan = "Cyan",
+         white = "White",
+         lightgrey = "LightGrey",
+         darkgrey = "Grey",
       }
       if vim.g.bubbly_palette and type(vim.g.bubbly_palette) == 'table' then
-         palette = vim.g.bubbly_palette
+         for k, v in pairs(vim.g.bubbly_palette) do palette[k] = v end
       end
       define_highlights(palette)
    end
