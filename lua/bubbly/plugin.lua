@@ -118,6 +118,6 @@
       local statusline = ''
       statusline = statusline .. mode_bubble(inactive) .. ' '
       statusline = statusline .. path_bubble(inactive) .. ' '
-      statusline = statusline .. signify_bubble(inactive) .. inactive and '' or ' '
+      statusline = statusline .. signify_bubble(inactive) .. (inactive and '' or ' ')
       return statusline
    end
