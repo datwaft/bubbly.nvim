@@ -100,17 +100,13 @@
          isinactive or { data = vim.bo.mod and '+', color = 'lightgrey' },
       }
    end
--- =====================
--- Statusline definition
--- =====================
-   M.statusline = function(inactive)
+-- ============
+-- Finalization
+-- ============
+   return function(inactive)
       if inactive and type(inactive) ~= 'boolean' then inactive = true end
       local statusline = ''
       statusline = statusline .. mode_bubble(inactive) .. ' '
       statusline = statusline .. path_bubble(inactive) .. ' '
       return statusline
    end
--- ============
--- Finalization
--- ============
-   return M
