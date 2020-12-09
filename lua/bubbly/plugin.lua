@@ -19,6 +19,8 @@
    local function bubble_factory(list)
    -- Example of list element:
    -- { data: string, color: string, style: string-optional }
+      -- Verification of list type
+      if type(list) ~= 'table' then return '' end
       -- Render delimiter of the bubble
       local function render_delimiter(delimiter, color)
          return '%#Bubble' .. titlecase(color)  .. 'Delimiter#' .. delimiter
