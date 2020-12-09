@@ -116,6 +116,17 @@
       if inactive then return '' end
       return bubble_factory{{ data = vim.o.paste and 'PASTE', color = 'red', style = 'bold' }}
    end
+   -- coc.nvim bubble
+   local function coc_bubble(inactive)
+      if inactive then return '' end
+      local info = vim.b.coc_diagnostic_info
+      if info == nil or next(info) == nil then return '' end
+      return bubble_factory{
+         { data = info.error ~= 0 and 'E' .. info.error, color = 'red', style = 'bold' },
+         { data = info.warning ~= 0 and 'W' .. info.warning, color = 'yellow', style = 'bold' },
+         { data = vim.g.coc_status, color = 'lightgrey', style = bold },
+      }
+   end
 -- ============
 -- Finalization
 -- ============
@@ -130,6 +141,11 @@
          end
       end
       do local instance = paste_bubble(inactive)
+         if instance ~= '' then
+            statusline = statusline .. instance .. ' '
+         end
+      end
+      do local instance = coc_bubble(inactive)
          if instance ~= '' then
             statusline = statusline .. instance .. ' '
          end
