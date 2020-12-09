@@ -2,6 +2,8 @@
 
 ## Introduction
 
+**Warning:** this plugin and it's documentation is still **WIP** (Work in Progress), it can be used but it's still being worked on.
+
 Hello, my username is _datwaft_ and this is a status line plugin that I created.
 
 This status line is based on using bubbles for almost every part of the status line.
