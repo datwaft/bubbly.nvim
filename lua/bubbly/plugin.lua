@@ -111,6 +111,10 @@
          { data = removed ~= 0 and '-' .. removed, color = 'red', style = 'bold' },
       }
    end
+   -- Paste bubble
+   local function paste_bubble(inactive)
+      return bubble_factory{{ data = vim.o.paste and 'PASTE', color = inactive or 'red', style = 'bold' }}
+   end
 -- ============
 -- Finalization
 -- ============
@@ -119,6 +123,11 @@
       local statusline = ''
       statusline = statusline .. mode_bubble(inactive) .. ' '
       statusline = statusline .. path_bubble(inactive) .. ' '
-      statusline = statusline .. signify_bubble(inactive) .. (inactive and '' or ' ')
+      do local instance = signify_bubble(inactive)
+         statusline = statusline .. instance .. ' '
+      end
+      do local instance = paste_bubble(inactive)
+         statusline = statusline .. instance .. ' '
+      end
       return statusline
    end
