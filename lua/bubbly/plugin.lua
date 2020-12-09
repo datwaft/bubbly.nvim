@@ -113,7 +113,8 @@
    end
    -- Paste bubble
    local function paste_bubble(inactive)
-      return bubble_factory{{ data = vim.o.paste and 'PASTE', color = inactive or 'red', style = 'bold' }}
+      if inactive then return '' end
+      return bubble_factory{{ data = vim.o.paste and 'PASTE', color = 'red', style = 'bold' }}
    end
 -- ============
 -- Finalization
