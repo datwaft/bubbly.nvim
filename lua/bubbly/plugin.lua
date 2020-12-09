@@ -19,8 +19,6 @@
    local function bubble_factory(list)
    -- Example of list element:
    -- { data: string, color: string, style: string-optional }
-      -- Verification of list type
-      if type(list) ~= 'table' then return '' end
       -- Render delimiter of the bubble
       local function render_delimiter(delimiter, color)
          return '%#Bubble' .. titlecase(color)  .. 'Delimiter#' .. delimiter
@@ -28,7 +26,7 @@
       -- Auxiliar function to know if data is last in the list
       local function islast(current_index)
          for i = current_index + 1, #list do
-            if list[i] and list[i].data and type(list[i].data) == 'string' and list[i].data ~= '' then
+            if list[i] and type(list[i]) == 'table' and list[i].data and type(list[i].data) == 'string' and list[i].data ~= '' then
                return false
             end
          end
@@ -38,7 +36,6 @@
       local isfirst = true
       local bubble = ''
       for i, e in ipairs(list) do
-         print('index: ' .. type(i), 'element: ' .. type(e) )
          if e and type(e) == 'table' and e.data and type(e.data) == 'string' and e.data ~= '' then
             -- check if element is the last one
             local islast = islast(i)
