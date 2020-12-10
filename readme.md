@@ -29,6 +29,10 @@ Here are some screenshots:
 
 ![image](https://user-images.githubusercontent.com/37723586/101704807-25703180-3a4b-11eb-83fb-864cd66bf30b.png)
 
+---
+
+![image](https://user-images.githubusercontent.com/37723586/101720701-e30b1c80-3a6b-11eb-981d-afd3d8758551.png)
+
 </details>
 
 ## Current bubbles
