@@ -13,6 +13,9 @@
 -- ==========
    M.git_branch = function()
       local branch = vim.fn.systemlist('cd ' .. vim.fn.expand('%:p:h:S') .. ' && git status --porcelain -b 2>/dev/null')[1]
+      if #branch == 0 then
+         return ''
+      end
       branch = branch:gsub([[^## No commits yet on (%w+)$]], '%1')
       branch = branch:gsub([[^##%s+(%w+).*$]], '%1')
       return branch
