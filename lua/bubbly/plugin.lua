@@ -173,7 +173,7 @@
             statusline = statusline .. instance .. ' '
          end
       end
-      statusline = statusline .. progress_bubble(inactive) .. ' '
+      statusline = statusline .. progress_bubble(inactive)
 
       return statusline
    end
