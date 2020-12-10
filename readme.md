@@ -111,7 +111,7 @@ vim.g.bubbly_palette = {
 ##### VimL
 
 ```viml
-let g:bubbly_palette = {
+let g:bubbly_palette = #{
 \   background: "#34343c",
 \   foreground: "#c5cdd9",
 \   black: "#3e4249",
