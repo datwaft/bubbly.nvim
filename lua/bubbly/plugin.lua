@@ -72,7 +72,7 @@
       elseif mode == 'i' then
          data = 'INSERT'
          if not inactive then color = 'blue' end
-      elseif mode == 'v' or mode == 'V' or mode == '^V' then
+      elseif mode == 'v' or mode == 'V' or mode == '^V' or mode == '' then
          data = 'VISUAL'
          if not inactive then color = 'red' end
       elseif mode == 'c' then
@@ -85,7 +85,6 @@
          data = 'REPLACE'
          if not inactive then color = 'yellow' end
       else
-         print('data: "' .. data .. '"')
          if not inactive then color = 'white' end
       end
       return bubble_factory{{ data = data, color = color, style = style }}
