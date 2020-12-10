@@ -110,11 +110,11 @@
 -- Option fusion
 -- =============
    M.fusion = function()
-      vim.g.bubbly_palette = require'utils'.fusion(M.palette, vim.g.bubbly_palette)
-      vim.g.bubbly_characters = require'utils'.fusion(M.characters, vim.g.bubbly_characters)
-      vim.g.bubbly_symbols = require'utils'.fusion(M.symbols, vim.g.bubbly_symbols)
-      vim.g.bubbly_tags = require'utils'.fusion(M.tags, vim.g.bubbly_tags)
-      vim.g.bubbly_colors = require'utils'.fusion(M.colors, vim.g.bubbly_colors)
+      vim.g.bubbly_palette = require'bubbly.utils'.fusion(M.palette, vim.g.bubbly_palette)
+      vim.g.bubbly_characters = require'bubbly.utils'.fusion(M.characters, vim.g.bubbly_characters)
+      vim.g.bubbly_symbols = require'bubbly.utils'.fusion(M.symbols, vim.g.bubbly_symbols)
+      vim.g.bubbly_tags = require'bubbly.utils'.fusion(M.tags, vim.g.bubbly_tags)
+      vim.g.bubbly_colors = require'bubbly.utils'.fusion(M.colors, vim.g.bubbly_colors)
    end
 -- ============
 -- Finalization
