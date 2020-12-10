@@ -62,7 +62,7 @@
          command = 'COMMAND',
          terminal = 'TERMINAL',
          replace = 'REPLACE',
-         default = nil,
+         default = 'UNKOWN',
       },
       paste = 'PASTE',
       filetype = {
