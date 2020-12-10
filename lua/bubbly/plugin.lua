@@ -156,11 +156,11 @@
       if inactive and type(inactive) ~= 'boolean' then inactive = true end
       local statusline = ''
       statusline = statusline .. mode_bubble(inactive) .. ' '
-      do local instance = branch_bubble(inactive)
-         if instance ~= '' then
-            statusline = statusline .. instance .. ' '
-         end
-      end
+      -- do local instance = branch_bubble(inactive)
+      --    if instance ~= '' then
+      --       statusline = statusline .. instance .. ' '
+      --    end
+      -- end
       statusline = statusline .. path_bubble(inactive) .. ' '
       do local instance = signify_bubble(inactive)
          if instance ~= '' then
