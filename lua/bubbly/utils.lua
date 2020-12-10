@@ -56,7 +56,7 @@
          if type(v2) == 'table' then v2 = M.fusion(new[k2], v2) end
          new[k2] = v2
       end
-      return table1
+      return new
    end
 -- ============
 -- Finalization
