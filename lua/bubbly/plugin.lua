@@ -85,6 +85,7 @@
          data = 'REPLACE'
          if not inactive then color = 'yellow' end
       else
+         print('data: "' .. data .. '"')
          if not inactive then color = 'white' end
       end
       return bubble_factory{{ data = data, color = color, style = style }}
