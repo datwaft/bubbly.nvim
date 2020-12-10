@@ -98,6 +98,13 @@
          inactive or { data = vim.bo.mod and '+', color = 'lightgrey' },
       }
    end
+   -- Branch bubble
+   function branch_bubble(inactive)
+      local branch = vim.fn.systemlist('cd ' .. vim.fn.expand('%:p:h:S') .. ' && git status --porcelain -b 2>/dev/null')[1]
+      branch = branch:gsub([[^## No commits yet on (%w+)$]], '%1')
+      branch = branch:gsub([[^##%s+(%w+).*$]], '%1')
+      return bubble_factory{{ data = branch, color = inactive or 'red', style = 'bold' }}
+   end
    -- Signify bubble
    local function signify_bubble(inactive)
       if inactive then return '' end
@@ -149,6 +156,11 @@
       if inactive and type(inactive) ~= 'boolean' then inactive = true end
       local statusline = ''
       statusline = statusline .. mode_bubble(inactive) .. ' '
+      do local instance = branch_bubble(inactive)
+         if instance ~= '' then
+            statusline = statusline .. instance .. ' '
+         end
+      end
       statusline = statusline .. path_bubble(inactive) .. ' '
       do local instance = signify_bubble(inactive)
          if instance ~= '' then
