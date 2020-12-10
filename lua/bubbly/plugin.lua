@@ -107,7 +107,7 @@
    -- Signify bubble
    local function signify_bubble(inactive)
       if inactive then return '' end
-      if not vim.fn['sy#repo#get_stats'] then return '' end
+      if vim.fn.exists('sy#repo#get_stats') == 0 then return '' end
       local added, modified, removed = unpack(vim.fn['sy#repo#get_stats']())
       if added == -1 then added = 0 end
       if modified == -1 then modified = 0 end
