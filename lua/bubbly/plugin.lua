@@ -99,8 +99,13 @@
       }
    end
    -- Branch bubble
-   function branch_bubble(inactive)
-      return bubble_factory{{ data = vim.b.git_branch, color = inactive or 'red', style = 'bold' }}
+   local function branch_bubble(inactive)
+      if inactive then return '' end
+      local color = 'blue'
+      if vim.b.git_branch == 'master' or vim.b.git_branch == 'main' then
+         color = 'red'
+      end
+      return bubble_factory{{ data = vim.b.git_branch, color = color, style = 'bold' }}
    end
    -- Signify bubble
    local function signify_bubble(inactive)
@@ -153,12 +158,12 @@
       if inactive and type(inactive) ~= 'boolean' then inactive = true end
       local statusline = ''
       statusline = statusline .. mode_bubble(inactive) .. ' '
+      statusline = statusline .. path_bubble(inactive) .. ' '
       do local instance = branch_bubble(inactive)
          if instance ~= '' then
             statusline = statusline .. instance .. ' '
          end
       end
-      statusline = statusline .. path_bubble(inactive) .. ' '
       do local instance = signify_bubble(inactive)
          if instance ~= '' then
             statusline = statusline .. instance .. ' '
