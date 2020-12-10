@@ -76,7 +76,7 @@
          data = 'VISUAL'
          if not inactive then color = 'red' end
       elseif mode == '^V' or mode == '' then
-         data = 'B-VISUAL'
+         data = 'VISUAL-B'
          if not inactive then color = 'red' end
       elseif mode == 'c' then
          data = 'COMMAND'
