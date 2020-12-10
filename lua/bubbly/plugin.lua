@@ -101,7 +101,7 @@
    -- Branch bubble
    local function branch_bubble(inactive)
       if inactive then return '' end
-      local color = 'blue'
+      local color = 'purple'
       if vim.b.git_branch == 'master' or vim.b.git_branch == 'main' then
          color = 'red'
       end
