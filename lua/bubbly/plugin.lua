@@ -72,8 +72,11 @@
       elseif mode == 'i' then
          data = 'INSERT'
          if not inactive then color = 'blue' end
-      elseif mode == 'v' or mode == 'V' or mode == '^V' or mode == '' then
+      elseif mode == 'v' or mode == 'V' then
          data = 'VISUAL'
+         if not inactive then color = 'red' end
+      elseif mode == '^V' or mode == '' then
+         data = 'B-VISUAL'
          if not inactive then color = 'red' end
       elseif mode == 'c' then
          data = 'COMMAND'
