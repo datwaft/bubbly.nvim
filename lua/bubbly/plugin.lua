@@ -102,9 +102,6 @@
    local function branch_bubble(inactive)
       if inactive then return '' end
       local color = 'purple'
-      if vim.b.git_branch == 'master' or vim.b.git_branch == 'main' then
-         color = 'red'
-      end
       return bubble_factory{{ data = vim.b.git_branch, color = color, style = 'bold' }}
    end
    -- Signify bubble
