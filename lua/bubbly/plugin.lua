@@ -100,10 +100,7 @@
    end
    -- Branch bubble
    function branch_bubble(inactive)
-      local branch = vim.fn.systemlist('cd ' .. vim.fn.expand('%:p:h:S') .. ' && git status --porcelain -b 2>/dev/null')[1]
-      branch = branch:gsub([[^## No commits yet on (%w+)$]], '%1')
-      branch = branch:gsub([[^##%s+(%w+).*$]], '%1')
-      return bubble_factory{{ data = branch, color = inactive or 'red', style = 'bold' }}
+      return bubble_factory{{ data = vim.b.git_branch, color = inactive or 'red', style = 'bold' }}
    end
    -- Signify bubble
    local function signify_bubble(inactive)
