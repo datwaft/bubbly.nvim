@@ -13,7 +13,7 @@
   lua _G.get_git_branch = require('bubbly.calculate').git_branch
   augroup BubblyAutomation
     autocmd!
-    autocmd BufEnter * set b:git_branch = v:lua.get_git_branch()
+    autocmd BufEnter * let b:git_branch = v:lua.get_git_branch()
   augroup end
 " ======================
 " Status line definition
