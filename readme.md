@@ -46,7 +46,7 @@ Here is the list of the bubbles that are available right now:
 - Filetype bubble
 - Progress bubble
 
-## Instalation
+## Installation
 
 You can install this plugin with your favorite package manager. For example I use [`packer.nvim`](https://github.com/wbthomason/packer.nvim).
 
