@@ -1,5 +1,7 @@
 # bubbly.nvim
 
+**Warning:** this plugin probably requires Neovim nightly.
+
 ## Introduction
 
 Hello, my username is _datwaft_ and this is a status line plugin that I created.
