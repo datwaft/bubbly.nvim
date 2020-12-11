@@ -136,6 +136,21 @@
          percentage = '',
       },
    }
+-- ==========
+-- Statusline
+-- ==========
+   M.statusline = {
+      'mode',
+      'path',
+      'branch',
+      'signify',
+      'coc',
+
+      'divisor',
+
+      'filetype',
+      'progress',
+   }
 -- =============
 -- Option fusion
 -- =============
@@ -146,6 +161,7 @@
       vim.g.bubbly_tags = require'bubbly.utils'.fusion(M.tags, vim.g.bubbly_tags)
       vim.g.bubbly_colors = require'bubbly.utils'.fusion(M.colors, vim.g.bubbly_colors)
       vim.g.bubbly_styles = require'bubbly.utils'.fusion(M.styles, vim.g.bubbly_styles)
+      vim.g.bubbly_statusline = require'bubbly.utils'.fusion(M.statusline, vim.g.bubbly_statusline)
    end
 -- ============
 -- Finalization
