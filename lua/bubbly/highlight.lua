@@ -30,20 +30,20 @@
 -- ==============================
    -- Define bubble highlight
    local function define_bubble_highlight(color, palette)
-      vim.cmd('autocmd VimEnter * ' .. highlight('Bubble' .. titlecase(color), palette.background, palette[color]))
-      vim.cmd('autocmd VimEnter * ' .. highlight('Bubble' .. titlecase(color) .. 'Bold', palette.background, palette[color], 'bold'))
-      vim.cmd('autocmd VimEnter * ' .. highlight('Bubble' .. titlecase(color) .. 'Italic', palette.background, palette[color], 'italic'))
-      vim.cmd('autocmd VimEnter * ' .. highlight('Bubble' .. titlecase(color) .. 'Delimiter', palette[color], palette.background))
+      vim.cmd('autocmd ColorScheme,VimEnter * ' .. highlight('Bubble' .. titlecase(color), palette.background, palette[color]))
+      vim.cmd('autocmd ColorScheme,VimEnter * ' .. highlight('Bubble' .. titlecase(color) .. 'Bold', palette.background, palette[color], 'bold'))
+      vim.cmd('autocmd ColorScheme,VimEnter * ' .. highlight('Bubble' .. titlecase(color) .. 'Italic', palette.background, palette[color], 'italic'))
+      vim.cmd('autocmd ColorScheme,VimEnter * ' .. highlight('Bubble' .. titlecase(color) .. 'Delimiter', palette[color], palette.background))
    end
    local function define_dark_bubble_highlight(color, palette)
-      vim.cmd('autocmd VimEnter * ' .. highlight('Bubble' .. titlecase(color), palette.foreground, palette[color]))
-      vim.cmd('autocmd VimEnter * ' .. highlight('Bubble' .. titlecase(color) .. 'Bold', palette.foreground, palette[color], 'bold'))
-      vim.cmd('autocmd VimEnter * ' .. highlight('Bubble' .. titlecase(color) .. 'Italic', palette.foreground, palette[color], 'italic'))
-      vim.cmd('autocmd VimEnter * ' .. highlight('Bubble' .. titlecase(color) .. 'Delimiter', palette[color], palette.background))
+      vim.cmd('autocmd ColorScheme,VimEnter * ' .. highlight('Bubble' .. titlecase(color), palette.foreground, palette[color]))
+      vim.cmd('autocmd ColorScheme,VimEnter * ' .. highlight('Bubble' .. titlecase(color) .. 'Bold', palette.foreground, palette[color], 'bold'))
+      vim.cmd('autocmd ColorScheme,VimEnter * ' .. highlight('Bubble' .. titlecase(color) .. 'Italic', palette.foreground, palette[color], 'italic'))
+      vim.cmd('autocmd ColorScheme,VimEnter * ' .. highlight('Bubble' .. titlecase(color) .. 'Delimiter', palette[color], palette.background))
    end
    -- define all status bar highlights
    local function define_highlights(palette)
-      vim.cmd('autocmd VimEnter * ' .. highlight('StatusLine', palette.foreground, palette.background))
+      vim.cmd('autocmd ColorScheme,VimEnter * ' .. highlight('StatusLine', palette.foreground, palette.background))
       define_bubble_highlight('black', palette)
       define_bubble_highlight('red', palette)
       define_bubble_highlight('green', palette)
