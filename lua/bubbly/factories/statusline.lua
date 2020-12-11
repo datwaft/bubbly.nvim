@@ -26,7 +26,7 @@ return function(list, inactive)
             local component = require'bubbly.utils'.prerequire('bubbly.components.' .. e:lower())
             if component then
                if not left then statusline = statusline .. ' ' end
-               statusline = statusline .. component()
+               statusline = statusline .. component(inactive)
                if left then statusline = statusline .. ' ' end
             end
          end
