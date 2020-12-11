@@ -30,6 +30,7 @@
 -- ==============================
    -- Define bubble highlight
    local function define_bubble_highlight(color, palette)
+      print('autocmd ColorScheme * ' .. highlight('Bubble' .. titlecase(color), palette.background, palette[color]))
       vim.cmd('autocmd ColorScheme * ' .. highlight('Bubble' .. titlecase(color), palette.background, palette[color]))
       vim.cmd('autocmd ColorScheme * ' .. highlight('Bubble' .. titlecase(color) .. 'Bold', palette.background, palette[color], 'bold'))
       vim.cmd('autocmd ColorScheme * ' .. highlight('Bubble' .. titlecase(color) .. 'Italic', palette.background, palette[color], 'italic'))
