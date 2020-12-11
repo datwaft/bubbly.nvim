@@ -3,10 +3,15 @@
 " ==================
 " Created by: datwaft [github.com/datwaft]
 
+
+" ========================
+" Define and fuse defaults
+" ========================
+  lua require'bubbly.defaults'.fusion()
 " ====================
 " Highlight definition
 " ====================
-  lua require('bubbly.highlight')()
+  lua require'bubbly.highlight'()
 " =====================
 " Automation definition
 " =====================
