@@ -65,7 +65,7 @@
       local mode = vim.fn.mode()
       local data
       local color
-      local style = vim.g.bubbly_symbols.mode
+      local style = vim.g.bubbly_styles.mode
       if mode == 'n' then
          data = vim.g.bubbly_tags.mode.normal
          if not inactive then color = vim.g.bubbly_colors.mode.normal end
