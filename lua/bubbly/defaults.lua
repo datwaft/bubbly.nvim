@@ -86,6 +86,7 @@
       path = {
          readonly = 'lightgrey',
          unmodifiable = 'darkgrey',
+         path = 'white',
          modified = 'lightgrey',
       },
       branch = 'purple',

@@ -108,7 +108,7 @@
          },
          {
             data = '%.30f',
-            color = inactive or 'white',
+            color = inactive or vim.g.bubbly_colors.path.path,
             style = vim.g.bubbly_styles.path.path,
          },
          inactive or {
