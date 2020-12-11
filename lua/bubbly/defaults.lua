@@ -49,6 +49,7 @@
          error = 'E',
          warning = 'W',
       },
+      branch = ' '
    }
 -- ====
 -- Tags
