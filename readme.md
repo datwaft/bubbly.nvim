@@ -60,21 +60,21 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function()
   use {'wbthomason/packer.nvim', opt = true}
   use {'datwaft/bubbly.nvim', config = function()
-    -- Here you can add the configuration for the plugin
-    vim.g.bubbly_palette = {
-       background = "#34343c",
-       foreground = "#c5cdd9",
-       black = "#3e4249",
-       red = "#ec7279",
-       green = "#a0c980",
-       yellow = "#deb974",
-       blue = "#6cb6eb",
-       purple = "#d38aea",
-       cyan = "#5dbbc1",
-       white = "#c5cdd9",
-       lightgrey = "#57595e",
-       darkgrey = "#404247",
-    }
+   -- Here you can add the configuration for the plugin
+   vim.g.bubbly_palette = {
+      background = "#34343c",
+      foreground = "#c5cdd9",
+      black = "#3e4249",
+      red = "#ec7279",
+      green = "#a0c980",
+      yellow = "#deb974",
+      blue = "#6cb6eb",
+      purple = "#d38aea",
+      cyan = "#5dbbc1",
+      white = "#c5cdd9",
+      lightgrey = "#57595e",
+      darkgrey = "#404247",
+   }
   end}
 end)
 ```
@@ -85,6 +85,79 @@ Here are the options that you can modify to modify the behaviour of the plugin.
 
 **Note:** you can add only a part of the configuration and the rest will use the default.
 
+### Components
+
+This option is used to configure which bubble components to show in the statusline and the order.
+
+It's a list that follows this pattern:
+
+```lua
+{ 'mode', 'thingy', 'coc', 'divisor', 'branch', function, {{ data = 'ddd', color = 'red', style = 'bold' }} }
+```
+
+The elements of the list can be:
+- **Strings** like `'mode'`.
+  - The string represents the module name of some preexisting component.
+  - If the string is `divisor` or `division` then the rest of the list will go to the right.
+- **Tables** like `{{ data = '%F', color = 'blue', style = '' }}`
+  - `data` and `color` are obligatory, `style` is optional.
+  - As you can see, it technically is a list of objects that contain `data`, `color`, and (optionally) `style`.
+- **Functions** like `function(inactive) ... end`
+  - The function must accept a parameter that is `true` when the buffer is **inactive** and `false`/`nil` when the buffer is **active** and react properly to the parameter.
+  - The function must return a table like `{{ data = '%F', color = 'blue', style = '' }}`.
+    - `data` and `color` are obligatory, `style` is optional.
+    - As you can see, it technically is a list of objects that contain `data`, `color`, and (optionally) `style`.
+
+<details>
+<summary><b>Default configuration</b></summary>
+
+```lua
+vim.g.bubbly_statusline = {
+   'mode',
+   'path',
+   'branch',
+   'signify',
+   'coc',
+
+   'divisor',
+
+   'filetype',
+   'progress',
+}
+```
+
+</details>
+
+---
+
+<details>
+<summary><b>Lua configuration example</b></summary>
+
+```lua
+vim.g.bubbly_statusline = {
+   'mode',
+   'path',
+   'branch',
+   {{ data = 'my name', color = 'red', style = 'bold' }},
+
+   'divisor',
+
+   {
+     { data = 'test1', color = 'yellow', style = 'italic' }
+     { data = 'test2', color = 'red' }
+   },
+   'filetype',
+   'progress',
+   function(inactive)
+     return {{ data = inactive and 'true' or 'false', color = 'blue', style = 'style' }}
+   end,
+}
+```
+
+</details>
+
+
+
 ### Palette
 
 This option is used to set the exact color for each color used in the status line.
@@ -94,18 +167,18 @@ This option is used to set the exact color for each color used in the status lin
 
 ```lua
 vim.g.bubbly_palette = {
-    background = "Black",
-    foreground = "White",
-    black = "Black",
-    red = "Red",
-    green = "Green",
-    yellow = "Yellow",
-    blue = "Blue",
-    purple = "Magenta",
-    cyan = "Cyan",
-    white = "White",
-    lightgrey = "LightGrey",
-    darkgrey = "Grey",
+   background = "Black",
+   foreground = "White",
+   black = "Black",
+   red = "Red",
+   green = "Green",
+   yellow = "Yellow",
+   blue = "Blue",
+   purple = "Magenta",
+   cyan = "Cyan",
+   white = "White",
+   lightgrey = "LightGrey",
+   darkgrey = "Grey",
 }
 ```
 
@@ -166,8 +239,8 @@ This option is used to configure the delimiters of the bubble.
 
 ```lua
 vim.g.bubbly_characters = {
-    left = '',
-    right = '',
+   left = '',
+   right = '',
 }
 ```
 
@@ -180,8 +253,8 @@ vim.g.bubbly_characters = {
 
 ```lua
 vim.g.bubbly_characters = {
-    left = '(',
-    right = ')',
+   left = '(',
+   right = ')',
 }
 ```
 
@@ -196,20 +269,20 @@ This option is used to configure the symbols that are used in bubbles.
 
 ```lua
 vim.g.bubbly_symbols = {
-    path = {
-       readonly = 'RO',
-       unmodifiable = '',
-       modified = '+',
-    },
-    signify = {
-       added = '+',
-       modified = '~',
-       removed = '-',
-    },
-    coc = {
-       error = 'E',
-       warning = 'W',
-    },
+   path = {
+      readonly = 'RO',
+      unmodifiable = '',
+      modified = '+',
+   },
+   signify = {
+      added = '+',
+      modified = '~',
+      removed = '-',
+   },
+   coc = {
+      error = 'E',
+      warning = 'W',
+   },
 }
 ```
 
@@ -222,20 +295,20 @@ vim.g.bubbly_symbols = {
 
 ```lua
 vim.g.bubbly_symbols = {
-    path = {
-       readonly = 'ro',
-       unmodifiable = 'lk',
-       modified = '*',
-    },
-    signify = {
-       added = '++',
-       modified = '!',
-       removed = '_',
-    },
-    coc = {
-       error = 'Errors: ',
-       warning = 'Warnings: ',
-    },
+   path = {
+      readonly = 'ro',
+      unmodifiable = 'lk',
+      modified = '*',
+   },
+   signify = {
+      added = '++',
+      modified = '!',
+      removed = '_',
+   },
+   coc = {
+      error = 'Errors: ',
+      warning = 'Warnings: ',
+   },
 }
 ```
 
@@ -252,20 +325,20 @@ If it's empty the bubble disappears instead of showing the text.
 
 ```lua
 vim.g.bubbly_tags = {
-    mode = {
-       normal = 'NORMAL',
-       insert = 'INSERT',
-       visual = 'VISUAL',
-       visualblock = 'VISUAL-B',
-       command = 'COMMAND',
-       terminal = 'TERMINAL',
-       replace = 'REPLACE',
-       default = 'UNKOWN',
-    },
-    paste = 'PASTE',
-    filetype = {
-       noft = 'no ft',
-    },
+   mode = {
+      normal = 'NORMAL',
+      insert = 'INSERT',
+      visual = 'VISUAL',
+      visualblock = 'VISUAL-B',
+      command = 'COMMAND',
+      terminal = 'TERMINAL',
+      replace = 'REPLACE',
+      default = 'UNKOWN',
+   },
+   paste = 'PASTE',
+   filetype = {
+      noft = 'no ft',
+   },
 }
 ```
 
@@ -278,20 +351,20 @@ vim.g.bubbly_tags = {
 
 ```lua
 vim.g.bubbly_tags = {
-    mode = {
-       normal = 'normal',
-       insert = 'insertar',
-       visual = 'visual',
-       visualblock = 'bloque visual',
-       command = 'comando',
-       terminal = 'terminal',
-       replace = 'reemplazar',
-       default = 'desconocido',
-    },
-    paste = 'pegar',
-    filetype = {
-       noft = '', -- If it's empty the bubble disappears
-    },
+   mode = {
+      normal = 'normal',
+      insert = 'insertar',
+      visual = 'visual',
+      visualblock = 'bloque visual',
+      command = 'comando',
+      terminal = 'terminal',
+      replace = 'reemplazar',
+      default = 'desconocido',
+   },
+   paste = 'pegar',
+   filetype = {
+      noft = '', -- If it's empty the bubble disappears
+   },
 }
 ```
 
@@ -306,39 +379,39 @@ This option is used to configure which color uses which bubble in some case.
 
 ```lua
 vim.g.bubbly_colors = {
-    mode = {
-       normal = 'green',
-       insert = 'blue',
-       visual = 'red',
-       visualblock = 'red',
-       command = 'red',
-       terminal = 'blue',
-       replace = 'yellow',
-       default = 'white'
-    },
-    path = {
-       readonly = 'lightgrey',
-       unmodifiable = 'darkgrey',
-       path = 'white',
-       modified = 'lightgrey',
-    },
-    branch = 'purple',
-    signify = {
-       added = 'green',
-       modified = 'blue',
-       removed = 'red',
-    },
-    paste = 'red',
-    coc = {
-       error = 'red',
-       warning = 'yellow',
-       status = 'lightgrey',
-    },
-    filetype = 'blue',
-    progress = {
-       rowandcol = 'lightgrey',
-       percentage = 'darkgrey',
-    },
+   mode = {
+      normal = 'green',
+      insert = 'blue',
+      visual = 'red',
+      visualblock = 'red',
+      command = 'red',
+      terminal = 'blue',
+      replace = 'yellow',
+      default = 'white'
+   },
+   path = {
+      readonly = 'lightgrey',
+      unmodifiable = 'darkgrey',
+      path = 'white',
+      modified = 'lightgrey',
+   },
+   branch = 'purple',
+   signify = {
+      added = 'green',
+      modified = 'blue',
+      removed = 'red',
+   },
+   paste = 'red',
+   coc = {
+      error = 'red',
+      warning = 'yellow',
+      status = 'lightgrey',
+   },
+   filetype = 'blue',
+   progress = {
+      rowandcol = 'lightgrey',
+      percentage = 'darkgrey',
+   },
 }
 ```
 
@@ -351,39 +424,39 @@ vim.g.bubbly_colors = {
 
 ```lua
 vim.g.bubbly_colors = {
-    mode = {
-       normal = 'red',
-       insert = 'blue',
-       visual = 'purple',
-       visualblock = 'green',
-       command = 'green',
-       terminal = 'blue',
-       replace = 'yellow',
-       default = 'darkgrey'
-    },
-    path = {
-       readonly = 'lightgrey',
-       unmodifiable = 'darkgrey',
-       path = 'white',
-       modified = 'lightgrey',
-    },
-    branch = 'purple',
-    signify = {
-       added = 'green',
-       modified = 'blue',
-       removed = 'red',
-    },
-    paste = 'red',
-    coc = {
-       error = 'red',
-       warning = 'yellow',
-       status = 'darkgrey',
-    },
-    filetype = 'blue',
-    progress = {
-       rowandcol = 'red',
-       percentage = 'green',
-    },
+   mode = {
+      normal = 'red',
+      insert = 'blue',
+      visual = 'purple',
+      visualblock = 'green',
+      command = 'green',
+      terminal = 'blue',
+      replace = 'yellow',
+      default = 'darkgrey'
+   },
+   path = {
+      readonly = 'lightgrey',
+      unmodifiable = 'darkgrey',
+      path = 'white',
+      modified = 'lightgrey',
+   },
+   branch = 'purple',
+   signify = {
+      added = 'green',
+      modified = 'blue',
+      removed = 'red',
+   },
+   paste = 'red',
+   coc = {
+      error = 'red',
+      warning = 'yellow',
+      status = 'darkgrey',
+   },
+   filetype = 'blue',
+   progress = {
+      rowandcol = 'red',
+      percentage = 'green',
+   },
 }
 ```
 
@@ -398,30 +471,30 @@ This option is used to configure which style to use for which bubble.
 
 ```lua
 vim.g.bubbly_styles = {
-    mode = 'bold',
-    path = {
-       readonly = 'bold',
-       unmodifiable = '',
-       path = '',
-       modified = '',
-    },
-    branch = 'bold',
-    signify = {
-       added = 'bold',
-       modified = 'bold',
-       removed = 'bold',
-    },
-    paste = 'bold',
-    coc = {
-       error = 'bold',
-       warning = 'bold',
-       status = ''
-    },
-    filetype = '',
-    progress = {
-       rowandol = '',
-       percentage = '',
-    },
+   mode = 'bold',
+   path = {
+      readonly = 'bold',
+      unmodifiable = '',
+      path = '',
+      modified = '',
+   },
+   branch = 'bold',
+   signify = {
+      added = 'bold',
+      modified = 'bold',
+      removed = 'bold',
+   },
+   paste = 'bold',
+   coc = {
+      error = 'bold',
+      warning = 'bold',
+      status = ''
+   },
+   filetype = '',
+   progress = {
+      rowandol = '',
+      percentage = '',
+   },
 }
 ```
 
@@ -434,31 +507,33 @@ vim.g.bubbly_styles = {
 
 ```lua
 vim.g.bubbly_styles = {
-    mode = 'bold',
-    path = {
-       readonly = 'bold',
-       unmodifiable = '',
-       path = 'italic',
-       modified = '',
-    },
-    branch = 'bold',
-    signify = {
-       added = 'bold',
-       modified = 'bold',
-       removed = 'bold',
-    },
-    paste = 'bold',
-    coc = {
-       error = 'bold',
-       warning = 'bold',
-       status = 'italic'
-    },
-    filetype = '',
-    progress = {
-       rowandol = 'bold',
-       percentage = 'bold',
-    },
+   mode = 'bold',
+   path = {
+      readonly = 'bold',
+      unmodifiable = '',
+      path = 'italic',
+      modified = '',
+   },
+   branch = 'bold',
+   signify = {
+      added = 'bold',
+      modified = 'bold',
+      removed = 'bold',
+   },
+   paste = 'bold',
+   coc = {
+      error = 'bold',
+      warning = 'bold',
+      status = 'italic'
+   },
+   filetype = '',
+   progress = {
+      rowandol = 'bold',
+      percentage = 'bold',
+   },
 }
 ```
 
 </details>
+
+
