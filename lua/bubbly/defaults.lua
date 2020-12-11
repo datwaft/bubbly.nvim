@@ -106,6 +106,35 @@
          percentage = 'darkgrey',
       },
    }
+-- ======
+-- Styles
+-- ======
+   M.styles = {
+      mode = 'bold',
+      path = {
+         readonly = 'bold',
+         unmodifiable = '',
+         path = '',
+         modified = '',
+      },
+      branch = 'bold',
+      signify = {
+         added = 'bold',
+         modified = 'bold',
+         removed = 'bold',
+      },
+      paste = 'bold',
+      coc = {
+         error = 'bold',
+         warning = 'bold',
+         status = ''
+      },
+      filetype = '',
+      progress = {
+         rowandol = '',
+         percentage = '',
+      },
+   }
 -- =============
 -- Option fusion
 -- =============
@@ -115,6 +144,7 @@
       vim.g.bubbly_symbols = require'bubbly.utils'.fusion(M.symbols, vim.g.bubbly_symbols)
       vim.g.bubbly_tags = require'bubbly.utils'.fusion(M.tags, vim.g.bubbly_tags)
       vim.g.bubbly_colors = require'bubbly.utils'.fusion(M.colors, vim.g.bubbly_colors)
+      vim.g.bubbly_styles = require'bubbly.utils'.fusion(M.styles, vim.g.bubbly_styles)
    end
 -- ============
 -- Finalization

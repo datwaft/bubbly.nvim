@@ -65,7 +65,7 @@
       local mode = vim.fn.mode()
       local data
       local color
-      local style = 'bold'
+      local style = vim.g.bubbly_symbols.mode
       if mode == 'n' then
          data = vim.g.bubbly_tags.mode.normal
          if not inactive then color = vim.g.bubbly_colors.mode.normal end
@@ -96,16 +96,36 @@
    -- Path bubble
    local function path_bubble(inactive)
       return bubble_factory{
-         inactive or { data = vim.bo.ro and vim.g.bubbly_symbols.path.readonly, color = vim.g.bubbly_colors.path.readonly, style = 'bold' },
-         inactive or { data = vim.bo.ma or vim.g.bubbly_symbols.path.unmodifiable, color = vim.g.bubbly_colors.path.unmodifiable },
-         { data = '%.30f', color = inactive or 'white' },
-         inactive or { data = vim.bo.mod and vim.g.bubbly_symbols.path.modified, color = vim.g.bubbly_colors.path.modified },
+         inactive or {
+            data = vim.bo.ro and vim.g.bubbly_symbols.path.readonly,
+            color = vim.g.bubbly_colors.path.readonly,
+            style = vim.g.bubbly_styles.path.readonly,
+         },
+         inactive or {
+            data = vim.bo.ma or vim.g.bubbly_symbols.path.unmodifiable,
+            color = vim.g.bubbly_colors.path.unmodifiable,
+            style = vim.g.bubbly_styles.path.unmodifiable,
+         },
+         {
+            data = '%.30f',
+            color = inactive or 'white',
+            style = vim.g.bubbly_styles.path.path,
+         },
+         inactive or {
+            data = vim.bo.mod and vim.g.bubbly_symbols.path.modified,
+            color = vim.g.bubbly_colors.path.modified,
+            style = vim.g.bubbly_styles.path.modified,
+         },
       }
    end
    -- Branch bubble
    local function branch_bubble(inactive)
       if inactive then return '' end
-      return bubble_factory{{ data = vim.b.git_branch, color = vim.g.bubbly_colors.branch, style = 'bold' }}
+      return bubble_factory{{
+         data = vim.b.git_branch,
+         color = vim.g.bubbly_colors.branch,
+         style = vim.g.bubbly_styles.branch,
+      }}
    end
    -- Signify bubble
    local function signify_bubble(inactive)
@@ -116,15 +136,31 @@
       if modified == -1 then modified = 0 end
       if removed == -1 then removed = 0 end
       return bubble_factory{
-         { data = added ~= 0 and vim.g.bubbly_symbols.signify.added .. added, color = vim.g.bubbly_colors.signify.added, style = 'bold' },
-         { data = modified ~= 0 and vim.g.bubbly_symbols.signify.modified .. modified, color = vim.g.bubbly_colors.signify.modified, style = 'bold' },
-         { data = removed ~= 0 and vim.g.bubbly_symbols.signify.removed .. removed, color = vim.g.bubbly_colors.signify.removed, style = 'bold' },
+         {
+            data = added ~= 0 and vim.g.bubbly_symbols.signify.added .. added,
+            color = vim.g.bubbly_colors.signify.added,
+            style = vim.g.bubbly_styles.signify.added,
+         },
+         {
+            data = modified ~= 0 and vim.g.bubbly_symbols.signify.modified .. modified,
+            color = vim.g.bubbly_colors.signify.modified,
+            style = vim.g.bubbly_styles.signify.modified,
+         },
+         {
+            data = removed ~= 0 and vim.g.bubbly_symbols.signify.removed .. removed,
+            color = vim.g.bubbly_colors.signify.removed,
+            style = vim.g.bubbly_styles.signify.removed,
+         },
       }
    end
    -- Paste bubble
    local function paste_bubble(inactive)
       if inactive then return '' end
-      return bubble_factory{{ data = vim.o.paste and vim.g.bubbly_tags.paste, color = vim.g.bubbly_colors.paste, style = 'bold' }}
+      return bubble_factory{{
+         data = vim.o.paste and vim.g.bubbly_tags.paste,
+         color = vim.g.bubbly_colors.paste,
+         style = vim.g.bubbly_styles.paste,
+      }}
    end
    -- coc.nvim bubble
    local function coc_bubble(inactive)
@@ -132,9 +168,21 @@
       local info = vim.b.coc_diagnostic_info
       if info == nil or next(info) == nil then return '' end
       return bubble_factory{
-         { data = info.error ~= 0 and vim.g.bubbly_symbols.coc.error .. info.error, color = vim.g.bubbly_colors.coc.error, style = 'bold' },
-         { data = info.warning ~= 0 and vim.g.bubbly_symbols.coc.warning .. info.warning, color = vim.g.bubbly_colors.coc.warning, style = 'bold' },
-         { data = vim.g.coc_status, color = vim.g.bubbly_colors.coc.status, style = bold },
+         {
+            data = info.error ~= 0 and vim.g.bubbly_symbols.coc.error .. info.error,
+            color = vim.g.bubbly_colors.coc.error,
+            style = vim.g.bubbly_styles.coc.error,
+         },
+         {
+            data = info.warning ~= 0 and vim.g.bubbly_symbols.coc.warning .. info.warning,
+            color = vim.g.bubbly_colors.coc.warning,
+            style = vim.g.bubbly_styles.coc.warning,
+         },
+         {
+            data = vim.g.coc_status,
+            color = vim.g.bubbly_colors.coc.status,
+            style = vim.g.bubbly_styles.coc.status,
+         },
       }
    end
    -- Filetype bubble
@@ -143,13 +191,25 @@
       local filetype = vim.bo.filetype
       if filetype == '' then filetype = vim.g.bubbly_tags.filetype.noft
       else filetype = filetype:lower() end
-      return bubble_factory{{ data = filetype, color = vim.g.bubbly_colors.filetype }}
+      return bubble_factory{{
+         data = filetype,
+         color = vim.g.bubbly_colors.filetype,
+         style = vim.g.bubbly_styles.filetype,
+      }}
    end
    -- Progress bubble
    local function progress_bubble(inactive)
       return bubble_factory{
-         { data = '%-8.(%l:%c%)', color = vim.g.bubbly_colors.progress.rowandcol },
-         { data = '%P', color = ( inactive or vim.g.bubbly_colors.progress.percentage ) },
+         {
+            data = '%-8.(%l:%c%)',
+            color = vim.g.bubbly_colors.progress.rowandcol,
+            style = vim.g.bubbly_styles.progress.rowandcol,
+         },
+         {
+            data = '%P',
+            color = ( inactive or vim.g.bubbly_colors.progress.percentage ),
+            style = vim.g.bubbly_styles.progress.percentage,
+         },
       }
    end
 -- ============
