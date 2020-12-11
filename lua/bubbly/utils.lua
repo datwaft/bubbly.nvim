@@ -58,6 +58,14 @@
       end
       return new
    end
+-- =================
+-- Prerequire module
+-- =================
+   M.prerequire = function(...)
+      local status, lib = pcall(require, ...)
+      if status then return lib end
+      return nil
+   end
 -- ============
 -- Finalization
 -- ============
