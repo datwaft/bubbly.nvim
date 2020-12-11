@@ -294,6 +294,7 @@ vim.g.bubbly_symbols = {
       error = 'E',
       warning = 'W',
    },
+   branch = ' '
 }
 ```
 
@@ -320,6 +321,7 @@ vim.g.bubbly_symbols = {
       error = 'Errors: ',
       warning = 'Warnings: ',
    },
+   branch = 'B '
 }
 ```
 
