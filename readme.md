@@ -92,8 +92,25 @@ This option is used to configure which bubble components to show in the statusli
 It's a list that follows this pattern:
 
 ```lua
-{ 'mode', 'thingy', 'coc', 'divisor', 'branch', function, {{ data = 'ddd', color = 'red', style = 'bold' }} }
+{ 'mode', 'thingy', 'coc', 'divisor', 'branch', {{ data = 'ddd', color = 'red', style = 'bold' }} }
 ```
+
+<details>
+<summary><b>Note</b></summary>
+
+---
+
+Sadly **neovim** cannot insert lua functions inside vim variables (`g:variable` for example), I don't know if it's a problem from neovim lua api or viml, so you technically cannot use functions here, but the support is there. Tell me if you have any suggestion about this. The functions must have been like `function(inactive) ... end`.
+
+The function must have accepted a parameter that is `true` when the buffer is **inactive** and `false`/`nil` when the buffer is **active** and reacted properly to the parameter.
+
+The function must have returned a table like `{{ data = '%F', color = 'blue', style = '' }}`.
+  - `data` and `color` are obligatory, `style` is optional.
+  - As you can see, it technically is a list of objects that contain `data`, `color`, and (optionally) `style`.
+
+---
+
+</details>
 
 The elements of the list can be:
 - **Strings** like `'mode'`.
@@ -102,11 +119,6 @@ The elements of the list can be:
 - **Tables** like `{{ data = '%F', color = 'blue', style = '' }}`
   - `data` and `color` are obligatory, `style` is optional.
   - As you can see, it technically is a list of objects that contain `data`, `color`, and (optionally) `style`.
-- **Functions** like `function(inactive) ... end`
-  - The function must accept a parameter that is `true` when the buffer is **inactive** and `false`/`nil` when the buffer is **active** and react properly to the parameter.
-  - The function must return a table like `{{ data = '%F', color = 'blue', style = '' }}`.
-    - `data` and `color` are obligatory, `style` is optional.
-    - As you can see, it technically is a list of objects that contain `data`, `color`, and (optionally) `style`.
 
 <details>
 <summary><b>Default configuration</b></summary>
@@ -148,9 +160,6 @@ vim.g.bubbly_statusline = {
    },
    'filetype',
    'progress',
-   function(inactive)
-     return {{ data = inactive and 'true' or 'false', color = 'blue', style = 'style' }}
-   end,
 }
 ```
 
