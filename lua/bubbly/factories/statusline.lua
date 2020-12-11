@@ -14,6 +14,10 @@ return function(list, inactive)
          if not left then statusline = statusline .. ' ' end
          statusline = statusline .. bubble_factory(e)
          if left then statusline = statusline .. ' ' end
+      elseif type == 'function' then
+         if not left then statusline = statusline .. ' ' end
+         statusline = statusline .. bubble_factory(e(inactive))
+         if left then statusline = statusline .. ' ' end
       elseif type == 'string' then
          if left and e:lower() == 'divisor' or e:lower() == 'division' then
             statusline = statusline .. '%='
