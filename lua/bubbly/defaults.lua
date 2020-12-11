@@ -142,6 +142,9 @@
 -- ==========
    M.statusline = {
       'mode',
+
+      'truncate',
+
       'path',
       'branch',
       'signify',

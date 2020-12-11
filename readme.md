@@ -118,6 +118,7 @@ The elements of the list can be:
 - **Strings** like `'mode'`.
   - The string represents the module name of some preexisting component.
   - If the string is `divisor` or `division` then the rest of the list will go to the right.
+  - If the string is `trucate` or `truc` then if the size is insuficient it will conserve everything at the left of the string.
 - **Tables** like `{{ data = '%F', color = 'blue', style = '' }}`
   - `data` and `color` are obligatory, `style` is optional.
   - As you can see, it technically is a list of objects that contain `data`, `color`, and (optionally) `style`.
@@ -128,6 +129,9 @@ The elements of the list can be:
 ```lua
 vim.g.bubbly_statusline = {
    'mode',
+
+   'truncate',
+
    'path',
    'branch',
    'signify',
@@ -150,6 +154,9 @@ vim.g.bubbly_statusline = {
 ```lua
 vim.g.bubbly_statusline = {
    'mode',
+
+   'truncate',
+
    'path',
    'branch',
    {{ data = 'my name', color = 'red', style = 'bold' }},

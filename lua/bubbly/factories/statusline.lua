@@ -22,6 +22,8 @@ return function(list, inactive)
          if left and e:lower() == 'divisor' or e:lower() == 'division' then
             statusline = statusline .. '%='
             left = false
+         elseif e:lower() == 'truc' or e:lower() == 'truncate' then
+            statusline = statusline .. '%<'
          else
             local component = require'bubbly.utils'.prerequire('bubbly.components.' .. e:lower())
             if component then
