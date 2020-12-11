@@ -6,13 +6,15 @@
 
 Hello, my username is _datwaft_ and this is a status line plugin that I created.
 
-This status line is based on using bubbles for almost every part of the status line. And tries to be fully configurable and modular.
+The ideology of this status line is using bubbles for almost every part of the status line. And tries to be fully configurable and modular.
 
 This plugin has support for [`coc.nvim`](https://github.com/neoclide/coc.nvim) and [`signify`](https://github.com/mhinz/vim-signify).
 
 Feel free to open an _issue_ if have some idea about how to make this plugin better or if you find some bug or functionality you don't like.
 
 Also, feel free to copy/steal the code of this plugin, I tried to make he code the most understandable posible so if you want to make a fork to add your own functionality, you are welcome.
+
+**Note:** feel free to make pull requests with custom components/bubbles you want to add.
 
 Here are some screenshots:
 
