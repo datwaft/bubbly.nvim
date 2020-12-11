@@ -143,8 +143,8 @@ vim.g.bubbly_statusline = {
    'divisor',
 
    {
-     { data = 'test1', color = 'yellow', style = 'italic' }
-     { data = 'test2', color = 'red' }
+     { data = 'test1', color = 'yellow', style = 'italic' },
+     { data = 'test2', color = 'red' },
    },
    'filetype',
    'progress',
