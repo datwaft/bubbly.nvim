@@ -282,6 +282,8 @@ vim.g.bubbly_characters = {
 
 This option is used to configure the symbols that are used in bubbles.
 
+It uses a function similar to the format from the C library so if there is more `%s` than necessary then the plugin would fail. If there were less than necessary it would simply not show that part.
+
 <details>
 <summary><b>Default configuration</b></summary>
 
@@ -293,15 +295,15 @@ vim.g.bubbly_symbols = {
       modified = '+',
    },
    signify = {
-      added = '+',
-      modified = '~',
-      removed = '-',
+      added = '+%s', -- requires 1
+      modified = '~%s', -- requires 1
+      removed = '-%s', -- requires 1
    },
    coc = {
-      error = 'E',
-      warning = 'W',
+      error = 'E%s', -- requires 1
+      warning = 'W%s', -- requires 1
    },
-   branch = ' '
+   branch = ' %s' -- requires 1
 }
 ```
 
@@ -320,13 +322,13 @@ vim.g.bubbly_symbols = {
       modified = '*',
    },
    signify = {
-      added = '++',
-      modified = '!',
-      removed = '_',
+      added = '++%s',
+      modified = '!%s',
+      removed = '_%s',
    },
    coc = {
-      error = 'Errors: ',
-      warning = 'Warnings: ',
+      error = 'Errors: %s',
+      warning = 'Warnings: %s',
    },
    branch = 'B '
 }
