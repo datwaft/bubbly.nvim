@@ -66,6 +66,26 @@
       if status then return lib end
       return nil
    end
+
+
+   M.in_range = function(pos, range)
+      local line = pos[1]
+      local char = pos[2]
+      if line < range.start.line or line > range['end'].line then return false end
+      if line == range.start.line and char < range.start.character or line == range['end'].line and char > range['end'].character then
+          return false
+      end
+      return true
+   end
+   M.filter = function(list, test)
+      local result = {}
+      for i, v in ipairs(list) do
+         if test(i, v) then
+            table.insert(result, v)
+         end
+      end
+      return result
+   end
 -- ============
 -- Finalization
 -- ============
