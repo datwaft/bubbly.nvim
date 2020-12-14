@@ -330,6 +330,7 @@ vim.g.bubbly_symbols = {
       error = 'Errors: %s',
       warning = 'Warnings: %s',
    },
+   branch = 'B '
 }
 ```
 
