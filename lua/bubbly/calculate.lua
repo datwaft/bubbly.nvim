@@ -44,6 +44,9 @@ end
       return branch
    end
    M.current_function = function()
+      if #vim.lsp.buf_get_clients(0) == 0 then
+         return ''
+      end
       local params = { textDocument = lsp_util.make_text_document_params() }
       local result, error = vim.lsp.buf_request_sync(0, 'textDocument/documentSymbol', params, 1000)
       if result == nil or vim.tbl_isempty(result) or error ~= nil then
