@@ -41,15 +41,15 @@
          modified = '+',
       },
       signify = {
-         added = '+',
-         modified = '~',
-         removed = '-',
+         added = '+%s',
+         modified = '~%s',
+         removed = '-%s',
       },
       coc = {
-         error = 'E',
-         warning = 'W',
+         error = 'E%s',
+         warning = 'W%s',
       },
-      branch = ' '
+      branch = ' %s'
    }
 -- ====
 -- Tags

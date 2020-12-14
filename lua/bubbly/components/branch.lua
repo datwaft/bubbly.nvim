@@ -9,7 +9,7 @@ return function(inactive)
    if inactive then return '' end
    local data = vim.b.git_branch
    if data ~= '' then
-      data = vim.g.bubbly_symbols.branch .. data
+      data = vim.g.bubbly_symbols.branch:format(data)
    end
    return bubble_factory{{
       data = data,
