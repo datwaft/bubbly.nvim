@@ -15,7 +15,7 @@
 " =====================
 " Automation definition
 " =====================
-  lua _G.get_git_branch = require('bubbly.calculate').git_branch
+  lua _G.get_git_branch = require'bubbly.calculate'.git_branch
   augroup BubblyAutomation
     autocmd!
     autocmd BufEnter * let b:git_branch = v:lua.get_git_branch()
@@ -23,9 +23,13 @@
 " ======================
 " Status line definition
 " ======================
-  lua _G.statusline = require('bubbly.plugin')
+  lua _G.statusline = require'bubbly.plugin'
   augroup BubblyRender
     autocmd!
     autocmd WinEnter,BufEnter * setlocal statusline=%!v:lua.statusline()
     autocmd WinLeave,BufLeave * setlocal statusline=%!v:lua.statusline(1)
   augroup end
+" ===================
+" Tab line definition
+" ===================
+  lua vim.g.tabline = require'bubbly.factories.tabline'()

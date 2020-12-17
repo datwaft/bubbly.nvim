@@ -30,6 +30,7 @@
    M.characters = {
       left = '',
       right = '',
+      close = 'x',
    }
 -- =======
 -- Symbols
@@ -49,7 +50,7 @@
          error = 'E%s',
          warning = 'W%s',
       },
-      branch = ' %s'
+      branch = ' %s',
    }
 -- ====
 -- Tags
@@ -107,6 +108,10 @@
          rowandcol = 'lightgrey',
          percentage = 'darkgrey',
       },
+      tabline = {
+         active = 'red',
+         inactive = 'white',
+      },
    }
 -- ======
 -- Styles
@@ -135,6 +140,10 @@
       progress = {
          rowandol = '',
          percentage = '',
+      },
+      tabline = {
+         active = 'bold',
+         inactive = '',
       },
    }
 -- ==========
