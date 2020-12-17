@@ -10,7 +10,7 @@ return function()
    local tabline = {}
    for i = 1, vim.fn.tabpagenr('$') + 1 do
       local buflist = vim.fn.tabpagebuflist(i)
-      local winnr = vim.fntabpagewinnr(i)
+      local winnr = vim.fn.tabpagewinnr(i)
       local bufnr = buflist[winnr]
       local tabname = vim.fn.bufname(bufnr)
       local color = this == i and vim.g.bubbly_colors.tabline.active or vim.g.bubbly_colors.tabline.inactive
