@@ -13,14 +13,14 @@ return function()
       local winnr = vim.fn.tabpagewinnr(i)
       local bufnr = buflist[winnr]
       local tabname = vim.fn.bufname(bufnr)
+      dump(tabname)
       local color = this == i and vim.g.bubbly_colors.tabline.active or vim.g.bubbly_colors.tabline.inactive
       local style = this == i and vim.g.bubbly_styles.tabline.active or vim.g.bubbly_styles.tabline.inactive
-      tabline[#tabline] = {
+      tabline[#tabline + 1] = {
          { pre = '%'..i..'T', data = tabname, post = '%T', color = color, style = style },
          { pre = '%'..i..'X', data = vim.g.bubbly_characters.close, post = '%X', color = 'darkgrey' },
       }
    end
-   dump(tabline)
    local result = ''
    for _, e in ipairs(tabline) do
       result = result .. bubble_factory(e) .. ' '
