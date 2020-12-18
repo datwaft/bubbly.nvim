@@ -20,6 +20,7 @@ return function()
          { pre = '%'..i..'X', data = vim.g.bubbly_characters.close, post = '%X', color = 'darkgrey' },
       }
    end
+   dump(tabline)
    local result = ''
    for _, e in ipairs(tabline) do
       result = result .. bubble_factory(e) .. ' '
