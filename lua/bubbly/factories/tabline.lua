@@ -10,7 +10,7 @@ return function()
    local tabline = {}
    for i = 1, vim.fn.tabpagenr('$') + 1 do
       local buflist = vim.fn.tabpagebuflist(i)
-      dump('buflist: '..buflist)
+      dump('buflist: ',buflist)
       local winnr = vim.fn.tabpagewinnr(i)
       local bufnr = buflist[winnr]
       local tabname = vim.fn.bufname(bufnr)
