@@ -8,9 +8,8 @@ local bubble_factory = require'bubbly.factories.bubble'
 return function()
    local this = vim.fn.tabpagenr()
    local tabline = {}
-   for i = 1, vim.fn.tabpagenr('$') + 1 do
+   for i = 1, vim.fn.tabpagenr('$') do
       local buflist = vim.fn.tabpagebuflist(i)
-      if type(buflist) ~= 'table' then return '' end
       local winnr = vim.fn.tabpagewinnr(i)
       local bufnr = buflist[winnr]
       local tabname = vim.fn.bufname(bufnr)
