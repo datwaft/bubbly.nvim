@@ -3,7 +3,6 @@
 " ==================
 " Created by: datwaft [github.com/datwaft]
 
-
 " ========================
 " Define and fuse defaults
 " ========================
@@ -20,16 +19,14 @@
     autocmd!
     autocmd BufEnter * let b:git_branch = v:lua.get_git_branch()
   augroup end
-" ======================
-" Status line definition
-" ======================
+" ======================================
+" Status line and Buffer line definition
+" ======================================
   lua _G.statusline = require'bubbly.plugin'
+  lua _G.tabline = require'bubbly.factories.tabline'
   augroup BubblyRender
     autocmd!
     autocmd WinEnter,BufEnter * setlocal statusline=%!v:lua.statusline()
     autocmd WinLeave,BufLeave * setlocal statusline=%!v:lua.statusline(1)
+    autocmd TabNew,TabLeave,TabClosed,TabEnter,TabNewEntered * set tabline=%!v:lua.tabline()
   augroup end
-" ===================
-" Tab line definition
-" ===================
-  lua vim.g.tabline = require'bubbly.factories.tabline'()

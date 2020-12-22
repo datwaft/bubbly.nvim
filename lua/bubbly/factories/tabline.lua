@@ -13,7 +13,6 @@ return function()
       local winnr = vim.fn.tabpagewinnr(i)
       local bufnr = buflist[winnr]
       local tabname = vim.fn.bufname(bufnr)
-      dump(tabname)
       local color = this == i and vim.g.bubbly_colors.tabline.active or vim.g.bubbly_colors.tabline.inactive
       local style = this == i and vim.g.bubbly_styles.tabline.active or vim.g.bubbly_styles.tabline.inactive
       tabline[#tabline + 1] = {
