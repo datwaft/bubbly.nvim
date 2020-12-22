@@ -259,6 +259,7 @@ This option is used to configure the delimiters of the bubble.
 vim.g.bubbly_characters = {
    left = '',
    right = '',
+   close = 'x',
 }
 ```
 
@@ -273,6 +274,7 @@ vim.g.bubbly_characters = {
 vim.g.bubbly_characters = {
    left = '(',
    right = ')',
+   close = 'CLOSE',
 }
 ```
 
@@ -434,6 +436,10 @@ vim.g.bubbly_colors = {
       rowandcol = 'lightgrey',
       percentage = 'darkgrey',
    },
+   tabline = {
+      active = 'blue',
+      inactive = 'white',
+   },
 }
 ```
 
@@ -479,6 +485,10 @@ vim.g.bubbly_colors = {
       rowandcol = 'red',
       percentage = 'green',
    },
+   tabline = {
+      active = 'red',
+      inactive = 'white',
+   },
 }
 ```
 
@@ -517,6 +527,10 @@ vim.g.bubbly_styles = {
       rowandol = '',
       percentage = '',
    },
+   tabline = {
+      active = 'bold',
+      inactive = '',
+   },
 }
 ```
 
@@ -552,6 +566,10 @@ vim.g.bubbly_styles = {
    progress = {
       rowandol = 'bold',
       percentage = 'bold',
+   },
+   tabline = {
+      active = 'italic',
+      inactive = '',
    },
 }
 ```
