@@ -109,7 +109,7 @@
          percentage = 'darkgrey',
       },
       tabline = {
-         active = 'red',
+         active = 'blue',
          inactive = 'white',
       },
    }
