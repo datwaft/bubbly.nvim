@@ -9,7 +9,7 @@ local right = vim.g.bubbly_characters.right
 
 return function(list)
 -- Example of list element:
--- { data: string, color: string, style: string-optional }
+-- { data: string, color: string, style: string-optional, pre: string-optional, post: string-optional }
    -- Render delimiter of the bubble
    local function render_delimiter(delimiter, color)
       return '%#Bubble' .. titlecase(color)  .. 'Delimiter#' .. delimiter
@@ -34,6 +34,12 @@ return function(list)
          if not e.style or type(e.style) ~= 'string' then e.style = '' end
          -- normalize color
          if not e.color or type(e.color) ~= 'string' then e.color = 'lightgrey' end
+         -- normalize pre
+         if not e.pre or type(e.pre) ~= 'string' then e.pre = '' end
+         -- normalize post
+         if not e.post or type(e.post) ~= 'string' then e.post = '' end
+         -- render pre
+         bubble = bubble .. e.pre
          -- render left delimiter
          if isfirst then bubble = bubble .. render_delimiter(left, e.color) end
          -- render data style
@@ -44,6 +50,8 @@ return function(list)
          if not islast then bubble = bubble .. ' ' end
          -- render right delimiter
          if islast then bubble = bubble .. render_delimiter(right, e.color) end
+         -- render post
+         bubble = bubble .. e.post
          -- disable isfirst
          isfirst = false
       end
