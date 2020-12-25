@@ -14,7 +14,7 @@
 -- ====================
    -- Define autocmd auxiliar function
    local function autocmd(name, background, foreground, style)
-      vim.cmd('autocmd ColorScheme,VimEnter * ' .. highlight(name, background, foreground, style))
+      dump('autocmd ColorScheme,VimEnter * ' .. highlight(name, background, foreground, style))
    end
    -- Define bubble highlight
    local function define_bubble_highlight(name, background, foreground, default_background)
