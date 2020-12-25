@@ -30,7 +30,7 @@
       for k1, v1 in pairs(palette) do
          for k2, v2 in pairs(palette) do
             if k1 ~= k2 then
-               local name = 'Bubbly' .. titlecase(k1) .. titlecase(k2)
+               local name = 'Bubbly' .. titlecase(k2) .. titlecase(k1)
                define_bubble_highlight(name, v1, v2, palette.background)
             end
          end
