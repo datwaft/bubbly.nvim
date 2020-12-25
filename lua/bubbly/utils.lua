@@ -34,11 +34,7 @@
    M.gethighlight = function(foreground, background, special)
       if not foreground then foreground = '' end
       if not special then special = '' end
-      if foreground == 'dark' then
-         return 'Bubbly'..M.titlecase(background)..'Dark'..M.titlecase(special)
-      else
-         return 'Bubbly'..M.titlecase(foreground)..M.titlecase(background)..M.titlecase(special)
-      end
+      return 'Bubbly'..M.titlecase(foreground)..M.titlecase(background)..M.titlecase(special)
    end
 -- ==============
 -- Table deepcopy
