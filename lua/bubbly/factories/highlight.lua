@@ -36,9 +36,9 @@
                end
             end
          end
-         define_bubble_highlight('Bubbly'..titlecase(k1), v1, palette.background)
-         define_bubble_highlight('Bubbly'..titlecase(k1)..'Dark', v1, palette.foreground)
+         define_bubble_highlight('Bubbly'..titlecase(k1), v1, palette.background, palette.background)
+         define_bubble_highlight('Bubbly'..titlecase(k1)..'Dark', v1, palette.foreground, palette.background)
       end
-      define_bubble_highlight('StatusLine', palette.background, palette.foreground)
-      define_bubble_highlight('TabLine', palette.background, palette.foreground)
+      autocmd('StatusLine', palette.background, palette.foreground)
+      autocmd('TabLine', palette.background, palette.foreground)
    end
