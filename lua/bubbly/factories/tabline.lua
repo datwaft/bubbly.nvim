@@ -23,7 +23,7 @@ return function()
    end
    local result = ''
    for _, e in ipairs(tabline) do
-      result = result .. bubble_factory(e) .. ' '
+      result = result..bubble_factory(e)..' '
    end
    return result
 end

@@ -3,7 +3,6 @@
 -- ==========================
 -- Created by: datwaft [github.com/datwaft]
 
-local titlecase = require'bubbly.utils'.titlecase
 local gethighlight = require'bubbly.utils'.gethighlight
 local left = vim.g.bubbly_characters.left
 local right = vim.g.bubbly_characters.right
@@ -14,9 +13,9 @@ return function(list)
    -- Render delimiter of the bubble
    local function render_delimiter(delimiter, color)
       if type(color) == 'string' then
-         return '%#' .. gethighlight(nil, color)  .. 'Delimiter#' .. delimiter
+         return '%#'..gethighlight(nil, color) ..'Delimiter#'..delimiter
       else
-         return '%#' .. gethighlight(color.foreground, color.background) .. 'Delimiter#' .. delimiter
+         return '%#'..gethighlight(color.foreground, color.background)..'Delimiter#'..delimiter
       end
    end
    -- Auxiliar function to know if data is last in the list
@@ -44,23 +43,23 @@ return function(list)
          -- normalize post
          if not e.post or type(e.post) ~= 'string' then e.post = '' end
          -- render pre
-         bubble = bubble .. e.pre
+         bubble = bubble..e.pre
          -- render left delimiter
-         if isfirst then bubble = bubble .. render_delimiter(left, e.color) end
+         if isfirst then bubble = bubble..render_delimiter(left, e.color) end
          -- render data style
          if type(e.color) == 'string' then
-            bubble = bubble .. '%#' .. gethighlight(nil, e.color, e.style)  .. '#'
+            bubble = bubble..'%#'..gethighlight(nil, e.color, e.style) ..'#'
          else
-            bubble = bubble .. '%#' .. gethighlight(e.color.foreground, e.color.background, e.style) .. '#'
+            bubble = bubble..'%#'..gethighlight(e.color.foreground, e.color.background, e.style)..'#'
          end
          -- render data
-         if not isfirst then bubble = bubble .. ' ' end
-         bubble = bubble .. e.data:gsub('^%s*(.-)%s*$', '%1')
-         if not islast then bubble = bubble .. ' ' end
+         if not isfirst then bubble = bubble..' ' end
+         bubble = bubble..e.data:gsub('^%s*(.-)%s*$', '%1')
+         if not islast then bubble = bubble..' ' end
          -- render right delimiter
-         if islast then bubble = bubble .. render_delimiter(right, e.color) .. '%#StatusLine#' end
+         if islast then bubble = bubble..render_delimiter(right, e.color)..'%#StatusLine#' end
          -- render post
-         bubble = bubble .. e.post
+         bubble = bubble..e.post
          -- disable isfirst
          isfirst = false
       end
