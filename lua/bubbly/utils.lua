@@ -13,18 +13,18 @@
 -- =========================
    M.titlecase = function(str)
       if not str then return nil end
-      return str:sub(1,1):upper() .. str:sub(2)
+      return str:sub(1,1):upper()..str:sub(2)
    end
 -- =========================
 -- Generate highlight string
 -- =========================
    M.highlight = function(name, foreground, background, special)
       local command = 'highlight '
-      command = command .. name .. ' '
-      command = command .. 'guifg=' .. foreground .. ' '
-      command = command .. 'guibg=' .. background .. ' '
+      command = command..name..' '
+      command = command..'guifg='..foreground..' '
+      command = command..'guibg='..background..' '
       if special then
-         command = command .. 'gui=' .. special .. ' '
+         command = command..'gui='..special..' '
       end
       return command
    end
