@@ -27,5 +27,6 @@
 -- Finalization
 -- ============
    return function()
+      dump('BubblyPalette', vim.g.bubbly_palette)
       highlight_factory(vim.g.bubbly_palette)
    end
