@@ -14,7 +14,7 @@
 -- ====================
    -- Define autocmd auxiliar function
    local function autocmd(name, background, foreground, style)
-      dump('autocmd ColorScheme,VimEnter * ' .. highlight(name, background, foreground, style))
+      vim.cmd('autocmd ColorScheme,VimEnter * ' .. highlight(name, background, foreground, style))
    end
    -- Define bubble highlight
    local function define_bubble_highlight(name, background, foreground, default_background)
@@ -27,6 +27,7 @@
 -- Factory definition
 -- ==================
    return function(palette)
+      dump('palette', palette)
       for k1, v1 in ipairs(palette) do
          if k1 ~= 'background' and k1 ~= 'foreground' then
             for k2, v2 in ipairs(palette) do
