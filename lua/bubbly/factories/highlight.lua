@@ -34,7 +34,9 @@
                define_bubble_highlight(name, v1, v2, palette.background)
             end
          end
-         define_bubble_highlight('Bubbly'..titlecase(k1), v1, palette.background, palette.background)
+         if k1 ~= 'background' then
+            define_bubble_highlight('Bubbly'..titlecase(k1), v1, palette.background, palette.background)
+         end
       end
       autocmd('StatusLine', palette.foreground, palette.background)
       autocmd('TabLine', palette.foreground, palette.background)
