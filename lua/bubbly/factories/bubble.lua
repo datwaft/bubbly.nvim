@@ -4,15 +4,20 @@
 -- Created by: datwaft [github.com/datwaft]
 
 local titlecase = require'bubbly.utils'.titlecase
+local gethighlight = require'bubbly.utils'.gethighlight
 local left = vim.g.bubbly_characters.left
 local right = vim.g.bubbly_characters.right
 
 return function(list)
 -- Example of list element:
--- { data: string, color: string, style: string-optional, pre: string-optional, post: string-optional }
+-- { data: string, color: string or { foreground = string, background = string }, style: string-optional, pre: string-optional, post: string-optional }
    -- Render delimiter of the bubble
    local function render_delimiter(delimiter, color)
-      return '%#Bubble' .. titlecase(color)  .. 'Delimiter#' .. delimiter
+      if type(color) == 'string' then
+         return '%#' .. gethighlight(nil, color)  .. 'Delimiter#' .. delimiter
+      else
+         return '%#' .. gethighlight(color.foreground, color.background) .. 'Delimiter#' .. delimiter
+      end
    end
    -- Auxiliar function to know if data is last in the list
    local function islast(current_index)
@@ -33,7 +38,7 @@ return function(list)
          -- normalize style
          if not e.style or type(e.style) ~= 'string' then e.style = '' end
          -- normalize color
-         if not e.color or type(e.color) ~= 'string' then e.color = 'lightgrey' end
+         if not e.color or (type(e.color) ~= 'string' and type(e.color) ~= 'table') then e.color = { background = 'lightgrey', foreground = 'dark' } end
          -- normalize pre
          if not e.pre or type(e.pre) ~= 'string' then e.pre = '' end
          -- normalize post
@@ -43,7 +48,11 @@ return function(list)
          -- render left delimiter
          if isfirst then bubble = bubble .. render_delimiter(left, e.color) end
          -- render data style
-         bubble = bubble .. '%#Bubble' .. titlecase(e.color) .. titlecase(e.style) .. '#'
+         if type(e.color) == 'string' then
+            bubble = bubble .. '%#' .. gethighlight(nil, e.color, e.style)  .. '#'
+         else
+            bubble = bubble .. '%#' .. gethighlight(e.color.foreground, e.color.background, e.style) .. '#'
+         end
          -- render data
          if not isfirst then bubble = bubble .. ' ' end
          bubble = bubble .. e.data:gsub('^%s*(.-)%s*$', '%1')

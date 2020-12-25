@@ -27,6 +27,17 @@
       end
       return command
    end
+-- ==================
+-- Get highlight name
+-- ==================
+   M.gethighlight = function(foreground, background, special)
+      if not foreground then foreground = '' end
+      if foreground == 'dark' then
+         return 'Bubbly'..M.titlecase(background)..'Dark'..M.titlecase(special)
+      else
+         return 'Bubbly'..M.titlecase(foreground)..M.titlecase(background)..M.titlecase(special)
+      end
+   end
 -- ==============
 -- Table deepcopy
 -- ==============

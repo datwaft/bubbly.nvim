@@ -86,10 +86,10 @@
          default = 'white'
       },
       path = {
-         readonly = 'lightgrey',
-         unmodifiable = 'darkgrey',
+         readonly = { background = 'lightgrey', foreground = 'dark' },
+         unmodifiable = { background = 'darkgrey', foreground = 'dark' },
          path = 'white',
-         modified = 'lightgrey',
+         modified = { background = 'lightgrey', foreground = 'dark' },
       },
       branch = 'purple',
       signify = {
@@ -101,12 +101,12 @@
       coc = {
          error = 'red',
          warning = 'yellow',
-         status = 'lightgrey',
+         status = { background = 'lightgrey', foreground = 'dark' },
       },
       filetype = 'blue',
       progress = {
-         rowandcol = 'lightgrey',
-         percentage = 'darkgrey',
+         rowandcol = { background = 'lightgrey', foreground = 'dark' },
+         percentage = { background = 'darkgrey', foreground = 'dark' },
       },
       tabline = {
          active = 'blue',
