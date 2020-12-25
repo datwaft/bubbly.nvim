@@ -398,13 +398,15 @@ vim.g.bubbly_tags = {
 
 This option is used to configure which color uses which bubble in some case.
 
+The option can be a string or a table with `foreground` and `background` properties.
+
 <details>
 <summary><b>Default configuration</b></summary>
 
 ```lua
 vim.g.bubbly_colors = {
    mode = {
-      normal = 'green',
+      normal = 'green', -- uses by default a foreground of the background color
       insert = 'blue',
       visual = 'red',
       visualblock = 'red',
@@ -414,10 +416,10 @@ vim.g.bubbly_colors = {
       default = 'white'
    },
    path = {
-      readonly = 'lightgrey',
-      unmodifiable = 'darkgrey',
+      readonly = { background = 'lightgrey', foreground = 'foreground' },
+      unmodifiable = { background = 'darkgrey', foreground = 'foreground' },
       path = 'white',
-      modified = 'lightgrey',
+      modified = { background = 'lightgrey', foreground = 'foreground' },
    },
    branch = 'purple',
    signify = {
@@ -429,12 +431,12 @@ vim.g.bubbly_colors = {
    coc = {
       error = 'red',
       warning = 'yellow',
-      status = 'lightgrey',
+      status = { background = 'lightgrey', foreground = 'foreground' },
    },
    filetype = 'blue',
    progress = {
-      rowandcol = 'lightgrey',
-      percentage = 'darkgrey',
+      rowandcol = { background = 'lightgrey', foreground = 'foreground' },
+      percentage = { background = 'darkgrey', foreground = 'foreground' },
    },
    tabline = {
       active = 'blue',
@@ -482,7 +484,7 @@ vim.g.bubbly_colors = {
    },
    filetype = 'blue',
    progress = {
-      rowandcol = 'red',
+      rowandcol = { foreground = 'red', background = 'blue' },
       percentage = 'green',
    },
    tabline = {

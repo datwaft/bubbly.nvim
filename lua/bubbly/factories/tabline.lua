@@ -18,7 +18,7 @@ return function()
       local style = this == i and vim.g.bubbly_styles.tabline.active or vim.g.bubbly_styles.tabline.inactive
       tabline[#tabline + 1] = {
          { pre = '%'..i..'T', data = tabname, post = '%T', color = color, style = style },
-         { pre = '%'..i..'X', data = vim.g.bubbly_characters.close, post = '%X', color = 'darkgrey' },
+         { pre = '%'..i..'X', data = vim.g.bubbly_characters.close, post = '%X', color = { background = 'darkgrey', foreground = 'foreground' } },
       }
    end
    local result = ''

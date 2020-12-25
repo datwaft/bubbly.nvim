@@ -12,6 +12,7 @@
 -- Generate titlecase string
 -- =========================
    M.titlecase = function(str)
+      if not str then return nil end
       return str:sub(1,1):upper() .. str:sub(2)
    end
 -- =========================
@@ -26,6 +27,14 @@
          command = command .. 'gui=' .. special .. ' '
       end
       return command
+   end
+-- ==================
+-- Get highlight name
+-- ==================
+   M.gethighlight = function(foreground, background, special)
+      if not foreground then foreground = '' end
+      if not special then special = '' end
+      return 'Bubbly'..M.titlecase(foreground)..M.titlecase(background)..M.titlecase(special)
    end
 -- ==============
 -- Table deepcopy
