@@ -180,6 +180,8 @@ vim.g.bubbly_statusline = {
 
 This option is used to set the exact color for each color used in the status line.
 
+**Note:** you can define new colors and use them in the color configuration, don't worry about that.
+
 <details>
 <summary><b>Default configuration</b></summary>
 
@@ -399,6 +401,8 @@ vim.g.bubbly_tags = {
 This option is used to configure which color uses which bubble in some case.
 
 The option can be a string or a table with `foreground` and `background` properties.
+
+**Note:** here you can use any color define in `vim.g.bubbly_palette`.
 
 <details>
 <summary><b>Default configuration</b></summary>
