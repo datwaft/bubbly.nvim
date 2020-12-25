@@ -19,8 +19,8 @@
    -- Define bubble highlight
    local function define_bubble_highlight(name, background, foreground, default_background)
       autocmd(name, background, foreground)
-      autocmd(name .. 'Bold', background, foreground)
-      autocmd(name .. 'Italic', background, foreground)
+      autocmd(name .. 'Bold', background, foreground, 'bold')
+      autocmd(name .. 'Italic', background, foreground, 'italic')
       autocmd(name .. 'Delimiter', foreground, default_background)
    end
 -- ==================
