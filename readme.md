@@ -1,6 +1,6 @@
 # bubbly.nvim
 
-**Warning:** this plugin probably requires Neovim nightly.
+**Warning:** this plugin probably requires Neovim nightly and **requires** true color support.
 
 ## Introduction
 
