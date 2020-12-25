@@ -27,11 +27,9 @@
 -- Factory definition
 -- ==================
    return function(palette)
-      for k1, v1 in ipairs(palette) do
-         dump('k1', k1)
+      for k1, v1 in pairs(palette) do
          if k1 ~= 'background' and k1 ~= 'foreground' then
-            for k2, v2 in ipairs(palette) do
-               dump('k2', k2)
+            for k2, v2 in pairs(palette) do
                if k2 ~= 'background' and k2 ~= 'foreground' and k1 ~= k2 then
                   local name = 'Bubbly' .. titlecase(k1) .. titlecase(k2)
                   define_bubble_highlight(name, v1, v2, palette.background)
