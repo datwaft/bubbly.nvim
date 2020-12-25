@@ -12,6 +12,7 @@
 -- Generate titlecase string
 -- =========================
    M.titlecase = function(str)
+      if not str then return nil end
       return str:sub(1,1):upper() .. str:sub(2)
    end
 -- =========================
