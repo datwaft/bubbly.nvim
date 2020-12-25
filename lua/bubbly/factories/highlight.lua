@@ -13,11 +13,11 @@
 -- Auxiliars definition
 -- ====================
    -- Define autocmd auxiliar function
-   local function autocmd(name, background, foreground, style)
-      vim.cmd('autocmd ColorScheme,VimEnter * ' .. highlight(name, background, foreground, style))
+   local function autocmd(name, foreground, background, style)
+      vim.cmd('autocmd ColorScheme,VimEnter * ' .. highlight(name, foreground, background, style))
    end
    -- Define bubble highlight
-   local function define_bubble_highlight(name, background, foreground, default_background)
+   local function define_bubble_highlight(name, foreground, background, default_background)
       autocmd(name, background, foreground)
       autocmd(name .. 'Bold', background, foreground, 'bold')
       autocmd(name .. 'Italic', background, foreground, 'italic')
@@ -31,8 +31,8 @@
          if k1 ~= 'background' and k1 ~= 'foreground' then
             for k2, v2 in pairs(palette) do
                if k2 ~= 'background' and k2 ~= 'foreground' and k1 ~= k2 then
-                  local name = 'Bubbly' .. titlecase(k2) .. titlecase(k1)
-                  define_bubble_highlight(name, v2, v1, palette.background)
+                  local name = 'Bubbly' .. titlecase(k1) .. titlecase(k2)
+                  define_bubble_highlight(name, v1, v2, palette.background)
                end
             end
          end
