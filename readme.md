@@ -1,6 +1,6 @@
 # bubbly.nvim
 
-**Warning:** this plugin probably requires Neovim nightly.
+**Warning:** this plugin probably requires Neovim nightly and **requires** true color support.
 
 ## Introduction
 
@@ -180,6 +180,8 @@ vim.g.bubbly_statusline = {
 
 This option is used to set the exact color for each color used in the status line.
 
+**Note:** you can define new colors and use them in the color configuration, don't worry about that.
+
 <details>
 <summary><b>Default configuration</b></summary>
 
@@ -259,6 +261,7 @@ This option is used to configure the delimiters of the bubble.
 vim.g.bubbly_characters = {
    left = '',
    right = '',
+   close = 'x',
 }
 ```
 
@@ -273,6 +276,7 @@ vim.g.bubbly_characters = {
 vim.g.bubbly_characters = {
    left = '(',
    right = ')',
+   close = 'CLOSE',
 }
 ```
 
@@ -281,6 +285,8 @@ vim.g.bubbly_characters = {
 ### Symbols
 
 This option is used to configure the symbols that are used in bubbles.
+
+It uses a function similar to the format from the C library so if there is more `%s` than necessary then the plugin would fail. If there were less than necessary it would simply not show that part.
 
 <details>
 <summary><b>Default configuration</b></summary>
@@ -293,15 +299,15 @@ vim.g.bubbly_symbols = {
       modified = '+',
    },
    signify = {
-      added = '+',
-      modified = '~',
-      removed = '-',
+      added = '+%s', -- requires 1
+      modified = '~%s', -- requires 1
+      removed = '-%s', -- requires 1
    },
    coc = {
-      error = 'E',
-      warning = 'W',
+      error = 'E%s', -- requires 1
+      warning = 'W%s', -- requires 1
    },
-   branch = ' '
+   branch = ' %s' -- requires 1
 }
 ```
 
@@ -320,13 +326,13 @@ vim.g.bubbly_symbols = {
       modified = '*',
    },
    signify = {
-      added = '++',
-      modified = '!',
-      removed = '_',
+      added = '++%s',
+      modified = '!%s',
+      removed = '_%s',
    },
    coc = {
-      error = 'Errors: ',
-      warning = 'Warnings: ',
+      error = 'Errors: %s',
+      warning = 'Warnings: %s',
    },
    branch = 'B '
 }
@@ -394,13 +400,17 @@ vim.g.bubbly_tags = {
 
 This option is used to configure which color uses which bubble in some case.
 
+The option can be a string or a table with `foreground` and `background` properties.
+
+**Note:** here you can use any color define in `vim.g.bubbly_palette`.
+
 <details>
 <summary><b>Default configuration</b></summary>
 
 ```lua
 vim.g.bubbly_colors = {
    mode = {
-      normal = 'green',
+      normal = 'green', -- uses by default a foreground of the background color
       insert = 'blue',
       visual = 'red',
       visualblock = 'red',
@@ -410,10 +420,10 @@ vim.g.bubbly_colors = {
       default = 'white'
    },
    path = {
-      readonly = 'lightgrey',
-      unmodifiable = 'darkgrey',
+      readonly = { background = 'lightgrey', foreground = 'foreground' },
+      unmodifiable = { background = 'darkgrey', foreground = 'foreground' },
       path = 'white',
-      modified = 'lightgrey',
+      modified = { background = 'lightgrey', foreground = 'foreground' },
    },
    branch = 'purple',
    signify = {
@@ -425,12 +435,16 @@ vim.g.bubbly_colors = {
    coc = {
       error = 'red',
       warning = 'yellow',
-      status = 'lightgrey',
+      status = { background = 'lightgrey', foreground = 'foreground' },
    },
    filetype = 'blue',
    progress = {
-      rowandcol = 'lightgrey',
-      percentage = 'darkgrey',
+      rowandcol = { background = 'lightgrey', foreground = 'foreground' },
+      percentage = { background = 'darkgrey', foreground = 'foreground' },
+   },
+   tabline = {
+      active = 'blue',
+      inactive = 'white',
    },
 }
 ```
@@ -474,8 +488,12 @@ vim.g.bubbly_colors = {
    },
    filetype = 'blue',
    progress = {
-      rowandcol = 'red',
+      rowandcol = { foreground = 'red', background = 'blue' },
       percentage = 'green',
+   },
+   tabline = {
+      active = 'red',
+      inactive = 'white',
    },
 }
 ```
@@ -515,6 +533,10 @@ vim.g.bubbly_styles = {
       rowandol = '',
       percentage = '',
    },
+   tabline = {
+      active = 'bold',
+      inactive = '',
+   },
 }
 ```
 
@@ -550,6 +572,10 @@ vim.g.bubbly_styles = {
    progress = {
       rowandol = 'bold',
       percentage = 'bold',
+   },
+   tabline = {
+      active = 'italic',
+      inactive = '',
    },
 }
 ```

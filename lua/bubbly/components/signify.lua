@@ -14,17 +14,17 @@ return function(inactive)
    if removed == -1 then removed = 0 end
    return bubble_factory{
       {
-         data = added ~= 0 and vim.g.bubbly_symbols.signify.added .. added,
+         data = added ~= 0 and vim.g.bubbly_symbols.signify.added:format(added),
          color = vim.g.bubbly_colors.signify.added,
          style = vim.g.bubbly_styles.signify.added,
       },
       {
-         data = modified ~= 0 and vim.g.bubbly_symbols.signify.modified .. modified,
+         data = modified ~= 0 and vim.g.bubbly_symbols.signify.modified:format(modified),
          color = vim.g.bubbly_colors.signify.modified,
          style = vim.g.bubbly_styles.signify.modified,
       },
       {
-         data = removed ~= 0 and vim.g.bubbly_symbols.signify.removed .. removed,
+         data = removed ~= 0 and vim.g.bubbly_symbols.signify.removed:format(removed),
          color = vim.g.bubbly_colors.signify.removed,
          style = vim.g.bubbly_styles.signify.removed,
       },

@@ -30,6 +30,7 @@
    M.characters = {
       left = '',
       right = '',
+      close = 'x',
    }
 -- =======
 -- Symbols
@@ -41,13 +42,13 @@
          modified = '+',
       },
       signify = {
-         added = '+',
-         modified = '~',
-         removed = '-',
+         added = '+%s',
+         modified = '~%s',
+         removed = '-%s',
       },
       coc = {
-         error = 'E',
-         warning = 'W',
+         error = 'E%s',
+         warning = 'W%s',
       },
       builtinlsp = {
          diagnostic_count = {
@@ -55,7 +56,7 @@
             warning = 'W',
          },
       },
-      branch = ' '
+      branch = ' %s',
    }
 -- ====
 -- Tags
@@ -91,10 +92,10 @@
          default = 'white'
       },
       path = {
-         readonly = 'lightgrey',
-         unmodifiable = 'darkgrey',
+         readonly = { background = 'lightgrey', foreground = 'foreground' },
+         unmodifiable = { background = 'darkgrey', foreground = 'foreground' },
          path = 'white',
-         modified = 'lightgrey',
+         modified = { background = 'lightgrey', foreground = 'foreground' },
       },
       branch = 'purple',
       signify = {
@@ -106,12 +107,16 @@
       coc = {
          error = 'red',
          warning = 'yellow',
-         status = 'lightgrey',
+         status = { background = 'lightgrey', foreground = 'foreground' },
       },
       filetype = 'blue',
       progress = {
-         rowandcol = 'lightgrey',
-         percentage = 'darkgrey',
+         rowandcol = { background = 'lightgrey', foreground = 'foreground' },
+         percentage = { background = 'darkgrey', foreground = 'foreground' },
+      },
+      tabline = {
+         active = 'blue',
+         inactive = 'white',
       },
       builtinlsp = {
          diagnostic_count = {
@@ -155,7 +160,11 @@
             warning = ''
          },
          current_function = ''
-      }
+      },
+      tabline = {
+         active = 'bold',
+         inactive = '',
+      },
    }
 -- ==========
 -- Statusline
