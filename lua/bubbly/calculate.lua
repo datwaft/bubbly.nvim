@@ -43,16 +43,21 @@ end
       branch = branch:gsub([[^##%s+(%w+).*$]], '%1')
       return branch
    end
+
+-- ==========
+-- Builtin LSP Current Function
+-- ==========
    M.current_function = function()
       if #vim.lsp.buf_get_clients(0) == 0 then
          return ''
       end
       local params = { textDocument = lsp_util.make_text_document_params() }
-      local result, error = vim.lsp.buf_request_sync(0, 'textDocument/documentSymbol', params, 1000)
-      if result == nil or vim.tbl_isempty(result) or error ~= nil then
+      local response, error = vim.lsp.buf_request_sync(0, 'textDocument/documentSymbol', params, 100)
+      -- The expected response should not be empty and should contain a 'result'
+      if response == nil or vim.tbl_isempty(response) or error ~= nil or response[1] == nil or response[1].result == nil then
          return ''
       end
-      local symbols = extract_symbols({}, result[1].result)
+      local symbols = extract_symbols({}, response[1].result)
       symbols = utils.filter(symbols, function(_, v)
           return v.kind == lsp_proto.SymbolKind.Method or v.kind == lsp_proto.SymbolKind.Function or v.kind == lsp_proto.SymbolKind.Module
       end)
