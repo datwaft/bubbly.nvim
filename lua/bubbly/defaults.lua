@@ -52,8 +52,8 @@
       },
       builtinlsp = {
          diagnostic_count = {
-            error = 'E',
-            warning = 'W',
+            error = 'E%s',
+            warning = 'W%s',
          },
       },
       branch = ' %s',
