@@ -5,8 +5,8 @@ return function(inactive)
    local data = vim.b.bubbly_current_function
    return bubble_factory{{
          data = data,
-         color = vim.g.bubbly_colors.branch,
-         style = vim.g.bubbly_styles.branch,
+         color = vim.g.bubbly_colors.builtinlsp.current_function,
+         style = vim.g.bubbly_styles.builtinlsp.current_function,
    }}
 end
 
