@@ -9,15 +9,11 @@ return function(inactive)
             data = error_count ~= 0 and vim.g.bubbly_symbols.builtinlsp.diagnostic_count.error .. error_count,
             color = vim.g.bubbly_colors.builtinlsp.diagnostic_count.error,
             style = vim.g.bubbly_styles.builtinlsp.diagnostic_count.error
-
-
       },
       {
             data = warning_count ~= 0 and vim.g.bubbly_symbols.builtinlsp.diagnostic_count.warning .. warning_count,
             color = vim.g.bubbly_colors.builtinlsp.diagnostic_count.warning,
             style = vim.g.bubbly_styles.builtinlsp.diagnostic_count.warning
-
-
       },
    }
 end

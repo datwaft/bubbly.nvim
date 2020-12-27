@@ -7,26 +7,6 @@ local utils = require('bubbly.utils')
 -- Created by: datwaft [github.com/datwaft]
 
 
-local extract_symbols = nil
-extract_symbols = function(accumulated_symbols, items)
-   for _, item in ipairs(items or {}) do
-      local range = nil
-      if item.location then -- Item is a SymbolInformation
-         range = item.location.range
-      elseif item.range then -- Item is a DocumentSymbol
-         range = item.range
-      end
-      if range then
-         range.start.line = range.start.line + 1
-         range['end'].line = range['end'].line + 1
-    end
-      table.insert(accumulated_symbols, {range = range, kind = item.kind, name = item.name})
-      if item.children ~= nil then
-         accumulated_symbols = extract_symbols(accumulated_symbols, item.children)
-      end
-   end
-   return accumulated_symbols
-end
 -- ========
 -- Preamble
 -- ========
@@ -57,7 +37,7 @@ end
       if response == nil or vim.tbl_isempty(response) or error ~= nil or response[1] == nil or response[1].result == nil then
          return ''
       end
-      local symbols = extract_symbols({}, response[1].result)
+      local symbols = utils.extract_lsp_symbols({}, response[1].result)
       symbols = utils.filter(symbols, function(_, v)
           return v.kind == lsp_proto.SymbolKind.Method or v.kind == lsp_proto.SymbolKind.Function or v.kind == lsp_proto.SymbolKind.Module
       end)
