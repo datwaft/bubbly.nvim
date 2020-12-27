@@ -49,6 +49,12 @@
          error = 'E',
          warning = 'W',
       },
+      builtinlsp = {
+         diagnostic_count = {
+            error = 'E',
+            warning = 'W',
+         },
+      },
       branch = ' '
    }
 -- ====
@@ -107,6 +113,13 @@
          rowandcol = 'lightgrey',
          percentage = 'darkgrey',
       },
+      builtinlsp = {
+         diagnostic_count = {
+            error = 'red',
+            warning = 'yellow'
+         },
+         current_function = 'purple'
+      }
    }
 -- ======
 -- Styles
@@ -136,6 +149,13 @@
          rowandol = '',
          percentage = '',
       },
+      builtinlsp = {
+         diagnostic_count = {
+            error = '',
+            warning = ''
+         },
+         current_function = ''
+      }
    }
 -- ==========
 -- Statusline
