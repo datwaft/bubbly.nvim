@@ -194,8 +194,13 @@
       vim.g.bubbly_tags = require'bubbly.utils'.fusion(M.tags, vim.g.bubbly_tags)
       vim.g.bubbly_colors = require'bubbly.utils'.fusion(M.colors, vim.g.bubbly_colors)
       vim.g.bubbly_styles = require'bubbly.utils'.fusion(M.styles, vim.g.bubbly_styles)
-      if not vim.g.bubbly_statusline then
+      if not vim.g.bubbly_statusline or type(vim.g.bubbly_statusline) ~= 'table' then
          vim.g.bubbly_statusline = M.statusline
+      end
+      for _,e in ipairs(vim.g.bubbly_statusline) do
+         if not require'bubbly.utils'.checkmodule(e) then
+            print([[[BUBBLY.NVIM] => [WARNING] Couldn't find the module named ']]..e:lower()..[[', it will be ignored.]])
+         end
       end
    end
 -- ============

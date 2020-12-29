@@ -30,8 +30,6 @@ return function(list, inactive)
                if not left then statusline = statusline..' ' end
                statusline = statusline..component(inactive)
                if left then statusline = statusline..' ' end
-            else
-               print([[[BUBBLY.NVIM] => [WARNING] Couldn't find the module named ']]..e:lower()..[[', it will be ignored.]])
             end
          end
       end
