@@ -1,6 +1,3 @@
-local lsp_util = require('vim.lsp.util')
-local lsp_proto = require('vim.lsp.protocol')
-local utils = require('bubbly.utils')
 -- =====================
 -- BUBBLY.NVIM CALCULATE
 -- =====================
@@ -11,6 +8,12 @@ local utils = require('bubbly.utils')
 -- Preamble
 -- ========
    local M = {}
+-- =======
+-- Imports
+-- =======
+   local lsp_util = require('vim.lsp.util')
+   local lsp_proto = require('vim.lsp.protocol')
+   local utils = require('bubbly.utils')
 -- ==========
 -- Git branch
 -- ==========
@@ -24,10 +27,9 @@ local utils = require('bubbly.utils')
       end
       return branch
    end
-
--- ==========
--- Builtin LSP Current Function
--- ==========
+-- ============================
+-- Builtin LSP current function
+-- ============================
    M.current_function = function()
       if #vim.lsp.buf_get_clients(0) == 0 then
          return ''

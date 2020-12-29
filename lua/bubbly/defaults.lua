@@ -109,6 +109,13 @@
          warning = 'yellow',
          status = { background = 'lightgrey', foreground = 'foreground' },
       },
+      builtinlsp = {
+         diagnostic_count = {
+            error = 'red',
+            warning = 'yellow'
+         },
+         current_function = 'purple'
+      },
       filetype = 'blue',
       progress = {
          rowandcol = { background = 'lightgrey', foreground = 'foreground' },
@@ -118,13 +125,6 @@
          active = 'blue',
          inactive = 'white',
       },
-      builtinlsp = {
-         diagnostic_count = {
-            error = 'red',
-            warning = 'yellow'
-         },
-         current_function = 'purple'
-      }
    }
 -- ======
 -- Styles
@@ -149,17 +149,17 @@
          warning = 'bold',
          status = ''
       },
-      filetype = '',
-      progress = {
-         rowandol = '',
-         percentage = '',
-      },
       builtinlsp = {
          diagnostic_count = {
             error = '',
             warning = ''
          },
          current_function = ''
+      },
+      filetype = '',
+      progress = {
+         rowandol = '',
+         percentage = '',
       },
       tabline = {
          active = 'bold',
