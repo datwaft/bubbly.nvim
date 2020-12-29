@@ -8,6 +8,22 @@
 -- ========
    -- Module namespace declaration
    local M = {}
+-- ======================
+-- Check module existence
+-- ======================
+   M.checkmodule = function(name)
+      local exceptions = {
+         'trunc',
+         'truncate',
+         'divisor',
+         'division',
+      }
+      if type(name) ~= 'string' then return true end
+      for _,e in ipairs(exceptions) do
+         if e:lower() == name:lower() then return true end
+      end
+      return not not M.prerequire('bubbly.components.'..name:lower())
+   end
 -- =========================
 -- Generate titlecase string
 -- =========================
