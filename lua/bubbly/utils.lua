@@ -12,7 +12,13 @@
 -- Check module existence
 -- ======================
    M.checkmodule = function(name)
-      if type(name) ~= 'string' then return false end
+      local exceptions = {
+         'trunc',
+         'truncate',
+         'divisor',
+         'division',
+      }
+      if type(name) ~= 'string' then return true end
       return not not M.prerequire('bubbly.components.'..name:lower())
    end
 -- =========================
