@@ -50,6 +50,12 @@
          error = 'E%s',
          warning = 'W%s',
       },
+      builtinlsp = {
+         diagnostic_count = {
+            error = 'E%s',
+            warning = 'W%s',
+         },
+      },
       branch = ' %s',
    }
 -- ====
@@ -112,6 +118,13 @@
          active = 'blue',
          inactive = 'white',
       },
+      builtinlsp = {
+         diagnostic_count = {
+            error = 'red',
+            warning = 'yellow'
+         },
+         current_function = 'purple'
+      }
    }
 -- ======
 -- Styles
@@ -140,6 +153,13 @@
       progress = {
          rowandol = '',
          percentage = '',
+      },
+      builtinlsp = {
+         diagnostic_count = {
+            error = '',
+            warning = ''
+         },
+         current_function = ''
       },
       tabline = {
          active = 'bold',
