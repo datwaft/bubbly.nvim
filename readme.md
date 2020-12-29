@@ -8,7 +8,10 @@ Hello, my username is _datwaft_ and this is a status line plugin that I created.
 
 The ideology of this status line is using bubbles for almost every part of the status line. And tries to be fully configurable and modular.
 
-This plugin has support for [`coc.nvim`](https://github.com/neoclide/coc.nvim) and [`signify`](https://github.com/mhinz/vim-signify).
+This plugin has support for:
+- [`coc.nvim`](https://github.com/neoclide/coc.nvim)
+- `builtin lsp`
+- [`signify`](https://github.com/mhinz/vim-signify).
 
 Feel free to open an _issue_ if have some idea about how to make this plugin better or if you find some bug or functionality you don't like.
 
@@ -46,6 +49,9 @@ Here is the list of the bubbles that are available right now:
 - Branch bubble
 - Signify bubble
 - Coc.nvim bubble
+- Builtin LSP bubbles
+  - Current function bubble
+  - Diagnostic count bubble
 - Filetype bubble
 - Progress bubble
 
@@ -122,6 +128,17 @@ The elements of the list can be:
 - **Tables** like `{{ data = '%F', color = 'blue', style = '' }}`
   - `data` and `color` are obligatory, `style` is optional.
   - As you can see, it technically is a list of objects that contain `data`, `color`, and (optionally) `style`.
+
+Here is a list of all the currently supported modules:
+- `mode`
+- `path`
+- `branch`
+- `signify`
+- `coc`
+- `builtinlsp.diagnostic_count`
+- `builtinlsp.current_function`
+- `filetype`
+- `progress`
 
 <details>
 <summary><b>Default configuration</b></summary>
@@ -307,6 +324,12 @@ vim.g.bubbly_symbols = {
       error = 'E%s', -- requires 1
       warning = 'W%s', -- requires 1
    },
+   builtinlsp = {
+      diagnostic_count = {
+         error = 'E%s', -- requires 1
+         warning = 'W%s', --requires 1
+      },
+   },
    branch = ' %s' -- requires 1
 }
 ```
@@ -333,6 +356,12 @@ vim.g.bubbly_symbols = {
    coc = {
       error = 'Errors: %s',
       warning = 'Warnings: %s',
+   },
+   builtinlsp = {
+      diagnostic_count = {
+         error = '%sE',
+         warning = '%sW',
+      },
    },
    branch = 'B '
 }
@@ -437,6 +466,13 @@ vim.g.bubbly_colors = {
       warning = 'yellow',
       status = { background = 'lightgrey', foreground = 'foreground' },
    },
+   builtinlsp = {
+      diagnostic_count = {
+         error = 'red',
+         warning = 'yellow',
+      },
+      current_function = 'purple',
+   },
    filetype = 'blue',
    progress = {
       rowandcol = { background = 'lightgrey', foreground = 'foreground' },
@@ -486,6 +522,13 @@ vim.g.bubbly_colors = {
       warning = 'yellow',
       status = 'darkgrey',
    },
+   builtinlsp = {
+      diagnostic_count = {
+         error = 'red',
+         warning = 'yellow',
+      },
+      current_function = 'purple',
+   },
    filetype = 'blue',
    progress = {
       rowandcol = { foreground = 'red', background = 'blue' },
@@ -528,6 +571,13 @@ vim.g.bubbly_styles = {
       warning = 'bold',
       status = ''
    },
+   builtinlsp = {
+      diagnostic_count = {
+         error = '',
+         warning = ''
+      },
+      current_function = ''
+   },
    filetype = '',
    progress = {
       rowandol = '',
@@ -567,6 +617,13 @@ vim.g.bubbly_styles = {
       error = 'bold',
       warning = 'bold',
       status = 'italic'
+   },
+   builtinlsp = {
+      diagnostic_count = {
+         error = '',
+         warning = ''
+      },
+      current_function = 'bold'
    },
    filetype = '',
    progress = {

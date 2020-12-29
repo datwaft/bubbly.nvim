@@ -1,3 +1,8 @@
+-- ==============================================
+-- BUBBLY.NVIM BUILTINLSP CURRENT FUNCTION BUBBLE
+-- ==============================================
+-- Created by: PatOConnor43 [github.com/PatOConnor43]
+
 local bubble_factory = require'bubbly.factories.bubble'
 
 return function(inactive)
@@ -9,4 +14,3 @@ return function(inactive)
          style = vim.g.bubbly_styles.builtinlsp.current_function,
    }}
 end
-
