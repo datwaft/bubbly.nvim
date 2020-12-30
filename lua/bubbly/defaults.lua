@@ -194,6 +194,7 @@
       vim.g.bubbly_tags = require'bubbly.utils'.fusion(M.tags, vim.g.bubbly_tags)
       vim.g.bubbly_colors = require'bubbly.utils'.fusion(M.colors, vim.g.bubbly_colors)
       vim.g.bubbly_styles = require'bubbly.utils'.fusion(M.styles, vim.g.bubbly_styles)
+      vim.g.bubbly_tabline = vim.g.bubbly_tabline and vim.g.bubbly_tabline or 1
       if not vim.g.bubbly_statusline or type(vim.g.bubbly_statusline) ~= 'table' then
          vim.g.bubbly_statusline = M.statusline
       end
