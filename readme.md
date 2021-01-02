@@ -10,8 +10,8 @@ The ideology of this status line is using bubbles for almost every part of the s
 
 This plugin has support for:
 - [`coc.nvim`](https://github.com/neoclide/coc.nvim)
-- `builtin lsp`
-- [`signify`](https://github.com/mhinz/vim-signify).
+- `built-in lsp`
+- [`signify`](https://github.com/mhinz/vim-signify)
 
 Feel free to open an _issue_ if have some idea about how to make this plugin better or if you find some bug or functionality you don't like.
 
