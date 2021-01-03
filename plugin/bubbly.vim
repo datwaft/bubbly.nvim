@@ -31,6 +31,6 @@
     autocmd WinEnter,BufEnter * setlocal statusline=%!v:lua.statusline()
     autocmd WinLeave,BufLeave * setlocal statusline=%!v:lua.statusline(1)
     if g:bubbly_tabline == 1
-      autocmd TabNew,TabLeave,TabClosed,TabEnter,TabNewEntered * set tabline=%!v:lua.tabline()
+      autocmd TabNew,TabLeave,TabClosed,TabEnter * set tabline=%!v:lua.tabline()
     endif
   augroup end
