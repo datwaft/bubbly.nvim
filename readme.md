@@ -191,7 +191,38 @@ vim.g.bubbly_statusline = {
 
 </details>
 
+### Tabline
 
+This option is used to activate (by default its activated, so it's unnecessary) or deactivate bubbly tabline, you can use this if you have your own tabline or prefer the default neovim one.
+
+<details>
+<summary><b>Default configuration</b></summary>
+
+```lua
+vim.g.bubbly_tabline = 1
+```
+
+</details>
+
+---
+
+<details>
+<summary><b>Lua configuration example</b></summary>
+
+```lua
+vim.g.bubbly_tabline = 0
+```
+
+</details>
+
+<details>
+<summary><b>VimL configuration example</b></summary>
+
+```viml
+let g:bubbly_tabline = 0
+```
+
+</details>
 
 ### Palette
 
