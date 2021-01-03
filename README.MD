@@ -2,6 +2,8 @@
 
 **Warning:** this plugin probably requires Neovim nightly and **requires** true color support.
 
+Screenshots at the end of the introduction!
+
 ## Introduction
 
 Hello, my username is _datwaft_ and this is a status line plugin that I created.
