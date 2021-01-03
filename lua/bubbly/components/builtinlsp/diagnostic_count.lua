@@ -4,6 +4,11 @@
 -- Created by: PatOConnor43 [github.com/PatOConnor43]
 
 local bubble_factory = require'bubbly.factories.bubble'
+local settings = {
+   symbol = vim.g.bubbly_symbols.builtinlsp.diagnostic_count,
+   color = vim.g.bubbly_colors.builtinlsp.diagnostic_count,
+   style = vim.g.bubbly_styles.builtinlsp.diagnostic_count,
+}
 
 return function(inactive)
    if inactive then return '' end
@@ -11,14 +16,14 @@ return function(inactive)
    local warning_count = vim.lsp.diagnostic.get_count(0, 'Warning')
    return bubble_factory{
       {
-         data = error_count ~= 0 and vim.g.bubbly_symbols.builtinlsp.diagnostic_count.error:format(error_count),
-         color = vim.g.bubbly_colors.builtinlsp.diagnostic_count.error,
-         style = vim.g.bubbly_styles.builtinlsp.diagnostic_count.error
+         data = error_count ~= 0 and settings.symbol.error:format(error_count),
+         color = settings.color.error,
+         style = settings.style.error
       },
       {
-         data = warning_count ~= 0 and vim.g.bubbly_symbols.builtinlsp.diagnostic_count.warning:format(warning_count),
-         color = vim.g.bubbly_colors.builtinlsp.diagnostic_count.warning,
-         style = vim.g.bubbly_styles.builtinlsp.diagnostic_count.warning
+         data = warning_count ~= 0 and settings.symbol.warning:format(warning_count),
+         color = settings.color.warning,
+         style = settings.style.warning
       },
    }
 end

@@ -37,7 +37,7 @@ return function(list)
          -- normalize style
          if not e.style or type(e.style) ~= 'string' then e.style = '' end
          -- normalize color
-         if not e.color or (type(e.color) ~= 'string' and type(e.color) ~= 'table') then e.color = { background = 'lightgrey', foreground = 'foreground' } end
+         if not e.color or (type(e.color) ~= 'string' and type(e.color) ~= 'table') then e.color = vim.g.bubbly_inactive_colors.default end
          -- normalize pre
          if not e.pre or type(e.pre) ~= 'string' then e.pre = '' end
          -- normalize post

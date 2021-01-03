@@ -126,6 +126,7 @@
          inactive = 'white',
       },
    }
+   M.inactive_color = { background = 'lightgrey', foreground = 'foreground' }
 -- ======
 -- Styles
 -- ======
@@ -166,6 +167,7 @@
          inactive = '',
       },
    }
+   M.inactive_style = ''
 -- ==========
 -- Statusline
 -- ==========
@@ -188,13 +190,23 @@
 -- Option fusion
 -- =============
    M.fusion = function()
+      -- Palette
       vim.g.bubbly_palette = require'bubbly.utils'.fusion(M.palette, vim.g.bubbly_palette)
+      -- Characters
       vim.g.bubbly_characters = require'bubbly.utils'.fusion(M.characters, vim.g.bubbly_characters)
+      -- Symbols
       vim.g.bubbly_symbols = require'bubbly.utils'.fusion(M.symbols, vim.g.bubbly_symbols)
+      -- Tags
       vim.g.bubbly_tags = require'bubbly.utils'.fusion(M.tags, vim.g.bubbly_tags)
+      -- Colors
       vim.g.bubbly_colors = require'bubbly.utils'.fusion(M.colors, vim.g.bubbly_colors)
+      vim.g.bubbly_inactive_colors = require'bubbly.utils'.fusion(M.inactive_colors, vim.g.bubbly_inactive_colors)
+      -- Styles
       vim.g.bubbly_styles = require'bubbly.utils'.fusion(M.styles, vim.g.bubbly_styles)
+      vim.g.bubbly_inactive_styles = require'bubbly.utils'.fusion(M.inactive_styles, vim.g.bubbly_inactive_styles)
+      -- Tabline
       vim.g.bubbly_tabline = vim.g.bubbly_tabline or 1
+      -- Statusline
       if not vim.g.bubbly_statusline or type(vim.g.bubbly_statusline) ~= 'table' then
          vim.g.bubbly_statusline = M.statusline
       end

@@ -4,6 +4,11 @@
 -- Created by: datwaft [github.com/datwaft]
 
 local bubble_factory = require'bubbly.factories.bubble'
+local settings = {
+   color = vim.g.bubbly_colors.signify,
+   style = vim.g.bubbly_styles.signify,
+   symbol = vim.g.bubbly_symbols.signify,
+}
 
 return function(inactive)
    if inactive then return '' end
@@ -14,19 +19,19 @@ return function(inactive)
    if removed == -1 then removed = 0 end
    return bubble_factory{
       {
-         data = added ~= 0 and vim.g.bubbly_symbols.signify.added:format(added),
-         color = vim.g.bubbly_colors.signify.added,
-         style = vim.g.bubbly_styles.signify.added,
+         data = added ~= 0 and settings.symbol.added:format(added),
+         color = settings.color.added,
+         style = settings.style.added,
       },
       {
-         data = modified ~= 0 and vim.g.bubbly_symbols.signify.modified:format(modified),
-         color = vim.g.bubbly_colors.signify.modified,
-         style = vim.g.bubbly_styles.signify.modified,
+         data = modified ~= 0 and settings.symbol.modified:format(modified),
+         color = settings.color.modified,
+         style = settings.style.modified,
       },
       {
-         data = removed ~= 0 and vim.g.bubbly_symbols.signify.removed:format(removed),
-         color = vim.g.bubbly_colors.signify.removed,
-         style = vim.g.bubbly_styles.signify.removed,
+         data = removed ~= 0 and settings.symbol.removed:format(removed),
+         color = settings.color.removed,
+         style = settings.style.removed,
       },
    }
 end
