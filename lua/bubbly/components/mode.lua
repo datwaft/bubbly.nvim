@@ -5,7 +5,7 @@
 
 local bubble_factory = require'bubbly.factories.bubble'
 local settings = {
-   tag = vim.g.bubbly_tags.tags.mode,
+   tag = vim.g.bubbly_tags.mode,
    color = vim.g.bubbly_colors.mode,
    inactive_color = vim.g.bubbly_inactive_color,
    style = vim.g.bubbly_styles.mode,
