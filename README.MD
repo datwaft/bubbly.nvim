@@ -336,11 +336,15 @@ This option is used to configure the symbols that are used in bubbles.
 
 It uses a function similar to the format from the C library so if there is more `%s` than necessary then the plugin would fail. If there were less than necessary it would simply not show that part.
 
+The default one is used as a fallback in case there is no symbol for the module.
+
 <details>
 <summary><b>Default configuration</b></summary>
 
 ```lua
 vim.g.bubbly_symbols = {
+   default = 'PANIC!',
+
    path = {
       readonly = 'RO',
       unmodifiable = '',
@@ -374,6 +378,8 @@ vim.g.bubbly_symbols = {
 
 ```lua
 vim.g.bubbly_symbols = {
+   default = "THIS SHOULDN'T HAVE HAPPENED",
+
    path = {
       readonly = 'ro',
       unmodifiable = 'lk',
@@ -406,11 +412,15 @@ This option is used to configure the text used in the bubbles.
 
 If it's empty the bubble disappears instead of showing the text.
 
+The default one is used as a fallback in case there is no tag for the module.
+
 <details>
 <summary><b>Default configuration</b></summary>
 
 ```lua
 vim.g.bubbly_tags = {
+   default = 'HELP ME PLEASE!',
+
    mode = {
       normal = 'NORMAL',
       insert = 'INSERT',
@@ -437,6 +447,8 @@ vim.g.bubbly_tags = {
 
 ```lua
 vim.g.bubbly_tags = {
+   default = 'ayuda, por favor!',
+
    mode = {
       normal = 'normal',
       insert = 'insertar',
@@ -462,13 +474,17 @@ This option is used to configure which color uses which bubble in some case.
 
 The option can be a string or a table with `foreground` and `background` properties.
 
-**Note:** here you can use any color define in `vim.g.bubbly_palette`.
+The default one is used as a fallback in case there is no color for the module.
+
+**Note:** here you can use any color defined in `vim.g.bubbly_palette`.
 
 <details>
 <summary><b>Default configuration</b></summary>
 
 ```lua
 vim.g.bubbly_colors = {
+   default = 'red',
+
    mode = {
       normal = 'green', -- uses by default a foreground of the background color
       insert = 'blue',
@@ -525,6 +541,8 @@ vim.g.bubbly_colors = {
 
 ```lua
 vim.g.bubbly_colors = {
+   default = 'purple',
+
    mode = {
       normal = 'red',
       insert = 'blue',
@@ -574,15 +592,43 @@ vim.g.bubbly_colors = {
 
 </details>
 
+### Inactive color
+
+This option defines the color used by bubbles in a inactive statusline.
+
+<details>
+<summary><b>Default configuration</b></summary>
+
+```lua
+vim.g.inactive_color = { background = 'lightgrey', foreground = 'foreground' }
+```
+
+</details>
+
+---
+
+<details>
+<summary><b>Lua configuration example</b></summary>
+
+```lua
+vim.g.inactive_color = 'red'
+```
+
+</details>
+
 ### Styles
 
 This option is used to configure which style to use for which bubble.
+
+The default one is used as a fallback in case there is no style for the module.
 
 <details>
 <summary><b>Default configuration</b></summary>
 
 ```lua
 vim.g.bubbly_styles = {
+   default = 'bold',
+
    mode = 'bold',
    path = {
       readonly = 'bold',
@@ -630,6 +676,8 @@ vim.g.bubbly_styles = {
 
 ```lua
 vim.g.bubbly_styles = {
+   default = '',
+
    mode = 'bold',
    path = {
       readonly = 'bold',
@@ -670,4 +718,27 @@ vim.g.bubbly_styles = {
 
 </details>
 
+### Inactive style
+
+This option defines the style used by bubbles in a inactive statusline.
+
+<details>
+<summary><b>Default configuration</b></summary>
+
+```lua
+vim.g.inactive_style = ''
+```
+
+</details>
+
+---
+
+<details>
+<summary><b>Lua configuration example</b></summary>
+
+```lua
+vim.g.inactive_style = 'bold'
+```
+
+</details>
 
