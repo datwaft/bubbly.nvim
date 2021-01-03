@@ -9,6 +9,15 @@ local settings = {
    style = vim.g.bubbly_styles.builtinlsp.current_function,
 }
 
+if not settings.color then
+   print[[[BUBBLY.NVIM] => [WARNING] Couldn't load color configuration for the component 'builtinlsp.current_function', the default color will be used.]]
+   settings.color = vim.g.bubbly_colors.default
+end
+if not settings.style then
+   print[[[BUBBLY.NVIM] => [WARNING] Couldn't load style configuration for the component 'builtinlsp.current_function', the default style will be used.]]
+   settings.style = vim.g.bubbly_styles.default
+end
+
 return function(inactive)
    if inactive then return '' end
    local data = vim.b.bubbly_current_function

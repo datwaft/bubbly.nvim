@@ -4,8 +4,12 @@
 -- Created by: datwaft [github.com/datwaft]
 
 local gethighlight = require'bubbly.utils'.gethighlight
-local left = vim.g.bubbly_characters.left
-local right = vim.g.bubbly_characters.right
+
+local settings = {
+   left_character = vim.g.bubbly_characters.left,
+   right_character = vim.g.bubbly_characters.right,
+   inactive_color = vim.g.bubbly_inactive_color,
+}
 
 return function(list)
 -- Example of list element:
@@ -37,7 +41,7 @@ return function(list)
          -- normalize style
          if not e.style or type(e.style) ~= 'string' then e.style = '' end
          -- normalize color
-         if not e.color or (type(e.color) ~= 'string' and type(e.color) ~= 'table') then e.color = vim.g.bubbly_inactive_color end
+         if not e.color or (type(e.color) ~= 'string' and type(e.color) ~= 'table') then e.color = settings.inactive_color end
          -- normalize pre
          if not e.pre or type(e.pre) ~= 'string' then e.pre = '' end
          -- normalize post
@@ -45,7 +49,7 @@ return function(list)
          -- render pre
          bubble = bubble..e.pre
          -- render left delimiter
-         if isfirst then bubble = bubble..render_delimiter(left, e.color) end
+         if isfirst then bubble = bubble..render_delimiter(settings.left_character, e.color) end
          -- render data style
          if type(e.color) == 'string' then
             bubble = bubble..'%#'..gethighlight(nil, e.color, e.style) ..'#'
@@ -57,7 +61,7 @@ return function(list)
          bubble = bubble..e.data:gsub('^%s*(.-)%s*$', '%1')
          if not islast then bubble = bubble..' ' end
          -- render right delimiter
-         if islast then bubble = bubble..render_delimiter(right, e.color)..'%#StatusLine#' end
+         if islast then bubble = bubble..render_delimiter(settings.right_character, e.color)..'%#StatusLine#' end
          -- render post
          bubble = bubble..e.post
          -- disable isfirst

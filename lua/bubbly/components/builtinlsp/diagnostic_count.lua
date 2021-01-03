@@ -10,6 +10,19 @@ local settings = {
    style = vim.g.bubbly_styles.builtinlsp.diagnostic_count,
 }
 
+if not settings.symbol then
+   print[[[BUBBLY.NVIM] => [WARNING] Couldn't load symbol configuration for the component 'builtinlsp.diagnostic_count', the default symbol will be used.]]
+   settings.symbol = vim.g.bubbly_symbols.default
+end
+if not settings.color then
+   print[[[BUBBLY.NVIM] => [WARNING] Couldn't load color configuration for the component 'builtinlsp.diagnostic_count', the default color will be used.]]
+   settings.color = vim.g.bubbly_colors.default
+end
+if not settings.style then
+   print[[[BUBBLY.NVIM] => [WARNING] Couldn't load style configuration for the component 'builtinlsp.diagnostic_count', the default style will be used.]]
+   settings.style = vim.g.bubbly_styles.default
+end
+
 return function(inactive)
    if inactive then return '' end
    local error_count = vim.lsp.diagnostic.get_count(0, 'Error')

@@ -36,6 +36,8 @@
 -- Symbols
 -- =======
    M.symbols = {
+      default = 'PANIC!',
+
       path = {
          readonly = 'RO',
          unmodifiable = '',
@@ -62,6 +64,8 @@
 -- Tags
 -- ====
    M.tags = {
+      default = 'HELP ME PLEASE!',
+
       mode = {
          normal = 'NORMAL',
          insert = 'INSERT',
@@ -81,6 +85,8 @@
 -- Colors
 -- ======
    M.colors = {
+      default = 'red',
+
       mode = {
          normal = 'green',
          insert = 'blue',
@@ -131,6 +137,8 @@
 -- Styles
 -- ======
    M.styles = {
+      default = 'bold',
+
       mode = 'bold',
       path = {
          readonly = 'bold',
