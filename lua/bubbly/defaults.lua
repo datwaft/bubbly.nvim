@@ -200,10 +200,14 @@
       vim.g.bubbly_tags = require'bubbly.utils'.fusion(M.tags, vim.g.bubbly_tags)
       -- Colors
       vim.g.bubbly_colors = require'bubbly.utils'.fusion(M.colors, vim.g.bubbly_colors)
-      vim.g.bubbly_inactive_colors = require'bubbly.utils'.fusion(M.inactive_colors, vim.g.bubbly_inactive_colors)
+      if not vim.g.bubbly_inactive_color then
+         vim.g.bubbly_inactive_color = M.inactive_color
+      end
       -- Styles
       vim.g.bubbly_styles = require'bubbly.utils'.fusion(M.styles, vim.g.bubbly_styles)
-      vim.g.bubbly_inactive_styles = require'bubbly.utils'.fusion(M.inactive_styles, vim.g.bubbly_inactive_styles)
+      if not vim.g.bubbly_inactive_style then
+         vim.g.bubbly_inactive_style = M.inactive_style
+      end
       -- Tabline
       vim.g.bubbly_tabline = vim.g.bubbly_tabline or 1
       -- Statusline
