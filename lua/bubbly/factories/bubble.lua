@@ -61,7 +61,7 @@ return function(list)
          bubble = bubble..e.data:gsub('^%s*(.-)%s*$', '%1')
          if not islast then bubble = bubble..' ' end
          -- render right delimiter
-         if islast then bubble = bubble..render_delimiter(settings.right_character, e.color)..'%#StatusLine#' end
+         if islast then bubble = bubble..render_delimiter(settings.right_character, e.color)..'%#BubblyStatusLine#' end
          -- render post
          bubble = bubble..e.post
          -- disable isfirst

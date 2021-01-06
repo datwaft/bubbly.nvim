@@ -38,6 +38,6 @@
             define_bubble_highlight('Bubbly'..titlecase(k1), v1, palette.background, palette.background)
          end
       end
-      autocmd('StatusLine', palette.foreground, palette.background)
-      autocmd('TabLine', palette.foreground, palette.background)
+      autocmd('BubblyStatusLine', palette.foreground, palette.background)
+      autocmd('BubblyTabLine', palette.foreground, palette.background)
    end
