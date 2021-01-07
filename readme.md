@@ -610,7 +610,7 @@ This option defines the color used by bubbles in a inactive statusline.
 <summary><b>Default configuration</b></summary>
 
 ```lua
-vim.g.inactive_color = { background = 'lightgrey', foreground = 'foreground' }
+vim.g.bubbly_inactive_color = { background = 'lightgrey', foreground = 'foreground' }
 ```
 
 </details>
@@ -621,7 +621,7 @@ vim.g.inactive_color = { background = 'lightgrey', foreground = 'foreground' }
 <summary><b>Lua configuration example</b></summary>
 
 ```lua
-vim.g.inactive_color = 'red'
+vim.g.bubbly_inactive_color = 'red'
 ```
 
 </details>
@@ -736,7 +736,7 @@ This option defines the style used by bubbles in a inactive statusline.
 <summary><b>Default configuration</b></summary>
 
 ```lua
-vim.g.inactive_style = ''
+vim.g.bubbly_inactive_style = ''
 ```
 
 </details>
@@ -747,7 +747,7 @@ vim.g.inactive_style = ''
 <summary><b>Lua configuration example</b></summary>
 
 ```lua
-vim.g.inactive_style = 'bold'
+vim.g.bubbly_inactive_style = 'bold'
 ```
 
 </details>
