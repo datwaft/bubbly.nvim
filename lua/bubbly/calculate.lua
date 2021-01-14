@@ -19,7 +19,7 @@
 -- ==========
    M.git_branch = function()
       local redirect = '2>/dev/null'
-      if vim.fn.has('win64') or vim.fn.has('win32') or vim.fn.has('win16') then
+      if vim.fn.has('win64') ~= 0 or vim.fn.has('win32') ~= 0 or vim.fn.has('win16') ~= 0 then
          redirect = '2>$null'
       end
       local branch = vim.fn.systemlist('cd '..vim.fn.expand('%:p:h:S')..' '..redirect..' && git branch --show-current '..redirect)[1]
