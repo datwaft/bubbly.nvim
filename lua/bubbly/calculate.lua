@@ -18,9 +18,13 @@
 -- Git branch
 -- ==========
    M.git_branch = function()
-      local branch = vim.fn.systemlist('cd '..vim.fn.expand('%:p:h:S')..' 2>/dev/null && git branch --show-current 2>/dev/null')[1]
+      local redirect = '2>/dev/null'
+      if vim.fn.has('win64') ~= 0 or vim.fn.has('win32') ~= 0 or vim.fn.has('win16') ~= 0 then
+         redirect = '2>$null'
+      end
+      local branch = vim.fn.systemlist('cd '..vim.fn.expand('%:p:h:S')..' '..redirect..' && git branch --show-current '..redirect)[1]
       if not branch or #branch == 0 then
-         branch = vim.fn.systemlist('cd '..vim.fn.expand('%:p:h:S')..' 2>/dev/null && git rev-parse --abbrev-ref HEAD 2>/dev/null')[1]
+         branch = vim.fn.systemlist('cd '..vim.fn.expand('%:p:h:S')..' '..redirect..' && git rev-parse --abbrev-ref HEAD '..redirect)[1]
       end
       if not branch or #branch == 0 then
          return ''
