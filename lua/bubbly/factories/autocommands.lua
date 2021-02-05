@@ -51,7 +51,7 @@
       for _, e in ipairs(list) do
          local type = type(e)
          if type == 'string' then
-            local autocommand = require'bubbly_utils'.prerequire('bubbly.autocommands.'..e:lower())
+            local autocommand = require'bubbly.utils'.prerequire('bubbly.autocommands.'..e:lower())
             if autocommand then
                autocmd(autocommand)
             end
