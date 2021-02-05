@@ -200,6 +200,11 @@
    M.fusion = function()
       -- Palette
       vim.g.bubbly_palette = require'bubbly.utils'.fusion(M.palette, vim.g.bubbly_palette)
+      if vim.g.bubbly_use_user1_9 then
+          -- recompute palette
+          local user_palette = require'bubbly.utils'.colorscheme_palette()
+          vim.g.bubbly_palette = require'bubbly.utils'.fusion(vim.g.bubbly_palette, user_palette)
+      end
       -- Characters
       vim.g.bubbly_characters = require'bubbly.utils'.fusion(M.characters, vim.g.bubbly_characters)
       -- Symbols

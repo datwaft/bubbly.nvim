@@ -141,6 +141,49 @@
       end
       return result
    end
+-- ======
+-- colorscheme_palette
+-- ======
+   -- Read palette from user defined colorscheme
+   M.colorscheme_palette = function()
+       local user_palette = {}
+       for i, col in ipairs({"red", "green", "yellow", "blue", "purple", "cyan"}) do
+           local color = vim.api.nvim_get_hl_by_name('user' .. i, true)['foreground']
+           if color ~= nil then
+               user_palette[col] = string.format("#%x", color)
+           end
+       end
+
+       local color = vim.api.nvim_get_hl_by_name('User7', true)
+       if color['foreground'] ~= nil then
+           user_palette['white'] = string.format("#%x", color['foreground'])
+       end
+       if color['background'] ~= nil then
+           user_palette['black'] = string.format("#%x", color['background'])
+       end
+
+       local color = vim.api.nvim_get_hl_by_name('User8', true)
+       if color['foreground'] ~= nil then
+           user_palette['lightgrey'] = string.format("#%x", color['foreground'])
+       end
+       if color['background'] ~= nil then
+           user_palette['darkgrey'] = string.format("#%x", color['background'])
+       end
+
+       local color = vim.api.nvim_get_hl_by_name('Statusline', true)
+       if color['foreground'] ~= nil then
+           user_palette['foreground'] = string.format("#%x", color['foreground'])
+       else
+           user_palette['foreground'] = 'None'
+       end
+       if color['background'] ~= nil then
+           user_palette['background'] = string.format("#%x", color['background'])
+       else
+           user_palette['background'] = 'None'
+       end
+
+       return user_palette
+   end
 -- ============
 -- Finalization
 -- ============
