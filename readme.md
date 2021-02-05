@@ -667,7 +667,7 @@ vim.g.bubbly_styles = {
    },
    filetype = '',
    progress = {
-      rowandol = '',
+      rowandcol = '',
       percentage = '',
    },
    tabline = {
@@ -716,7 +716,7 @@ vim.g.bubbly_styles = {
    },
    filetype = '',
    progress = {
-      rowandol = 'bold',
+      rowandcol = 'bold',
       percentage = 'bold',
    },
    tabline = {
