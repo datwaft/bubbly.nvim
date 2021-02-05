@@ -9,6 +9,7 @@ local settings = {
    inactive_color = vim.g.bubbly_inactive_color,
    style = vim.g.bubbly_styles.progress,
    inactive_style = vim.g.bubbly_inactive_style,
+   width = vim.g.bubbly_width.progress,
 }
 
 if not settings.color then
@@ -23,7 +24,7 @@ end
 return function(inactive)
    return bubble_factory{
       {
-         data = '%-8.(%l:%c%)',
+         data = '%-'..settings.width.rowandcol..'.(%l:%c%)',
          color = inactive and settings.inactive_color or settings.color.rowandcol,
          style = inactive and settings.inactive_style or settings.style.rowandcol,
       },

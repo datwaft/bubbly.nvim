@@ -728,6 +728,38 @@ vim.g.bubbly_styles = {
 
 </details>
 
+### Width
+
+This option defines the minimum width of some bubbles.
+
+<details>
+<summary><b>Default configuration</b></summary>
+
+```lua
+vim.g.bubbly_width = {
+    progress = {
+       rowandcol = 8,
+    },
+}
+```
+
+</details>
+
+---
+
+<details>
+<summary><b>Lua configuration example</b></summary>
+
+```lua
+vim.g.bubbly_width = {
+    progress = {
+       rowandcol = 0,
+    },
+}
+```
+
+</details>
+
 ### Inactive style
 
 This option defines the style used by bubbles in a inactive statusline.
