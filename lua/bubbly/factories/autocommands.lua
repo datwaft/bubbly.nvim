@@ -10,7 +10,7 @@
       local result = ''
       for i, e in ipairs(events) do
          result = result..e
-         if i + 1 ~= #events then
+         if i ~= #events then
             result = result..','
          end
       end
