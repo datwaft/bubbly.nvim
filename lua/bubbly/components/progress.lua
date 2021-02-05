@@ -23,7 +23,7 @@ end
 return function(inactive)
    return bubble_factory{
       {
-         data = '%-8.(%l:%c%)',
+         data = '%.(%l:%c%)',
          color = inactive and settings.inactive_color or settings.color.rowandcol,
          style = inactive and settings.inactive_style or settings.style.rowandcol,
       },

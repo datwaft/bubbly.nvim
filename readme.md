@@ -40,6 +40,14 @@ Here are some screenshots:
 
 ![image](https://user-images.githubusercontent.com/37723586/101720701-e30b1c80-3a6b-11eb-981d-afd3d8758551.png)
 
+---
+
+**Screenshot using the Windows Terminal and WSL 2**
+
+![image](https://user-images.githubusercontent.com/37723586/103723977-e6c18e80-4f98-11eb-82f8-c7ca6c33c1b8.png)
+
+**Note:** the bar in the upper part is my custom tmux bar, you can see it in my dotfiles.
+
 </details>
 
 ## Current bubbles
