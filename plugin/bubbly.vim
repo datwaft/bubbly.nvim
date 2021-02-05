@@ -11,16 +11,10 @@
 " Highlight definition
 " ====================
   lua require'bubbly.highlight'()
-" =====================
-" Automation definition
-" =====================
-  lua _G.get_git_branch = require'bubbly.calculate'.git_branch
-  lua _G.get_current_function = require'bubbly.calculate'.current_function
-  augroup BubblyAutomation
-    autocmd!
-    autocmd BufEnter * let b:git_branch = v:lua.get_git_branch()
-    autocmd CursorHold * let b:bubbly_current_function = v:lua.get_current_function()
-  augroup end
+" ======================
+" Autocommand definition
+" ======================
+  lua require'bubbly.factories.autocommands'(vim.g.bubbly_statusline)
 " ======================================
 " Status line and Buffer line definition
 " ======================================
