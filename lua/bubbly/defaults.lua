@@ -167,7 +167,7 @@
       },
       filetype = '',
       progress = {
-         rowandol = '',
+         rowandcol = '',
          percentage = '',
       },
       tabline = {
