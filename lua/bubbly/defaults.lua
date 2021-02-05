@@ -180,6 +180,8 @@
 -- Width
 -- =====
    M.width = {
+      default = 0,
+
       progress = {
          rowandcol = 8,
       },

@@ -20,6 +20,10 @@ if not settings.style then
    print[[[BUBBLY.NVIM] => [WARNING] Couldn't load style configuration for the component 'progress', the default style will be used.]]
    settings.style = vim.g.bubbly_styles.default
 end
+if not settings.width then
+   print[[[BUBBLY.NVIM] => [WARNING] Couldn't load width configuration for the component 'progress', the default width will be used.]]
+   settings.width = vim.g.bubbly_width.default
+end
 
 return function(inactive)
    return bubble_factory{

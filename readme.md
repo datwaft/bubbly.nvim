@@ -732,14 +732,18 @@ vim.g.bubbly_styles = {
 
 This option defines the minimum width of some bubbles.
 
+The default one is used as a fallback in case there is no width for the module.
+
 <details>
 <summary><b>Default configuration</b></summary>
 
 ```lua
 vim.g.bubbly_width = {
-    progress = {
-       rowandcol = 8,
-    },
+   default = 0,
+
+   progress = {
+      rowandcol = 8,
+   },
 }
 ```
 
@@ -752,9 +756,11 @@ vim.g.bubbly_width = {
 
 ```lua
 vim.g.bubbly_width = {
-    progress = {
-       rowandcol = 0,
-    },
+   default = 0,
+
+   progress = {
+      rowandcol = 0,
+   },
 }
 ```
 
