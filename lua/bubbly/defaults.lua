@@ -176,6 +176,16 @@
       },
    }
    M.inactive_style = ''
+-- =====
+-- Width
+-- =====
+   M.width = {
+      default = 0,
+
+      progress = {
+         rowandcol = 8,
+      },
+   }
 -- ==========
 -- Statusline
 -- ==========
@@ -206,6 +216,8 @@
       vim.g.bubbly_symbols = require'bubbly.utils'.fusion(M.symbols, vim.g.bubbly_symbols)
       -- Tags
       vim.g.bubbly_tags = require'bubbly.utils'.fusion(M.tags, vim.g.bubbly_tags)
+      -- Width
+      vim.g.bubbly_width = require'bubbly.utils'.fusion(M.width, vim.g.bubbly_width)
       -- Colors
       vim.g.bubbly_colors = require'bubbly.utils'.fusion(M.colors, vim.g.bubbly_colors)
       if not vim.g.bubbly_inactive_color then
