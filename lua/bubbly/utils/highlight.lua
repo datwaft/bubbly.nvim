@@ -8,6 +8,7 @@
 -- ========
 
    local M = require'core.module'.new('utils.highlight')
+   local titlecase = require'bubbly.utils.string'.titlecase
 
 -- =========================
 -- Generate highlight string
@@ -33,7 +34,7 @@
    M.gethighlight = function(foreground, background, special)
       if not foreground then foreground = '' end
       if not special then special = '' end
-      return 'Bubbly'..M.titlecase(foreground)..M.titlecase(background)..M.titlecase(special)
+      return 'Bubbly'..titlecase(foreground)..titlecase(background)..titlecase(special)
    end
 
 -- ============
