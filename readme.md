@@ -1,8 +1,8 @@
 # BUBBLY.NVIM
 
-**Warning: ** _Bubbly_ is a **highly experimental** plugin and can have its functionality changed overnight without any warning. I recommend you to check the readme in case the plugin doesn't work as before after an update.
+**Warning:** _Bubbly_ is a **highly experimental** plugin and can have its functionality changed overnight without any warning. I recommend you to check the readme in case the plugin doesn't work as before after an update.
 
-Hello! _Bubbly_ is a plugin created by me with the intention of creating a good looking and efficient status line. _Bubbly_ is modular and easily extensible — more about this later in the [documentation for developers](#for developers).
+Hello! _Bubbly_ is a plugin created by me with the intention of creating a good looking and efficient status line. _Bubbly_ is modular and easily extensible — more about this later in the [documentation for developers](#for-developers).
 
 As this plugin is tries to be truly modular, you can enable and disable its modules — or bubbles, as I like to call them — with a simple configuration.
 
