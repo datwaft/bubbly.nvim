@@ -461,7 +461,7 @@ The components go inside the `lua/bubbly/components` folder. They should be a Lu
 
 ```lua
 function(inactive)
-   return require'bubbly.factories.bubble'({
+   return {
       -- This is a list of tables
       -- Every table follows the following structure:
       {
@@ -476,7 +476,7 @@ function(inactive)
          -- This is a string to place after the bubble (optional) (usually not used).
          post = 'string',
       },
-   })
+   }
 end
 ```
 

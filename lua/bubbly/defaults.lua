@@ -7,6 +7,7 @@
 -- Preamble
 -- ========
    local M = {}
+   local fusion = require'bubbly.utils.table'.fusion
 -- =======
 -- Palette
 -- =======
@@ -209,22 +210,22 @@
 -- =============
    M.fusion = function()
       -- Palette
-      vim.g.bubbly_palette = require'bubbly.utils'.fusion(M.palette, vim.g.bubbly_palette)
+      vim.g.bubbly_palette = fusion(M.palette, vim.g.bubbly_palette)
       -- Characters
-      vim.g.bubbly_characters = require'bubbly.utils'.fusion(M.characters, vim.g.bubbly_characters)
+      vim.g.bubbly_characters = fusion(M.characters, vim.g.bubbly_characters)
       -- Symbols
-      vim.g.bubbly_symbols = require'bubbly.utils'.fusion(M.symbols, vim.g.bubbly_symbols)
+      vim.g.bubbly_symbols = fusion(M.symbols, vim.g.bubbly_symbols)
       -- Tags
-      vim.g.bubbly_tags = require'bubbly.utils'.fusion(M.tags, vim.g.bubbly_tags)
+      vim.g.bubbly_tags = fusion(M.tags, vim.g.bubbly_tags)
       -- Width
-      vim.g.bubbly_width = require'bubbly.utils'.fusion(M.width, vim.g.bubbly_width)
+      vim.g.bubbly_width = fusion(M.width, vim.g.bubbly_width)
       -- Colors
-      vim.g.bubbly_colors = require'bubbly.utils'.fusion(M.colors, vim.g.bubbly_colors)
+      vim.g.bubbly_colors = fusion(M.colors, vim.g.bubbly_colors)
       if not vim.g.bubbly_inactive_color then
          vim.g.bubbly_inactive_color = M.inactive_color
       end
       -- Styles
-      vim.g.bubbly_styles = require'bubbly.utils'.fusion(M.styles, vim.g.bubbly_styles)
+      vim.g.bubbly_styles = fusion(M.styles, vim.g.bubbly_styles)
       if not vim.g.bubbly_inactive_style then
          vim.g.bubbly_inactive_style = M.inactive_style
       end
@@ -235,8 +236,8 @@
          vim.g.bubbly_statusline = M.statusline
       end
       for _,e in ipairs(vim.g.bubbly_statusline) do
-         if not require'bubbly.utils'.checkmodule(e) then
-            print([[[BUBBLY.NVIM] => [WARNING] Couldn't find the module named ']]..e:lower()..[[', it will be ignored.]])
+         if not require'bubbly.utils.checkmodule'(e) then
+            require'bubbly.utils.io'.warning([[[BUBBLY.NVIM] => [WARNING] Couldn't find the module named ']]..e:lower()..[[', it will be ignored.]])
          end
       end
    end

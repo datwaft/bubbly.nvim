@@ -3,7 +3,6 @@
 -- ==============
 -- Created by datwaft <github.com/datwaft>
 
-local bubble_factory = require'bubbly.factories.bubble'
 local settings = {
    color = vim.g.bubbly_colors.signify,
    style = vim.g.bubbly_styles.signify,
@@ -11,26 +10,26 @@ local settings = {
 }
 
 if not settings.color then
-   print[[[BUBBLY.NVIM] => [WARNING] Couldn't load color configuration for the component 'signify', the default color will be used.]]
+   require'bubbly.utils.io'.warning[[[BUBBLY.NVIM] => [WARNING] Couldn't load color configuration for the component 'signify', the default color will be used.]]
    settings.color = vim.g.bubbly_colors.default
 end
 if not settings.style then
-   print[[[BUBBLY.NVIM] => [WARNING] Couldn't load style configuration for the component 'signify', the default style will be used.]]
+   require'bubbly.utils.io'.warning[[[BUBBLY.NVIM] => [WARNING] Couldn't load style configuration for the component 'signify', the default style will be used.]]
    settings.style = vim.g.bubbly_styles.default
 end
 if not settings.symbol then
-   print[[[BUBBLY.NVIM] => [WARNING] Couldn't load symbol configuration for the component 'signify', the default symbol will be used.]]
+   require'bubbly.utils.io'.warning[[[BUBBLY.NVIM] => [WARNING] Couldn't load symbol configuration for the component 'signify', the default symbol will be used.]]
    settings.symbol = vim.g.bubbly_symbols.default
 end
 
 return function(inactive)
-   if inactive then return '' end
-   if vim.fn.exists('*sy#repo#get_stats') == 0 then return '' end
+   if inactive then return nil end
+   if vim.fn.exists('*sy#repo#get_stats') == 0 then return nil end
    local added, modified, removed = unpack(vim.fn['sy#repo#get_stats']())
    if added == -1 then added = 0 end
    if modified == -1 then modified = 0 end
    if removed == -1 then removed = 0 end
-   return bubble_factory{
+   return {
       {
          data = added ~= 0 and settings.symbol.added:format(added),
          color = settings.color.added,
