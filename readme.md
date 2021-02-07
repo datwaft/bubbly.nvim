@@ -2,6 +2,8 @@
 
 **Warning:** _Bubbly_ is a **highly experimental** plugin and can have its functionality changed overnight without any warning. I recommend you to check the readme in case the plugin doesn't work as before after an update.
 
+![image](https://user-images.githubusercontent.com/37723586/101704746-01145500-3a4b-11eb-98a1-1e41a3dbf7cf.png)
+
 Hello! _Bubbly_ is a plugin created by me with the intention of creating a good looking and efficient status line. _Bubbly_ is modular and easily extensible — more about this later in the [documentation for developers](#for-developers).
 
 As this plugin is tries to be truly modular, you can enable and disable its modules — or bubbles, as I like to call them — with a simple configuration.
@@ -20,6 +22,33 @@ This plugin has support for these bubbles, feel free to open an issue or a pull 
 ## Table of Contents
 
 ## Screenshots
+
+<details>
+<summary><b>Click to open</b></summary>
+
+![image](https://user-images.githubusercontent.com/37723586/101704640-ce6a5c80-3a4a-11eb-8020-5da1869b1600.png)
+
+---
+
+![image](https://user-images.githubusercontent.com/37723586/101704746-01145500-3a4b-11eb-98a1-1e41a3dbf7cf.png)
+
+---
+
+![image](https://user-images.githubusercontent.com/37723586/101704807-25703180-3a4b-11eb-83fb-864cd66bf30b.png)
+
+---
+
+![image](https://user-images.githubusercontent.com/37723586/101720701-e30b1c80-3a6b-11eb-981d-afd3d8758551.png)
+
+---
+
+**Screenshot using the Windows Terminal and WSL 2**
+
+![image](https://user-images.githubusercontent.com/37723586/103723977-e6c18e80-4f98-11eb-82f8-c7ca6c33c1b8.png)
+
+**Note:** the bar in the upper part is my custom tmux bar, you can see it in my dotfiles.
+
+</details>
 
 ## Requirements
 
