@@ -20,7 +20,7 @@ end
 
 return function(inactive)
    if inactive then return '' end
-   local data = vim.b.bubbly_current_function
+   local data = vim.b.bubbly_builtinlsp_current_function
    return bubble_factory{{
          data = data,
          color = settings.color,

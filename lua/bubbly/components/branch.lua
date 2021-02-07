@@ -25,7 +25,7 @@ end
 
 return function(inactive)
    if inactive then return '' end
-   local data = vim.b.git_branch
+   local data = vim.b.bubbly_branch
    if data ~= '' then
       data = settings.symbol:format(data)
    end
