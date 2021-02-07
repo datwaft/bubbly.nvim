@@ -14,5 +14,5 @@ return function(name)
    for _,e in ipairs(exceptions) do
       if e:lower() == name:lower() then return true end
    end
-   return not not M.prerequire('bubbly.components.'..name:lower())
+   return not not require'bubbly.utils.prerequire'('bubbly.components.'..name:lower())
 end
