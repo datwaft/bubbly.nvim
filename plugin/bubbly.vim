@@ -10,7 +10,11 @@
 " ====================
 " Highlight definition
 " ====================
-  lua require'bubbly.highlight'()
+  lua _G.bubbly_highlight = require'bubbly.highlight'
+  augroup BubblyHighlight
+    autocmd!
+    autocmd VimEnter,ColorScheme * :call v:lua.bubbly_highlight()
+  augroup end
 " ======================
 " Autocommand definition
 " ======================
@@ -18,13 +22,13 @@
 " ======================================
 " Status line and Buffer line definition
 " ======================================
-  lua _G.statusline = require'bubbly.plugin'
-  lua _G.tabline = require'bubbly.factories.tabline'
+  lua _G.bubbly_statusline = require'bubbly.plugin'
+  lua _G.bubbly_tabline = require'bubbly.factories.tabline'
   augroup BubblyRender
     autocmd!
-    autocmd WinEnter,BufEnter * setlocal statusline=%!v:lua.statusline()
-    autocmd WinLeave,BufLeave * setlocal statusline=%!v:lua.statusline(1)
+    autocmd WinEnter,BufEnter * setlocal statusline=%!v:lua.bubbly_statusline()
+    autocmd WinLeave,BufLeave * setlocal statusline=%!v:lua.bubbly_statusline(1)
     if g:bubbly_tabline == 1
-      autocmd TabNew,TabLeave,TabClosed,TabEnter * set tabline=%!v:lua.tabline()
+      autocmd TabNew,TabLeave,TabClosed,TabEnter * set tabline=%!v:lua.bubbly_tabline()
     endif
   augroup end

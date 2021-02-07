@@ -13,15 +13,15 @@
 -- Auxiliars definition
 -- ====================
    -- Define autocmd auxiliar function
-   local function autocmd(name, foreground, background, style)
-      vim.cmd('autocmd ColorScheme,VimEnter * '..highlight(name, foreground, background, style))
+   local function execute_command(name, foreground, background, style)
+      vim.cmd(highlight(name, foreground, background, style))
    end
    -- Define bubble highlight
    local function define_bubble_highlight(name, foreground, background, default_background)
-      autocmd(name, background, foreground)
-      autocmd(name..'Bold', background, foreground, 'bold')
-      autocmd(name..'Italic', background, foreground, 'italic')
-      autocmd(name..'Delimiter', foreground, default_background)
+      execute_command(name, background, foreground)
+      execute_command(name..'Bold', background, foreground, 'bold')
+      execute_command(name..'Italic', background, foreground, 'italic')
+      execute_command(name..'Delimiter', foreground, default_background)
    end
 -- ==================
 -- Factory definition
@@ -38,6 +38,6 @@
             define_bubble_highlight('Bubbly'..titlecase(k1), v1, palette.background, palette.background)
          end
       end
-      autocmd('BubblyStatusLine', palette.foreground, palette.background)
-      autocmd('BubblyTabLine', palette.foreground, palette.background)
+      execute_command('BubblyStatusLine', palette.foreground, palette.background)
+      execute_command('BubblyTabLine', palette.foreground, palette.background)
    end
