@@ -209,7 +209,7 @@ This variable is used to define the palette available to every component and the
 
 ```lua
 vim.g.bubbly_palette = {
-   -- It can also be a hex value like #012345678.
+   -- It can also be a hex value like #012345.
    background = "Black",
    foreground = "White",
    black = "Black",
