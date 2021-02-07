@@ -89,7 +89,6 @@ This plugin has support for these bubbles, feel free to open an issue or a pull 
 These are the requirements to use this plugin:
 
 - **Neovim nightly** — this is because this plugin uses the newest Lua API from this Neovim version.
-
 - **True color support** — this may change in the future, but currently you need to have true color in your neovim configuration enabled (e.g. `set termguicolors`).
 
 ## Installation
@@ -156,7 +155,6 @@ This variable is used to configure which **modules**/**bubbles** are used in the
 This list can also contain strings like the following, that work like a reserved keyword, and have special functionality:
 
 - `divisor` or `division`: this divides the right part of the statusline from the left part, every component after this keyword goes to the right.
-
 - `truncate` or `trunc`: this marks where, if the size of the window is insufficient to show the whole statusline, the statusline is truncated (everything to the left will be conserved).
 
 Every string that is not a keyword should be the name of a module inside `lua/bubbly/components`, and if an autocommand in a file with the same name exists, it will be loaded.
@@ -164,21 +162,13 @@ Every string that is not a keyword should be the name of a module inside `lua/bu
 #### List of supported modules
 
 - `mode`
-
 - `path`
-
 - `branch`
-
 - `signify`
-
 - `coc`
-
 - `builtinlsp.diagnostic_count`
-
 - `builtinlsp.current_function`
-
 - `filetype`
-
 - `progress`
 
 #### Default configuration
@@ -231,7 +221,7 @@ vim.g.bubbly_palette = {
    cyan = "Cyan",
    white = "White",
    lightgrey = "LightGrey",
-	darkgrey = "Grey",
+   darkgrey = "Grey",
 }
 ```
 
@@ -472,13 +462,13 @@ The components go inside the `lua/bubbly/components` folder. They should be a Lu
 ```lua
 function(inactive)
    return require'bubbly.factories.bubble'({
-		-- This is a list of tables
+      -- This is a list of tables
       -- Every table follows the following structure:
       {
          -- This is what the component shows in the statusline
-      	data = 'string',
+	 data = 'string',
          -- This is what color the component uses when it is active. It should be the name of a color.
-        	color = 'string' or { foreground = 'string', background = 'string' },
+         color = 'string' or { foreground = 'string', background = 'string' },
          -- This is the style the component uses (optional).
          style = '' or 'bold' or 'italic',
          -- This is a string to place before the bubble (optional) (usually not used).
@@ -504,8 +494,8 @@ These go inside the `lua/bubbly/autocommands` folder and should be a Lua file th
 return {
    -- Every table inside the list should follow the following structure:
    {
-   	-- These are the events that activate the autocommand.
-		events = { 'Event1', 'Event2' },
+      -- These are the events that activate the autocommand.
+      events = { 'Event1', 'Event2' },
       -- This is the variable that contains the result of the autocommand.
       variable = {
          -- This is the type of the variable, it can be: 'buffer', 'window' and 'global'.
@@ -515,7 +505,7 @@ return {
       },
       -- This is the command that is executed by the autocommand, its return value will be saved into the variable.
       command = function() end,
-	},
+   },
 }
 ```
 
