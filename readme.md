@@ -21,6 +21,40 @@ This plugin has support for these bubbles, feel free to open an issue or a pull 
 
 ## Table of Contents
 
+   * [BUBBLY.NVIM](#bubblynvim)
+      * [Table of Contents](#table-of-contents)
+      * [Screenshots](#screenshots)
+      * [Requirements](#requirements)
+      * [Installation](#installation)
+         * [Example of how to install this plugin using packer.nvim](#example-of-how-to-install-this-plugin-using-packernvim)
+      * [Configuration](#configuration)
+         * [`g:bubbly_statusline`](#gbubbly_statusline)
+            * [List of supported modules](#list-of-supported-modules)
+            * [Default configuration](#default-configuration)
+         * [`g:bubbly_tabline`](#gbubbly_tabline)
+            * [Default configuration](#default-configuration-1)
+         * [`g:bubbly_palette`](#gbubbly_palette)
+            * [Default configuration](#default-configuration-2)
+         * [`g:bubbly_characters`](#gbubbly_characters)
+            * [Default configuration](#default-configuration-3)
+         * [`g:bubbly_symbols`](#gbubbly_symbols)
+            * [Default configuration](#default-configuration-4)
+         * [`g:bubbly_tags`](#gbubbly_tags)
+            * [Default configuration](#default-configuration-5)
+         * [`g:bubbly_colors`](#gbubbly_colors)
+            * [Default configuration](#default-configuration-6)
+         * [`g:bubbly_inactive_color`](#gbubbly_inactive_color)
+            * [Default configuration](#default-configuration-7)
+         * [`g:bubbly_styles`](#gbubbly_styles)
+            * [Default configuration](#default-configuration-8)
+         * [`g:bubbly_inactive_style`](#gbubbly_inactive_style)
+            * [Default configuration](#default-configuration-9)
+         * [`g:bubbly_width`](#gbubbly_width)
+            * [Default configuration](#default-configuration-10)
+      * [For Developers](#for-developers)
+         * [Components](#components)
+         * [Autocommands](#autocommands)
+
 ## Screenshots
 
 <details>
@@ -337,7 +371,7 @@ vim.g.bubbly_colors = {
 
 ### `g:bubbly_inactive_color`
 
-This variable defines the color used by bubbles when the statusline is inactive. It follows the same structure for colors as [`g:bubbly_colors`](#g:bubbly_colors).
+This variable defines the color used by bubbles when the statusline is inactive. It follows the same structure for colors as [`g:bubbly_colors`](#gbubbly_colors).
 
 #### Default configuration
 
