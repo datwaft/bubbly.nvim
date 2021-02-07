@@ -12,7 +12,7 @@ function Module.new(name)
    }
    setmetatable(module, {
       __index = function(self, key)
-         require'utils.io'.warning("[BUBBLY.NVIM] WARNING: Tried to index module '"..self.name.."' with invalid key '"..key.."'")
+         require'bubbly.utils.io'.warning("[BUBBLY.NVIM] ==> [WARNING] Tried to index module '"..self.name.."' with invalid key '"..key.."'")
       end
    })
    return module

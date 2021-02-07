@@ -237,7 +237,7 @@
       end
       for _,e in ipairs(vim.g.bubbly_statusline) do
          if not require'bubbly.utils.checkmodule'(e) then
-            require'bubbly.utils.io'.warning([[[BUBBLY.NVIM] WARNING: Couldn't find the module named ']]..e:lower()..[[', it will be ignored.]])
+            require'bubbly.utils.io'.warning([[[BUBBLY.NVIM] ==> [WARNING] Couldn't find the module named ']]..e:lower()..[[', it will be ignored.]])
          end
       end
    end
