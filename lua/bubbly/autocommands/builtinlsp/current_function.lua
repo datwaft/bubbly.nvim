@@ -11,7 +11,7 @@ return {
    events = { 'CursorHold' },
    variable = {
       type = 'buffer',
-      name = 'bubbly_current_function',
+      name = 'bubbly_builtinlsp_current_function',
    },
    command = function()
       if #vim.lsp.buf_get_clients(0) == 0 then

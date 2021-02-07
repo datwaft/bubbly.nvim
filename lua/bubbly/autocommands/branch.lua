@@ -7,7 +7,7 @@ return {
    events = { 'BufEnter' },
    variable = {
       type = 'buffer',
-      name = 'bubbly_git_branch',
+      name = 'bubbly_branch',
    },
    command = function()
       local redirect = '2>/dev/null'

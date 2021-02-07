@@ -30,19 +30,10 @@
       result = result..variable.name
       return result
    end
-   local function generateRandomVariableName()
-      math.randomseed(os.clock()^5)
-      local result = 'bubbly_command_'
-      for _ = 0, 16 do
-         result = result .. string.char(math.random(97, 122))
-      end
-      return result
-   end
    local function autocmd(autocommand)
-      local id = generateRandomVariableName()
+      local id = autocommand.variable.name
       _G[id] = autocommand.command
       vim.cmd('autocmd '..processEvents(autocommand.events)..' * let '..processVariable(autocommand.variable)..' = v:lua.'..id..'()')
-      print('autocmd '..processEvents(autocommand.events)..' * let '..processVariable(autocommand.variable)..' = v:lua.'..id..'()')
    end
 -- ==================
 -- Factory definition
