@@ -13,7 +13,7 @@
   lua _G.bubbly_highlight = require'bubbly.highlight'
   augroup BubblyHighlight
     autocmd!
-    autocmd VimEnter,ColorScheme * v:lua.bubbly_highlight()
+    autocmd VimEnter,ColorScheme * :call v:lua.bubbly_highlight()
   augroup end
 " ======================
 " Autocommand definition
