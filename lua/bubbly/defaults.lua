@@ -7,7 +7,7 @@
 -- Preamble
 -- ========
    local M = {}
-   local fusion = fusion
+   local fusion = require'bubbly.utils.table'.fusion
 -- =======
 -- Palette
 -- =======
