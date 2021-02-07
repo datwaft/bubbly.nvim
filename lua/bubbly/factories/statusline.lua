@@ -1,7 +1,7 @@
--- ==============================
--- BUBBLY.NVIM STATUSLINE FACTORY
--- ==============================
--- Created by: datwaft [github.com/datwaft]
+-- ==================
+-- STATUSLINE FACTORY
+-- ==================
+-- Created by datwaft <github.com/datwaft>
 
 local bubble_factory = require'bubbly.factories.bubble'
 

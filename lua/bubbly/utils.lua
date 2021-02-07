@@ -1,7 +1,7 @@
--- =================
--- BUBBLY.NVIM UTILS
--- =================
--- Created by: datwaft [github.com/datwaft]
+-- =====
+-- UTILS
+-- =====
+-- Created by datwaft <github.com/datwaft>
 
 -- ========
 -- Preamble

@@ -1,7 +1,7 @@
--- ===========================
--- BUBBLY.NVIM FILETYPE BUBBLE
--- ===========================
--- Created by: datwaft [github.com/datwaft]
+-- ===============
+-- FILETYPE BUBBLE
+-- ===============
+-- Created by datwaft <github.com/datwaft>
 
 local bubble_factory = require'bubbly.factories.bubble'
 local settings = {

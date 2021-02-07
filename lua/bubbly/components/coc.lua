@@ -1,7 +1,7 @@
--- ===========================
--- BUBBLY.NVIM COC.NVIM BUBBLE
--- ===========================
--- Created by: datwaft [github.com/datwaft]
+-- ===============
+-- COC.NVIM BUBBLE
+-- ===============
+-- Created by datwaft <github.com/datwaft>
 
 local bubble_factory = require'bubbly.factories.bubble'
 local settings = {

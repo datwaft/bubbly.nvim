@@ -1,7 +1,7 @@
--- ===========================
--- BUBBLY.NVIM PROGRESS BUBBLE
--- ===========================
--- Created by: datwaft [github.com/datwaft]
+-- ===============
+-- PROGRESS BUBBLE
+-- ===============
+-- Created by datwaft <github.com/datwaft>
 
 local bubble_factory = require'bubbly.factories.bubble'
 local settings = {

@@ -1,7 +1,7 @@
--- ==============================================
--- BUBBLY.NVIM BUILTINLSP CURRENT FUNCTION BUBBLE
--- ==============================================
--- Created by: PatOConnor43 [github.com/PatOConnor43]
+-- ===================================
+-- BUILTIN-LSP CURRENT FUNCTION BUBBLE
+-- ===================================
+-- Created by PatOConnor43 <github.com/PatOConnor43>
 
 local bubble_factory = require'bubbly.factories.bubble'
 local settings = {

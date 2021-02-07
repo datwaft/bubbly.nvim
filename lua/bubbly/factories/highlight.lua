@@ -1,7 +1,7 @@
--- =============================
--- BUBBLY.NVIM HIGHLIGHT FACTORY
--- =============================
--- Created by: datwaft [github.com/datwaft]
+-- =================
+-- HIGHLIGHT FACTORY
+-- =================
+-- Created by datwaft <github.com/datwaft>
 
 -- ========
 -- Preamble
