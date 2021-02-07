@@ -7,7 +7,7 @@
 -- Preamble
 -- ========
 
-   local M = require'core.module'.new('utils.highlight')
+   local M = require'bubbly.core.module'.new('utils.highlight')
    local titlecase = require'bubbly.utils.string'.titlecase
 
 -- =========================

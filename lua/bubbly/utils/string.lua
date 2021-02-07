@@ -7,7 +7,7 @@
 -- Preamble
 -- ========
 
-   local M = require'core.module'.new('utils.string')
+   local M = require'bubbly.core.module'.new('utils.string')
 
 -- =========
 -- Titlecase

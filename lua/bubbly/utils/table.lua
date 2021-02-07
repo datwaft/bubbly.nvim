@@ -7,7 +7,7 @@
 -- Preamble
 -- ========
 
-   local M = require'core.module'.new('utils.table')
+   local M = require'bubbly.core.module'.new('utils.table')
 
 -- ========
 -- Deepcopy
