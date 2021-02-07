@@ -196,9 +196,6 @@
       'truncate',
 
       'path',
-      'branch',
-      'signify',
-      'coc',
 
       'divisor',
 

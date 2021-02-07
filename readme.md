@@ -180,9 +180,6 @@ vim.g.bubbly_statusline = {
    'truncate',
 
    'path',
-   'branch',
-   'signify',
-   'coc',
 
    'divisor',
 
