@@ -3,7 +3,7 @@
 -- ==================
 -- Created by datwaft <github.com/datwaft>
 
-return {
+return {{
    events = { 'BufEnter' },
    variable = {
       type = 'buffer',
@@ -23,5 +23,4 @@ return {
       end
       return branch
    end,
-}
-
+}}

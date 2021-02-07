@@ -7,7 +7,7 @@ local lsp_util = require('vim.lsp.util')
 local lsp_proto = require('vim.lsp.protocol')
 local utils = require('bubbly.utils')
 
-return {
+return {{
    events = { 'CursorHold' },
    variable = {
       type = 'buffer',
@@ -37,4 +37,4 @@ return {
 
       return fn_name
    end,
-}
+}}

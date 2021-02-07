@@ -42,9 +42,11 @@
       for _, e in ipairs(list) do
          local type = type(e)
          if type == 'string' then
-            local autocommand = require'bubbly.utils'.prerequire('bubbly.autocommands.'..e:lower())
-            if autocommand then
-               autocmd(autocommand)
+            local autocommands = require'bubbly.utils'.prerequire('bubbly.autocommands.'..e:lower())
+            if autocommands then
+               for _, autocommand in ipairs(autocommands) do
+                  autocmd(autocommand)
+               end
             end
          end
       end
