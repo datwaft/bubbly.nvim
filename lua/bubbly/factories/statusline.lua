@@ -26,6 +26,8 @@ return function(list, inactive)
             statusline = statusline..'%<'
          else
             local component = require'bubbly.utils'.prerequire('bubbly.components.'..e:lower())
+            print(component)
+            print(component(inactive))
             if component then
                if not left then statusline = statusline..' ' end
                statusline = statusline..bubble_factory(component(inactive))
