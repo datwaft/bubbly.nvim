@@ -12,7 +12,6 @@ local settings = {
 }
 
 return function(list)
-   dump(list)
 -- Example of list element:
 -- { data: string, color: string or { foreground = string, background = string }, style: string-optional, pre: string-optional, post: string-optional }
    -- Render delimiter of the bubble
