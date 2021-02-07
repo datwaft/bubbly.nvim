@@ -7,8 +7,8 @@
 -- Preamble
 -- ========
    -- Extraction from utils
-   local titlecase = require'bubbly.utils'.titlecase
-   local highlight = require'bubbly.utils'.highlight
+   local titlecase = require'bubbly.utils.string'.titlecase
+   local highlight = require'bubbly.utils.highlight'.highlight
 -- ====================
 -- Auxiliars definition
 -- ====================

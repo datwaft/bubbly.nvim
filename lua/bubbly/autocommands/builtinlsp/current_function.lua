@@ -3,9 +3,10 @@
 -- ========================================
 -- Created by datwaft <github.com/datwaft>
 
-local lsp_util = require('vim.lsp.util')
-local lsp_proto = require('vim.lsp.protocol')
-local utils = require('bubbly.utils')
+local lsp_util = require'vim.lsp.util'
+local lsp_proto = require'vim.lsp.protocol'
+local utils = require'bubbly.utils.builtinlsp'
+local filter = require'bubbly.utils.table'.filter
 
 return {{
    events = { 'CursorHold' },
@@ -24,7 +25,7 @@ return {{
          return ''
       end
       local symbols = utils.extract_lsp_symbols({}, response[1].result)
-      symbols = utils.filter(symbols, function(_, v)
+      symbols = filter(symbols, function(_, v)
           return v.kind == lsp_proto.SymbolKind.Method or v.kind == lsp_proto.SymbolKind.Function or v.kind == lsp_proto.SymbolKind.Module
       end)
       local current_position = vim.api.nvim_win_get_cursor(0)

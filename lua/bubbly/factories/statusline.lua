@@ -25,7 +25,7 @@ return function(list, inactive)
          elseif e:lower() == 'truc' or e:lower() == 'truncate' then
             statusline = statusline..'%<'
          else
-            local component = require'bubbly.utils'.prerequire('bubbly.components.'..e:lower())
+            local component = require'bubbly.utils.prerequire'('bubbly.components.'..e:lower())
             if component then
                if not left then statusline = statusline..' ' end
                statusline = statusline..bubble_factory(component(inactive))

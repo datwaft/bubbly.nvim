@@ -3,7 +3,7 @@
 -- ==============
 -- Created by datwaft <github.com/datwaft>
 
-local gethighlight = require'bubbly.utils'.gethighlight
+local gethighlight = require'bubbly.utils.highlight'.gethighlight
 
 local settings = {
    left_character = vim.g.bubbly_characters.left,
