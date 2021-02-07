@@ -12,9 +12,9 @@ This plugin has support for these bubbles, feel free to open an issue or a pull 
 
 - Mode bubble (e.g. **Insert mode**).
 - Current file bubble.
-- Git branch bubble.
-- [Signify](https://github.com/mhinz/vim-signify) changes bubble.
-- [Coc.nvim](https://github.com/neoclide/coc.nvim) diagnostics bubble.
+- _Git_ branch bubble.
+- [_Signify_](https://github.com/mhinz/vim-signify) changes bubble.
+- [_Coc.nvim_](https://github.com/neoclide/coc.nvim) diagnostics bubble.
 - _Neovim built-in LSP_ current function and diagnostics bubble.
 - Filetype bubble.
 - Progress bubble.
