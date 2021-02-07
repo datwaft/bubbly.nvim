@@ -18,7 +18,7 @@ if not settings.style then
 end
 
 return function(inactive)
-   if inactive then return '' end
+   if inactive then return nil end
    local data = vim.b.bubbly_builtinlsp_current_function
    return {{
          data = data,

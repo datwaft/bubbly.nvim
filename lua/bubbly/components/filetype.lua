@@ -23,7 +23,7 @@ if not settings.style then
 end
 
 return function(inactive)
-   if inactive then return '' end
+   if inactive then return nil end
    local filetype = vim.bo.filetype
    if filetype == '' then filetype = settings.tag.noft
    else filetype = filetype:lower() end

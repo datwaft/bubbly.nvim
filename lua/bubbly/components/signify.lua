@@ -23,8 +23,8 @@ if not settings.symbol then
 end
 
 return function(inactive)
-   if inactive then return '' end
-   if vim.fn.exists('*sy#repo#get_stats') == 0 then return '' end
+   if inactive then return nil end
+   if vim.fn.exists('*sy#repo#get_stats') == 0 then return nil end
    local added, modified, removed = unpack(vim.fn['sy#repo#get_stats']())
    if added == -1 then added = 0 end
    if modified == -1 then modified = 0 end

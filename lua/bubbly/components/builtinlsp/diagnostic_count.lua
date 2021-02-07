@@ -23,7 +23,7 @@ if not settings.style then
 end
 
 return function(inactive)
-   if inactive then return '' end
+   if inactive then return nil end
    local error_count = vim.lsp.diagnostic.get_count(0, 'Error')
    local warning_count = vim.lsp.diagnostic.get_count(0, 'Warning')
    return {

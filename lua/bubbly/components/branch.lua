@@ -23,7 +23,7 @@ if not settings.style then
 end
 
 return function(inactive)
-   if inactive then return '' end
+   if inactive then return nil end
    local data = vim.b.bubbly_branch
    if data ~= '' then
       data = settings.symbol:format(data)

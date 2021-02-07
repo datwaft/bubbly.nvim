@@ -23,9 +23,9 @@ if not settings.style then
 end
 
 return function(inactive)
-   if inactive then return '' end
+   if inactive then return nil end
    local info = vim.b.coc_diagnostic_info
-   if info == nil or next(info) == nil then return '' end
+   if info == nil or next(info) == nil then return nil end
    return {
       {
          data = info.error ~= 0 and settings.symbol.error:format(info.error),

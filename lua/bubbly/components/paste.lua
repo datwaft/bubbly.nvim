@@ -23,7 +23,7 @@ if not settings.style then
 end
 
 return function(inactive)
-   if inactive then return '' end
+   if inactive then return nil end
    return {{
       data = vim.o.paste and settings.tag,
       color = settings.color,
