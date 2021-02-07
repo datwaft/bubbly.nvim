@@ -3,7 +3,6 @@
 -- ===============
 -- Created by datwaft <github.com/datwaft>
 
-local bubble_factory = require'bubbly.factories.bubble'
 local settings = {
    symbol = vim.g.bubbly_symbols.coc,
    color = vim.g.bubbly_colors.coc,
@@ -27,7 +26,7 @@ return function(inactive)
    if inactive then return '' end
    local info = vim.b.coc_diagnostic_info
    if info == nil or next(info) == nil then return '' end
-   return bubble_factory{
+   return {
       {
          data = info.error ~= 0 and settings.symbol.error:format(info.error),
          color = settings.color.error,

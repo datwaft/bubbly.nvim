@@ -3,7 +3,6 @@
 -- ===============
 -- Created by datwaft <github.com/datwaft>
 
-local bubble_factory = require'bubbly.factories.bubble'
 local settings = {
    tag = vim.g.bubbly_tags.filetype,
    color = vim.g.bubbly_colors.filetype,
@@ -28,7 +27,7 @@ return function(inactive)
    local filetype = vim.bo.filetype
    if filetype == '' then filetype = settings.tag.noft
    else filetype = filetype:lower() end
-   return bubble_factory{{
+   return {{
       data = filetype,
       color = settings.color,
       style = settings.style,

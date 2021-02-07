@@ -3,7 +3,6 @@
 -- ===================================
 -- Created by PatOConnor43 <github.com/PatOConnor43>
 
-local bubble_factory = require'bubbly.factories.bubble'
 local settings = {
    symbol = vim.g.bubbly_symbols.builtinlsp.diagnostic_count,
    color = vim.g.bubbly_colors.builtinlsp.diagnostic_count,
@@ -27,7 +26,7 @@ return function(inactive)
    if inactive then return '' end
    local error_count = vim.lsp.diagnostic.get_count(0, 'Error')
    local warning_count = vim.lsp.diagnostic.get_count(0, 'Warning')
-   return bubble_factory{
+   return {
       {
          data = error_count ~= 0 and settings.symbol.error:format(error_count),
          color = settings.color.error,

@@ -3,7 +3,6 @@
 -- ===============
 -- Created by datwaft <github.com/datwaft>
 
-local bubble_factory = require'bubbly.factories.bubble'
 local settings = {
    color = vim.g.bubbly_colors.progress,
    inactive_color = vim.g.bubbly_inactive_color,
@@ -26,7 +25,7 @@ if not settings.width then
 end
 
 return function(inactive)
-   return bubble_factory{
+   return {
       {
          data = '%-'..settings.width.rowandcol..'.(%l:%c%)',
          color = inactive and settings.inactive_color or settings.color.rowandcol,

@@ -3,7 +3,6 @@
 -- ===========
 -- Created by datwaft <github.com/datwaft>
 
-local bubble_factory = require'bubbly.factories.bubble'
 local settings = {
    tag = vim.g.bubbly_tags.mode,
    color = vim.g.bubbly_colors.mode,
@@ -79,5 +78,5 @@ return function(inactive)
 			color = settings.color.default
 		end
    end
-   return bubble_factory{{ data = data, color = color, style = style }}
+   return {{ data = data, color = color, style = style }}
 end

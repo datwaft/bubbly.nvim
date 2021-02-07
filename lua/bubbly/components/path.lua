@@ -3,7 +3,6 @@
 -- ===========
 -- Created by datwaft <github.com/datwaft>
 
-local bubble_factory = require'bubbly.factories.bubble'
 local settings = {
    symbol = vim.g.bubbly_symbols.path,
    color = vim.g.bubbly_colors.path,
@@ -26,7 +25,7 @@ if not settings.style then
 end
 
 return function(inactive)
-   return bubble_factory{
+   return {
       inactive or {
          data = vim.bo.ro and settings.symbol.readonly,
          color = settings.color.readonly,

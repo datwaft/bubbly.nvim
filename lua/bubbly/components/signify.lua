@@ -3,7 +3,6 @@
 -- ==============
 -- Created by datwaft <github.com/datwaft>
 
-local bubble_factory = require'bubbly.factories.bubble'
 local settings = {
    color = vim.g.bubbly_colors.signify,
    style = vim.g.bubbly_styles.signify,
@@ -30,7 +29,7 @@ return function(inactive)
    if added == -1 then added = 0 end
    if modified == -1 then modified = 0 end
    if removed == -1 then removed = 0 end
-   return bubble_factory{
+   return {
       {
          data = added ~= 0 and settings.symbol.added:format(added),
          color = settings.color.added,
