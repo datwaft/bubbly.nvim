@@ -1,7 +1,7 @@
--- ==========================
--- BUBBLY.NVIM BUBBLE FACTORY
--- ==========================
--- Created by: datwaft [github.com/datwaft]
+-- ==============
+-- BUBBLE FACTORY
+-- ==============
+-- Created by datwaft <github.com/datwaft>
 
 local gethighlight = require'bubbly.utils'.gethighlight
 

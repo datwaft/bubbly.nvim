@@ -1,7 +1,7 @@
--- ==================
--- BUBBLY.NVIM PLUGIN
--- ==================
--- Created by: datwaft [github.com/datwaft]
+-- ====================
+-- STATUSLINE DEFINTION
+-- ====================
+-- Created by datwaft <github.com/datwaft>
 
 -- ==========
 -- Definition

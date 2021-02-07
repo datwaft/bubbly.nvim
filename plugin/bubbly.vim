@@ -1,7 +1,7 @@
-" ==================
-" BUBBLY.NVIM PLUGIN
-" ==================
-" Created by: datwaft [github.com/datwaft]
+" =================
+" PLUGIN DEFINITION
+" =================
+" Created by datwaft <github.com/datwaft>
 
 " ========================
 " Define and fuse defaults

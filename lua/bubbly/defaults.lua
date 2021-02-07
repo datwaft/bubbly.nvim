@@ -1,7 +1,7 @@
--- ====================
--- BUBBLY.NVIM DEFAULTS
--- ====================
--- Created by: datwaft [github.com/datwaft]
+-- ========
+-- DEFAULTS
+-- ========
+-- Created by datwaft <github.com/datwaft>
 
 -- ========
 -- Preamble
