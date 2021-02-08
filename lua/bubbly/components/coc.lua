@@ -1,9 +1,8 @@
--- ===========================
--- BUBBLY.NVIM COC.NVIM BUBBLE
--- ===========================
--- Created by: datwaft [github.com/datwaft]
+-- ===============
+-- COC.NVIM BUBBLE
+-- ===============
+-- Created by datwaft <github.com/datwaft>
 
-local bubble_factory = require'bubbly.factories.bubble'
 local settings = {
    symbol = vim.g.bubbly_symbols.coc,
    color = vim.g.bubbly_colors.coc,
@@ -11,23 +10,23 @@ local settings = {
 }
 
 if not settings.symbol then
-   print[[[BUBBLY.NVIM] => [WARNING] Couldn't load symbol configuration for the component 'coc', the default symbol will be used.]]
+   require'bubbly.utils.io'.warning[[[BUBBLY.NVIM] => [WARNING] Couldn't load symbol configuration for the component 'coc', the default symbol will be used.]]
    settings.symbol = vim.g.bubbly_symbols.default
 end
 if not settings.color then
-   print[[[BUBBLY.NVIM] => [WARNING] Couldn't load color configuration for the component 'coc', the default color will be used.]]
+   require'bubbly.utils.io'.warning[[[BUBBLY.NVIM] => [WARNING] Couldn't load color configuration for the component 'coc', the default color will be used.]]
    settings.color = vim.g.bubbly_colors.default
 end
 if not settings.style then
-   print[[[BUBBLY.NVIM] => [WARNING] Couldn't load style configuration for the component 'coc', the default style will be used.]]
+   require'bubbly.utils.io'.warning[[[BUBBLY.NVIM] => [WARNING] Couldn't load style configuration for the component 'coc', the default style will be used.]]
    settings.style = vim.g.bubbly_styles.default
 end
 
 return function(inactive)
-   if inactive then return '' end
+   if inactive then return nil end
    local info = vim.b.coc_diagnostic_info
-   if info == nil or next(info) == nil then return '' end
-   return bubble_factory{
+   if info == nil or next(info) == nil then return nil end
+   return {
       {
          data = info.error ~= 0 and settings.symbol.error:format(info.error),
          color = settings.color.error,

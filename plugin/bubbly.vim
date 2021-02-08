@@ -1,7 +1,7 @@
-" ==================
-" BUBBLY.NVIM PLUGIN
-" ==================
-" Created by: datwaft [github.com/datwaft]
+" =================
+" PLUGIN DEFINITION
+" =================
+" Created by datwaft <github.com/datwaft>
 
 " ========================
 " Define and fuse defaults
@@ -10,27 +10,25 @@
 " ====================
 " Highlight definition
 " ====================
-  lua require'bubbly.highlight'()
-" =====================
-" Automation definition
-" =====================
-  lua _G.get_git_branch = require'bubbly.calculate'.git_branch
-  lua _G.get_current_function = require'bubbly.calculate'.current_function
-  augroup BubblyAutomation
+  lua _G.bubbly_highlight = require'bubbly.highlight'
+  augroup BubblyHighlight
     autocmd!
-    autocmd BufEnter * let b:git_branch = v:lua.get_git_branch()
-    autocmd CursorHold * let b:bubbly_current_function = v:lua.get_current_function()
+    autocmd VimEnter,ColorScheme * :call v:lua.bubbly_highlight()
   augroup end
+" ======================
+" Autocommand definition
+" ======================
+  lua require'bubbly.factories.autocommands'(vim.g.bubbly_statusline)
 " ======================================
 " Status line and Buffer line definition
 " ======================================
-  lua _G.statusline = require'bubbly.plugin'
-  lua _G.tabline = require'bubbly.factories.tabline'
+  lua _G.bubbly_statusline = require'bubbly.plugin'
+  lua _G.bubbly_tabline = require'bubbly.factories.tabline'
   augroup BubblyRender
     autocmd!
-    autocmd WinEnter,BufEnter * setlocal statusline=%!v:lua.statusline()
-    autocmd WinLeave,BufLeave * setlocal statusline=%!v:lua.statusline(1)
+    autocmd WinEnter,BufEnter * setlocal statusline=%!v:lua.bubbly_statusline()
+    autocmd WinLeave,BufLeave * setlocal statusline=%!v:lua.bubbly_statusline(1)
     if g:bubbly_tabline == 1
-      autocmd TabNew,TabLeave,TabClosed,TabEnter * set tabline=%!v:lua.tabline()
+      autocmd TabNew,TabLeave,TabClosed,TabEnter * set tabline=%!v:lua.bubbly_tabline()
     endif
   augroup end

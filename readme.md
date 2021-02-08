@@ -1,30 +1,64 @@
-# bubbly.nvim
+# BUBBLY.NVIM
 
-**Warning:** this plugin probably requires Neovim nightly and **requires** true color support.
+**Warning:** _Bubbly_ is a **highly experimental** plugin and can have its functionality changed overnight without any warning. I recommend you to check the readme in case the plugin doesn't work as before after an update.
 
-Screenshots at the end of the introduction!
+![image](https://user-images.githubusercontent.com/37723586/101704746-01145500-3a4b-11eb-98a1-1e41a3dbf7cf.png)
 
-## Introduction
+Hello! _Bubbly_ is a plugin created by me with the intention of creating a good looking and efficient status line. _Bubbly_ is modular and easily extensible — more about this later in the [documentation for developers](#for-developers).
 
-Hello, my username is _datwaft_ and this is a status line plugin that I created.
+As this plugin is tries to be truly modular, you can enable and disable its modules — or bubbles, as I like to call them — with a simple configuration.
 
-The ideology of this status line is using bubbles for almost every part of the status line. And tries to be fully configurable and modular.
+This plugin has support for these bubbles, feel free to open an issue or a pull request if you have an idea for a new bubble.
 
-This plugin has support for:
-- [`coc.nvim`](https://github.com/neoclide/coc.nvim)
-- `built-in lsp`
-- [`signify`](https://github.com/mhinz/vim-signify)
+- Mode bubble (e.g. **Insert mode**).
+- Current file bubble.
+- _Git_ branch bubble.
+- [_Signify_](https://github.com/mhinz/vim-signify) changes bubble.
+- [_Coc.nvim_](https://github.com/neoclide/coc.nvim) diagnostics bubble.
+- _Neovim built-in LSP_ current function and diagnostics bubble.
+- Filetype bubble.
+- Progress bubble.
 
-Feel free to open an _issue_ if have some idea about how to make this plugin better or if you find some bug or functionality you don't like.
+## Table of Contents
 
-Also, feel free to copy/steal the code of this plugin, I tried to make he code the most understandable posible so if you want to make a fork to add your own functionality, you are welcome.
+   * [BUBBLY.NVIM](#bubblynvim)
+      * [Table of Contents](#table-of-contents)
+      * [Screenshots](#screenshots)
+      * [Requirements](#requirements)
+      * [Installation](#installation)
+         * [Example of how to install this plugin using packer.nvim](#example-of-how-to-install-this-plugin-using-packernvim)
+      * [Configuration](#configuration)
+         * [`g:bubbly_statusline`](#gbubbly_statusline)
+            * [List of supported modules](#list-of-supported-modules)
+            * [Default configuration](#default-configuration)
+         * [`g:bubbly_tabline`](#gbubbly_tabline)
+            * [Default configuration](#default-configuration-1)
+         * [`g:bubbly_palette`](#gbubbly_palette)
+            * [Default configuration](#default-configuration-2)
+         * [`g:bubbly_characters`](#gbubbly_characters)
+            * [Default configuration](#default-configuration-3)
+         * [`g:bubbly_symbols`](#gbubbly_symbols)
+            * [Default configuration](#default-configuration-4)
+         * [`g:bubbly_tags`](#gbubbly_tags)
+            * [Default configuration](#default-configuration-5)
+         * [`g:bubbly_colors`](#gbubbly_colors)
+            * [Default configuration](#default-configuration-6)
+         * [`g:bubbly_inactive_color`](#gbubbly_inactive_color)
+            * [Default configuration](#default-configuration-7)
+         * [`g:bubbly_styles`](#gbubbly_styles)
+            * [Default configuration](#default-configuration-8)
+         * [`g:bubbly_inactive_style`](#gbubbly_inactive_style)
+            * [Default configuration](#default-configuration-9)
+         * [`g:bubbly_width`](#gbubbly_width)
+            * [Default configuration](#default-configuration-10)
+      * [For Developers](#for-developers)
+         * [Components](#components)
+         * [Autocommands](#autocommands)
 
-**Note:** feel free to make pull requests with custom components/bubbles you want to add.
-
-Here are some screenshots:
+## Screenshots
 
 <details>
-<summary><b>Screenshots</b></summary>
+<summary><b>Click to open</b></summary>
 
 ![image](https://user-images.githubusercontent.com/37723586/101704640-ce6a5c80-3a4a-11eb-8020-5da1869b1600.png)
 
@@ -50,96 +84,83 @@ Here are some screenshots:
 
 </details>
 
-## Current bubbles
+## Requirements
 
-Here is the list of the bubbles that are available right now:
+These are the requirements to use this plugin:
 
-- Mode bubble
-- Current file bubble
-- Branch bubble
-- Signify bubble
-- Coc.nvim bubble
-- Builtin LSP bubbles
-  - Current function bubble
-  - Diagnostic count bubble
-- Filetype bubble
-- Progress bubble
+- **Neovim nightly** — this is because this plugin uses the newest Lua API from this Neovim version.
+- **True color support** — this may change in the future, but currently you need to have true color in your neovim configuration enabled (e.g. `set termguicolors`).
 
 ## Installation
 
-You can install this plugin with your favorite package manager. For example I use [`packer.nvim`](https://github.com/wbthomason/packer.nvim).
+You can install this plugin with any package manager you want, for example I use [`packer.nvim`](https://github.com/wbthomason/packer.nvim).
 
-### Example of how to install using `packer.nvim`
+### Example of how to install this plugin using `packer.nvim`
 
-**Filename:** `init.lua`
+**File name:** `init.lua`
 
 ```lua
-vim.cmd [[packadd packer.nvim]]
+vim.cmd [[packadd]]
 return require('packer').startup(function()
-  use {'wbthomason/packer.nvim', opt = true}
-  use {'datwaft/bubbly.nvim', config = function()
-   -- Here you can add the configuration for the plugin
-   vim.g.bubbly_palette = {
-      background = "#34343c",
-      foreground = "#c5cdd9",
-      black = "#3e4249",
-      red = "#ec7279",
-      green = "#a0c980",
-      yellow = "#deb974",
-      blue = "#6cb6eb",
-      purple = "#d38aea",
-      cyan = "#5dbbc1",
-      white = "#c5cdd9",
-      lightgrey = "#57595e",
-      darkgrey = "#404247",
-   }
-  end}
+   use {'wbthomason/packer.nvim', opt = true}
+   use {'datwaft/bubbly.nvim', config = function()
+      -- Here you can add the configuration for the plugin
+      vim.g.bubbly_palette = {
+         background = "#34343c",
+         foreground = "#c5cdd9",
+         black = "#3e4249",
+         red = "#ec7279",
+         green = "#a0c980",
+         yellow = "#deb974",
+         blue = "#6cb6eb",
+         purple = "#d38aea",
+         cyan = "#5dbbc1",
+         white = "#c5cdd9",
+         lightgrey = "#57595e",
+         darkgrey = "#404247",
+      }
+      vim.g.bubbly_statusline = {
+         'mode',
+
+         'truncate',
+
+         'path',
+         'branch',
+         'signify',
+         'coc',
+
+         'divisor',
+
+         'filetype',
+         'progress',
+      }
+   end}
 end)
 ```
 
 ## Configuration
 
-Here are the options that you can modify to modify the behaviour of the plugin.
+_Bubbly_ is also a highly configurable plugin, so you can configure almost anything. If you have an idea about something you would want to configure feel free to open an issue.
 
-**Note:** you can add only a part of the configuration and the rest will use the default.
+_Bubbly_ is configured using a dictionary in a global vim variable and is configured to use the _default_ key in the dictionary as a fallback in case a key doesn't exist. If you set the variable without some key that exists by default it will use the value defined in the default configuration.
 
-### Components
+### `g:bubbly_statusline`
 
-This option is used to configure which bubble components to show in the statusline and the order.
-
-It's a list that follows this pattern:
+This variable is used to configure which **modules**/**bubbles** are used in the statusline, and their order. Its a list of strings or lists of tables (that should follow the [same structure as the components](#components)), like the following:
 
 ```lua
-{ 'mode', 'thingy', 'coc', 'divisor', 'branch', {{ data = 'ddd', color = 'red', style = 'bold' }} }
+{ 'component1', 'divisor', 'component2', {{ data = 'string', color = 'red', style = 'bold' }}, 'component 4' }
 ```
 
-<details>
-<summary><b>Note</b></summary>
+This list can also contain strings like the following, that work like a reserved keyword, and have special functionality:
 
----
+- `divisor` or `division`: this divides the right part of the statusline from the left part, every component after this keyword goes to the right.
+- `truncate` or `trunc`: this marks where, if the size of the window is insufficient to show the whole statusline, the statusline is truncated (everything to the left will be conserved).
 
-Sadly **neovim** cannot insert lua functions inside vim variables (`g:variable` for example), I don't know if it's a problem from neovim lua api or viml, so you technically cannot use functions here, but the support is there. Tell me if you have any suggestion about this. The functions must have been like `function(inactive) ... end`.
+Every string that is not a keyword should be the name of a module inside `lua/bubbly/components`, and if an autocommand in a file with the same name exists, it will be loaded.
 
-The function must have accepted a parameter that is `true` when the buffer is **inactive** and `false`/`nil` when the buffer is **active** and reacted properly to the parameter.
+#### List of supported modules
 
-The function must have returned a table like `{{ data = '%F', color = 'blue', style = '' }}`.
-  - `data` and `color` are obligatory, `style` is optional.
-  - As you can see, it technically is a list of objects that contain `data`, `color`, and (optionally) `style`.
-
----
-
-</details>
-
-The elements of the list can be:
-- **Strings** like `'mode'`.
-  - The string represents the module name of some preexisting component.
-  - If the string is `divisor` or `division` then the rest of the list will go to the right.
-  - If the string is `trucate` or `truc` then if the size is insuficient it will conserve everything at the left of the string.
-- **Tables** like `{{ data = '%F', color = 'blue', style = '' }}`
-  - `data` and `color` are obligatory, `style` is optional.
-  - As you can see, it technically is a list of objects that contain `data`, `color`, and (optionally) `style`.
-
-Here is a list of all the currently supported modules:
 - `mode`
 - `path`
 - `branch`
@@ -150,8 +171,7 @@ Here is a list of all the currently supported modules:
 - `filetype`
 - `progress`
 
-<details>
-<summary><b>Default configuration</b></summary>
+#### Default configuration
 
 ```lua
 vim.g.bubbly_statusline = {
@@ -160,9 +180,6 @@ vim.g.bubbly_statusline = {
    'truncate',
 
    'path',
-   'branch',
-   'signify',
-   'coc',
 
    'divisor',
 
@@ -171,80 +188,25 @@ vim.g.bubbly_statusline = {
 }
 ```
 
-</details>
+### `g:bubbly_tabline`
 
----
+This variable is used to activate or deactivate _Bubbly_ tabline.
 
-<details>
-<summary><b>Lua configuration example</b></summary>
-
-```lua
-vim.g.bubbly_statusline = {
-   'mode',
-
-   'truncate',
-
-   'path',
-   'branch',
-   {{ data = 'my name', color = 'red', style = 'bold' }},
-
-   'divisor',
-
-   {
-     { data = 'test1', color = 'yellow', style = 'italic' },
-     { data = 'test2', color = 'red' },
-   },
-   'filetype',
-   'progress',
-}
-```
-
-</details>
-
-### Tabline
-
-This option is used to activate (by default its activated, so it's unnecessary) or deactivate bubbly tabline, you can use this if you have your own tabline or prefer the default neovim one.
-
-<details>
-<summary><b>Default configuration</b></summary>
+#### Default configuration
 
 ```lua
 vim.g.bubbly_tabline = 1
 ```
 
-</details>
+### `g:bubbly_palette`
 
----
+This variable is used to define the palette available to every component and their respective colors. You can define more colors than the default and use them in your components or in the configuration variable without any worry.
 
-<details>
-<summary><b>Lua configuration example</b></summary>
-
-```lua
-vim.g.bubbly_tabline = 0
-```
-
-</details>
-
-<details>
-<summary><b>VimL configuration example</b></summary>
-
-```viml
-let g:bubbly_tabline = 0
-```
-
-</details>
-
-### Palette
-
-This option is used to set the exact color for each color used in the status line.
-
-**Note:** you can define new colors and use them in the color configuration, don't worry about that.
-
-<details>
-<summary><b>Default configuration</b></summary>
+#### Default configuration
 
 ```lua
 vim.g.bubbly_palette = {
+   -- It can also be a hex value like #012345.
    background = "Black",
    foreground = "White",
    black = "Black",
@@ -260,96 +222,27 @@ vim.g.bubbly_palette = {
 }
 ```
 
-</details>
+### `g:bubbly_characters`
 
----
+This variable is used to define special characters used in the bubbles.
 
-<details>
-<summary><b>Lua configuration example</b></summary>
-
-```lua
-vim.g.bubbly_palette = {
-   background = "#34343c",
-   foreground = "#c5cdd9",
-   black = "#3e4249",
-   red = "#ec7279",
-   green = "#a0c980",
-   yellow = "#deb974",
-   blue = "#6cb6eb",
-   purple = "#d38aea",
-   cyan = "#5dbbc1",
-   white = "#c5cdd9",
-   lightgrey = "#57595e",
-   darkgrey = "#404247",
-}
-```
-
-</details>
-
-<details>
-<summary><b>VimL configuration example</b></summary>
-
-```viml
-let g:bubbly_palette = #{
-\   background: "#34343c",
-\   foreground: "#c5cdd9",
-\   black: "#3e4249",
-\   red: "#ec7279",
-\   green: "#a0c980",
-\   yellow: "#deb974",
-\   blue: "#6cb6eb",
-\   purple: "#d38aea",
-\   cyan: "#5dbbc1",
-\   white: "#c5cdd9",
-\   lightgrey: "#57595e",
-\   darkgrey: "#404247",
-\ }
-```
-
-</details>
-
-### Characters
-
-This option is used to configure the delimiters of the bubble.
-
-<details>
-<summary><b>Default configuration</b></summary>
+#### Default configuration
 
 ```lua
 vim.g.bubbly_characters = {
+   -- Bubble delimiters.
    left = '',
    right = '',
+   -- Close character for the tabline.
    close = 'x',
 }
 ```
 
-</details>
+### `g:bubbly_symbols`
 
----
+This variable is used to define the symbols used in some bubbles. Every string follows the format from the C library for formatting strings.
 
-<details>
-<summary><b>Lua configuration example</b></summary>
-
-```lua
-vim.g.bubbly_characters = {
-   left = '(',
-   right = ')',
-   close = 'CLOSE',
-}
-```
-
-</details>
-
-### Symbols
-
-This option is used to configure the symbols that are used in bubbles.
-
-It uses a function similar to the format from the C library so if there is more `%s` than necessary then the plugin would fail. If there were less than necessary it would simply not show that part.
-
-The default one is used as a fallback in case there is no symbol for the module.
-
-<details>
-<summary><b>Default configuration</b></summary>
+#### Default configuration
 
 ```lua
 vim.g.bubbly_symbols = {
@@ -361,71 +254,29 @@ vim.g.bubbly_symbols = {
       modified = '+',
    },
    signify = {
-      added = '+%s', -- requires 1
-      modified = '~%s', -- requires 1
-      removed = '-%s', -- requires 1
+      added = '+%s', -- requires 1 '%s'
+      modified = '~%s', -- requires 1 '%s'
+      removed = '-%s', -- requires 1 '%s'
    },
    coc = {
-      error = 'E%s', -- requires 1
-      warning = 'W%s', -- requires 1
+      error = 'E%s', -- requires 1 '%s'
+      warning = 'W%s', -- requires 1 '%s'
    },
    builtinlsp = {
       diagnostic_count = {
-         error = 'E%s', -- requires 1
-         warning = 'W%s', --requires 1
+         error = 'E%s', -- requires 1 '%s'
+         warning = 'W%s', --requires 1 '%s'
       },
    },
-   branch = ' %s' -- requires 1
+   branch = ' %s' -- requires 1 '%s'
 }
 ```
 
-</details>
+### `g:bubbly_tags`
 
----
+This variable defines the test used in some bubbles, if it's empty the bubble disappears.
 
-<details>
-<summary><b>Lua configuration example</b></summary>
-
-```lua
-vim.g.bubbly_symbols = {
-   default = "THIS SHOULDN'T HAVE HAPPENED",
-
-   path = {
-      readonly = 'ro',
-      unmodifiable = 'lk',
-      modified = '*',
-   },
-   signify = {
-      added = '++%s',
-      modified = '!%s',
-      removed = '_%s',
-   },
-   coc = {
-      error = 'Errors: %s',
-      warning = 'Warnings: %s',
-   },
-   builtinlsp = {
-      diagnostic_count = {
-         error = '%sE',
-         warning = '%sW',
-      },
-   },
-   branch = 'B '
-}
-```
-
-</details>
-
-### Tags
-
-This option is used to configure the text used in the bubbles.
-
-If it's empty the bubble disappears instead of showing the text.
-
-The default one is used as a fallback in case there is no tag for the module.
-
-<details>
-<summary><b>Default configuration</b></summary>
+#### Default configuration
 
 ```lua
 vim.g.bubbly_tags = {
@@ -448,55 +299,18 @@ vim.g.bubbly_tags = {
 }
 ```
 
-</details>
+### `g:bubbly_colors`
 
----
+This variable defines which colors is used by which bubble. Every color can be a string with the name of the color or a table with `foreground` and `background` keys, which define which color is used for foreground and background.
 
-<details>
-<summary><b>Lua configuration example</b></summary>
-
-```lua
-vim.g.bubbly_tags = {
-   default = 'ayuda, por favor!',
-
-   mode = {
-      normal = 'normal',
-      insert = 'insertar',
-      visual = 'visual',
-      visualblock = 'bloque visual',
-      command = 'comando',
-      terminal = 'terminal',
-      replace = 'reemplazar',
-      default = 'desconocido',
-   },
-   paste = 'pegar',
-   filetype = {
-      noft = '', -- If it's empty the bubble disappears
-   },
-}
-```
-
-</details>
-
-### Colors
-
-This option is used to configure which color uses which bubble in some case.
-
-The option can be a string or a table with `foreground` and `background` properties.
-
-The default one is used as a fallback in case there is no color for the module.
-
-**Note:** here you can use any color defined in `vim.g.bubbly_palette`.
-
-<details>
-<summary><b>Default configuration</b></summary>
+#### Default configuration
 
 ```lua
 vim.g.bubbly_colors = {
    default = 'red',
 
    mode = {
-      normal = 'green', -- uses by default a foreground of the background color
+      normal = 'green', -- uses by default 'background' as the foreground color.
       insert = 'blue',
       visual = 'red',
       visualblock = 'red',
@@ -542,98 +356,21 @@ vim.g.bubbly_colors = {
 }
 ```
 
-</details>
+### `g:bubbly_inactive_color`
 
----
+This variable defines the color used by bubbles when the statusline is inactive. It follows the same structure for colors as [`g:bubbly_colors`](#gbubbly_colors).
 
-<details>
-<summary><b>Lua configuration example</b></summary>
-
-```lua
-vim.g.bubbly_colors = {
-   default = 'purple',
-
-   mode = {
-      normal = 'red',
-      insert = 'blue',
-      visual = 'purple',
-      visualblock = 'green',
-      command = 'green',
-      terminal = 'blue',
-      replace = 'yellow',
-      default = 'darkgrey'
-   },
-   path = {
-      readonly = 'lightgrey',
-      unmodifiable = 'darkgrey',
-      path = 'white',
-      modified = 'lightgrey',
-   },
-   branch = 'purple',
-   signify = {
-      added = 'green',
-      modified = 'blue',
-      removed = 'red',
-   },
-   paste = 'red',
-   coc = {
-      error = 'red',
-      warning = 'yellow',
-      status = 'darkgrey',
-   },
-   builtinlsp = {
-      diagnostic_count = {
-         error = 'red',
-         warning = 'yellow',
-      },
-      current_function = 'purple',
-   },
-   filetype = 'blue',
-   progress = {
-      rowandcol = { foreground = 'red', background = 'blue' },
-      percentage = 'green',
-   },
-   tabline = {
-      active = 'red',
-      inactive = 'white',
-   },
-}
-```
-
-</details>
-
-### Inactive color
-
-This option defines the color used by bubbles in a inactive statusline.
-
-<details>
-<summary><b>Default configuration</b></summary>
+#### Default configuration
 
 ```lua
 vim.g.bubbly_inactive_color = { background = 'lightgrey', foreground = 'foreground' }
 ```
 
-</details>
+### `g:bubbly_styles`
 
----
+This variable defines which style is used by which bubble. Styles can be `''`, `'bold'` and `'italic'`.
 
-<details>
-<summary><b>Lua configuration example</b></summary>
-
-```lua
-vim.g.bubbly_inactive_color = 'red'
-```
-
-</details>
-
-### Styles
-
-This option is used to configure which style to use for which bubble.
-
-The default one is used as a fallback in case there is no style for the module.
-
-<details>
-<summary><b>Default configuration</b></summary>
+#### Default configuration
 
 ```lua
 vim.g.bubbly_styles = {
@@ -677,65 +414,23 @@ vim.g.bubbly_styles = {
 }
 ```
 
-</details>
+### `g:bubbly_inactive_style`
 
----
+This variable defines the style for the bubbles in an inactive statusline.
 
-<details>
-<summary><b>Lua configuration example</b></summary>
+#### Default configuration
 
 ```lua
-vim.g.bubbly_styles = {
-   default = '',
-
-   mode = 'bold',
-   path = {
-      readonly = 'bold',
-      unmodifiable = '',
-      path = 'italic',
-      modified = '',
-   },
-   branch = 'bold',
-   signify = {
-      added = 'bold',
-      modified = 'bold',
-      removed = 'bold',
-   },
-   paste = 'bold',
-   coc = {
-      error = 'bold',
-      warning = 'bold',
-      status = 'italic'
-   },
-   builtinlsp = {
-      diagnostic_count = {
-         error = '',
-         warning = ''
-      },
-      current_function = 'bold'
-   },
-   filetype = '',
-   progress = {
-      rowandcol = 'bold',
-      percentage = 'bold',
-   },
-   tabline = {
-      active = 'italic',
-      inactive = '',
-   },
-}
+vim.g.bubbly_inactive_style = ''
 ```
 
-</details>
+### `g:bubbly_width`
 
-### Width
+This variable defines the minimum width of some bubbles.
 
-This option defines the minimum width of some bubbles.
+If the value is 0 it doesn't have a minimum width.
 
-The default one is used as a fallback in case there is no width for the module.
-
-<details>
-<summary><b>Default configuration</b></summary>
+#### Default configuration
 
 ```lua
 vim.g.bubbly_width = {
@@ -747,46 +442,68 @@ vim.g.bubbly_width = {
 }
 ```
 
-</details>
+## For Developers
 
----
+_Bubbly_ is a fully modular plugin, so you can add new modules using the folders `lua/bubbly/components` and `lua/bubbly/autocommands`. Every Lua file in these folders is loaded if the option `g:bubbly_statusline` has the module name in its list.
 
-<details>
-<summary><b>Lua configuration example</b></summary>
+For example, if in these folders there is a file named `thingy.lua` and `g:bubbly_statusline` contains the string `"thingy"`, the file `lua/bubbly/components/thingy.lua` will be loaded as a bubble and the file `lua/bubbly/autocommands/thingy.lua` (if it exists) will have its return value used as _autocommands_. Additionally, I haven't tested it yet, but you technically should be able to have your own `lua/bubbly/components` and `lua/bubbly/autcommands` in your neovim configuration folder and those components should work with this plugin.
+
+**Note:** If the component is inside another folder (e.g. `lua/bubbly/components/folder/thingy.lua`) you should use it inside `g:bubbly_statusline` with the same syntax of a Lua module (e.g. `folder.thingy`).
+
+### Components
+
+Components are bubbles inside the statusline that have some functionality. They can have two states, active and inactive; in their active state they should use the color the user defined for them in the configuration, and in their inactive state they should use the inactive color that the user defined.
+
+The components go inside the `lua/bubbly/components` folder. They should be a Lua file that returns a function. This function should follow the following structure:
 
 ```lua
-vim.g.bubbly_width = {
-   default = 0,
+function(inactive)
+   return {
+      -- This is a list of tables
+      -- Every table follows the following structure:
+      {
+         -- This is what the component shows in the statusline
+	 data = 'string',
+         -- This is what color the component uses when it is active. It should be the name of a color.
+         color = 'string' or { foreground = 'string', background = 'string' },
+         -- This is the style the component uses (optional).
+         style = '' or 'bold' or 'italic',
+         -- This is a string to place before the bubble (optional) (usually not used).
+         pre = 'string',
+         -- This is a string to place after the bubble (optional) (usually not used).
+         post = 'string',
+      },
+   }
+end
+```
 
-   progress = {
-      rowandcol = 0,
+Usually  every part of the bubble gets its data from the `g:bubbly_something` variables, to be fully configurable.
+
+You can use components like [`path`](https://github.com/datwaft/bubbly.nvim/blob/master/lua/bubbly/components/path.lua) as a reference to create your own.
+
+### Autocommands
+
+These are used to automate some part of a bubble. For example they are used to automate the _branch_ of the `branch` bubble so that every time a different file is opened the bubble changes to the branch of the file.
+
+These go inside the `lua/bubbly/autocommands` folder and should be a Lua file that returns a list of tables with the following structure:
+
+```lua
+return {
+   -- Every table inside the list should follow the following structure:
+   {
+      -- These are the events that activate the autocommand.
+      events = { 'Event1', 'Event2' },
+      -- This is the variable that contains the result of the autocommand.
+      variable = {
+         -- This is the type of the variable, it can be: 'buffer', 'window' and 'global'.
+         type = 'string',
+         -- This is the name the global function will have and also the name of the variable that contains the result.
+         name = 'string',
+      },
+      -- This is the command that is executed by the autocommand, its return value will be saved into the variable.
+      command = function() end,
    },
 }
 ```
 
-</details>
-
-### Inactive style
-
-This option defines the style used by bubbles in a inactive statusline.
-
-<details>
-<summary><b>Default configuration</b></summary>
-
-```lua
-vim.g.bubbly_inactive_style = ''
-```
-
-</details>
-
----
-
-<details>
-<summary><b>Lua configuration example</b></summary>
-
-```lua
-vim.g.bubbly_inactive_style = 'bold'
-```
-
-</details>
-
+You can use components' autocommands like [`branch`](https://github.com/datwaft/bubbly.nvim/blob/master/lua/bubbly/autocommands/branch.lua) as a reference to create your own.

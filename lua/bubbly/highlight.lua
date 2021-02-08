@@ -1,7 +1,7 @@
 -- ======================
--- BUBBLY.NVIM HIGHTLIGHT
+-- HIGHTLIGHTS DEFINITION
 -- ======================
--- Created by: datwaft [github.com/datwaft]
+-- Created by datwaft <github.com/datwaft>
 
 --   The palette follows the form:
 --   {
