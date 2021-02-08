@@ -34,7 +34,6 @@
          v1 = hlparser(v1)
          for k2, v2 in pairs(palette) do
             if k1 ~= k2 then
-               -- This is a bit inefficient but keep g.bubbly_palette unchanged
                v2 = hlparser(v2)
                local name = 'Bubbly'..titlecase(k2)..titlecase(k1)
                define_bubble_highlight(name, v1, v2, bg)

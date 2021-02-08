@@ -37,9 +37,9 @@
       return 'Bubbly'..titlecase(foreground)..titlecase(background)..titlecase(special)
    end
 
--- ==================
+-- ==================================
 -- Extract color from highlight group
--- ==================
+-- ==================================
 
    -- Returns highlight name for parameters
    M.hlparser = function(usercolor)
@@ -48,7 +48,7 @@
          return usercolor
       end
 
-      -- Extract Group and fore/background
+      -- Extract Group and foreground/background
       local hlGroup = string.match(usercolor, "(%w+)%s")
 
       if hlGroup == nil then
@@ -74,5 +74,3 @@
 -- ============
 
    return M
-
--- vim: shiftwidth=3
