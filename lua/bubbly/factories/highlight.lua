@@ -9,6 +9,7 @@
    -- Extraction from utils
    local titlecase = require'bubbly.utils.string'.titlecase
    local highlight = require'bubbly.utils.highlight'.highlight
+   local hlparser = require'bubbly.utils.highlight'.hlparser
 -- ====================
 -- Auxiliars definition
 -- ====================
@@ -27,17 +28,21 @@
 -- Factory definition
 -- ==================
    return function(palette)
+      local fg = hlparser(palette.foreground)
+      local bg = hlparser(palette.background)
       for k1, v1 in pairs(palette) do
+         v1 = hlparser(v1)
          for k2, v2 in pairs(palette) do
             if k1 ~= k2 then
+               v2 = hlparser(v2)
                local name = 'Bubbly'..titlecase(k2)..titlecase(k1)
-               define_bubble_highlight(name, v1, v2, palette.background)
+               define_bubble_highlight(name, v1, v2, bg)
             end
          end
          if k1 ~= 'background' then
-            define_bubble_highlight('Bubbly'..titlecase(k1), v1, palette.background, palette.background)
+            define_bubble_highlight('Bubbly'..titlecase(k1), v1, bg, bg)
          end
       end
-      execute_command('BubblyStatusLine', palette.foreground, palette.background)
-      execute_command('BubblyTabLine', palette.foreground, palette.background)
+      execute_command('BubblyStatusLine', fg, bg)
+      execute_command('BubblyTabLine', fg, bg)
    end

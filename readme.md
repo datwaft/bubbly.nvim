@@ -202,11 +202,12 @@ vim.g.bubbly_tabline = 1
 
 This variable is used to define the palette available to every component and their respective colors. You can define more colors than the default and use them in your components or in the configuration variable without any worry.
 
+Accepted values are `cterm-colors` naming such as `LightGrey` or `DarkMagenta`, hexadecimal values such as `#123abc` and highlight groups such as `Normal background` or `LineNr foreground`.
+
 #### Default configuration
 
 ```lua
 vim.g.bubbly_palette = {
-   -- It can also be a hex value like #012345.
    background = "Black",
    foreground = "White",
    black = "Black",
