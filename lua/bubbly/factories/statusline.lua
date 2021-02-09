@@ -34,5 +34,6 @@ return function(list, inactive)
          end
       end
    end
+   dump(statusline)
    return statusline
 end
