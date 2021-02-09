@@ -51,5 +51,7 @@ return function(list, inactive)
       end
    end
    statusline = filter(statusline, function(_, e) return type(e) ~= 'string' or e == '' end)
+   dump(statusline)
+   dump(construct_statusline(statusline))
    return construct_statusline(statusline)
 end
