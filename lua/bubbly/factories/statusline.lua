@@ -12,6 +12,7 @@ local construct_statusline = function(list)
    for i, bubble in ipairs(list) do
       if bubble == '%=' then
          alignment = 'right'
+         statusline = statusline..bubble
       elseif bubble == '%<' then
          statusline = statusline..bubble
       elseif alignment == 'left' then
