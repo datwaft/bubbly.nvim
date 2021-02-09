@@ -496,7 +496,7 @@ return {
       events = { 'Event1', 'Event2' },
       -- This is the variable that contains the result of the autocommand.
       variable = {
-         -- This is the type of the variable, it can be: 'buffer', 'window' and 'global'.
+         -- This is the type of the variable, it can be either 'buffer', 'window' or 'global'.
          type = 'buffer' or 'window' or 'global',
          -- This is the name the global function will have and also the name of the variable that contains the result.
          name = 'string',
