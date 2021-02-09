@@ -50,6 +50,7 @@ return function(list, inactive)
          end
       end
    end
+   dump(statusline)
    statusline = filter(statusline, function(_, e) return type(e) ~= 'string' or e == '' end)
    dump(statusline)
    dump(construct_statusline(statusline))
