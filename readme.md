@@ -497,7 +497,7 @@ return {
       -- This is the variable that contains the result of the autocommand.
       variable = {
          -- This is the type of the variable, it can be: 'buffer', 'window' and 'global'.
-         type = 'string',
+         type = 'buffer' or 'window' or 'global',
          -- This is the name the global function will have and also the name of the variable that contains the result.
          name = 'string',
       },
