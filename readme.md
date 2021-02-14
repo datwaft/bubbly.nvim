@@ -359,7 +359,7 @@ vim.g.bubbly_colors = {
 
 ### `g:bubbly_inactive_color`
 
-This variable defines the color used by bubbles when the statusline is inactive. It follows the same structure for colors as [`g:bubbly_colors`](#gbubbly_colors).
+This variable defines the color used by bubbles when the statusline is inactive. It follows the same structure for colors as [`g:bubbly_colors`](#gbubbly_colors) (e.g. it can be `'red'` or `{ foreground = 'red', background = 'blue' }`).
 
 #### Default configuration
 
@@ -422,6 +422,7 @@ This variable defines the style for the bubbles in an inactive statusline.
 #### Default configuration
 
 ```lua
+-- Can be '' or 'bold' or 'italic'.
 vim.g.bubbly_inactive_style = ''
 ```
 
