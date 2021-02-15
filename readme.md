@@ -170,6 +170,7 @@ Every string that is not a keyword should be the name of a module inside `lua/bu
 - `builtinlsp.current_function`
 - `filetype`
 - `progress`
+- 'buffers_number'
 
 #### Default configuration
 
@@ -269,7 +270,8 @@ vim.g.bubbly_symbols = {
          warning = 'W%s', --requires 1 '%s'
       },
    },
-   branch = ' %s' -- requires 1 '%s'
+   branch = ' %s', -- requires 1 '%s'
+   buffers_number = '﬘ %s' --requires 1 '%d'
 }
 ```
 
@@ -354,6 +356,7 @@ vim.g.bubbly_colors = {
       active = 'blue',
       inactive = 'white',
    },
+   buffers_number = 'cyan'
 }
 ```
 
@@ -412,6 +415,7 @@ vim.g.bubbly_styles = {
       active = 'bold',
       inactive = '',
    },
+   buffers_number = ''
 }
 ```
 
