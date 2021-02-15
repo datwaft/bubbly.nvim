@@ -60,6 +60,12 @@
          },
       },
       branch = ' %s',
+      lsp_status_diagnostics = {
+        error = ' %d',
+        warning = '  %d',
+        hint = ' %d',
+        info = ' %d',
+      }
    }
 -- ====
 -- Tags
@@ -132,6 +138,12 @@
          active = 'blue',
          inactive = 'white',
       },
+      lsp_status_diagnostics = {
+        error = 'red',
+        warning = 'yellow',
+        hint = 'white',
+        info = 'blue',
+      }
    }
    M.inactive_color = { background = 'lightgrey', foreground = 'foreground' }
 -- ======
@@ -175,6 +187,12 @@
          active = 'bold',
          inactive = '',
       },
+      lsp_status_diagnostics = {
+        error = '',
+        warning = '',
+        hint = '',
+        info = '',
+      }
    }
    M.inactive_style = ''
 -- =====
