@@ -18,7 +18,7 @@ This plugin has support for these bubbles, feel free to open an issue or a pull 
 - _Neovim built-in LSP_ current function and diagnostics bubble.
 - Filetype bubble.
 - Progress bubble.
-- Buffer number bubble.
+- Opened buffer number bubble.
 
 ## Table of Contents
 
@@ -171,7 +171,7 @@ Every string that is not a keyword should be the name of a module inside `lua/bu
 - `builtinlsp.current_function`
 - `filetype`
 - `progress`
-- `buffer_number`
+- `total_buffer_number`
 
 #### Default configuration
 
@@ -272,7 +272,7 @@ vim.g.bubbly_symbols = {
       },
    },
    branch = ' %s', -- requires 1 '%s'
-   buffer_number = '﬘ %s', --requires 1 '%d'
+   total_buffer_number = '﬘ %s', --requires 1 '%d'
 }
 ```
 
@@ -357,7 +357,7 @@ vim.g.bubbly_colors = {
       active = 'blue',
       inactive = 'white',
    },
-   buffer_number = 'cyan',
+   total_buffer_number = 'cyan',
 }
 ```
 
@@ -416,7 +416,7 @@ vim.g.bubbly_styles = {
       active = 'bold',
       inactive = '',
    },
-   buffer_number = '',
+   total_buffer_number = '',
 }
 ```
 
