@@ -132,6 +132,7 @@
          active = 'blue',
          inactive = 'white',
       },
+      lsp_status_messages = 'white'
    }
    M.inactive_color = { background = 'lightgrey', foreground = 'foreground' }
 -- ======
@@ -175,6 +176,7 @@
          active = 'bold',
          inactive = '',
       },
+      lsp_status_messages = ''
    }
    M.inactive_style = ''
 -- =====
