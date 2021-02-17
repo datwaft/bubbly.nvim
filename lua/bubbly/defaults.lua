@@ -60,7 +60,7 @@
          },
       },
       branch = ' %s',
-      buffers_number = '﬘ %d',
+      buffer_number = '﬘ %d',
    }
 -- ====
 -- Tags
@@ -133,8 +133,8 @@
          active = 'blue',
          inactive = 'white',
       },
-      buffers_number = 'cyan'
-  }
+      buffer_number = 'cyan',
+   }
    M.inactive_color = { background = 'lightgrey', foreground = 'foreground' }
 -- ======
 -- Styles
@@ -177,7 +177,7 @@
          active = 'bold',
          inactive = '',
       },
-      buffers_number = '',
+      buffer_number = '',
    }
    M.inactive_style = ''
 -- =====
