@@ -11,7 +11,7 @@ local settings = {
 
 if not settings.color then
    require'bubbly.utils.io'.warning[[[BUBBLY.NVIM] => [WARNING] Couldn't load color configuration for the component 'total_buffer_number', the default color will be used.]]
-   settings.color = 'orange' --vim.g.bubbly_colors.default
+   settings.color = vim.g.bubbly_colors.default
 end
 if not settings.style then
    require'bubbly.utils.io'.warning[[[BUBBLY.NVIM] => [WARNING] Couldn't load style configuration for the component 'total_buffer_number', the default style will be used.]]
