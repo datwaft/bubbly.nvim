@@ -1,5 +1,5 @@
 -- ===============
--- COC.NVIM BUBBLE
+-- LSP-STATUS DIAGNOSTICS BUBBLE
 -- ===============
 -- Created by kuznetsss <github.com/kuznetsss>
 
