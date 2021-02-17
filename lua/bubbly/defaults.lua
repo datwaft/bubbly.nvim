@@ -190,6 +190,7 @@
          active = 'bold',
          inactive = '',
       },
+      total_buffer_number = '',
       lsp_status_messages = '',
       lsp_status_diagnostics = {
         error = '',
@@ -197,7 +198,6 @@
         hint = '',
         info = '',
       },
-      total_buffer_number = '',
    }
    M.inactive_style = ''
 -- =====
