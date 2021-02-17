@@ -1,6 +1,6 @@
--- =====================
--- BUFFERS NUMBER BUBBLE
--- =====================
+-- ====================
+-- BUFFER NUMBER BUBBLE
+-- ====================
 -- Created by kuznetsss <github.com/kuznetsss>
 
 local settings = {
