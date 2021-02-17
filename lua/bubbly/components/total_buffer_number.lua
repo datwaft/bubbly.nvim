@@ -24,18 +24,9 @@ end
 
 return function(inactive)
    if inactive then return nil end
-   local buffers = vim.api.nvim_list_bufs()
-   local total_buffer_number = 0
-   for _, buf in pairs(buffers) do
-       if vim.api.nvim_buf_is_loaded(buf) then
-           total_buffer_number = total_buffer_number + 1
-       end
-   end
-   return {
-      {
-         data = settings.symbol:format(total_buffer_number),
+      return {{
+         data = settings.symbol:format(#vim.fn['getbufinfo']({buflisted = 1})),
          color = settings.color,
          style = settings.style,
-      }
-  }
+      }}
 end
