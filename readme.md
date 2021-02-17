@@ -170,6 +170,7 @@ Every string that is not a keyword should be the name of a module inside `lua/bu
 - `builtinlsp.current_function`
 - `filetype`
 - `progress`
+- 'buffers_number'
 
 #### Default configuration
 
@@ -269,7 +270,8 @@ vim.g.bubbly_symbols = {
          warning = 'W%s', --requires 1 '%s'
       },
    },
-   branch = ' %s' -- requires 1 '%s'
+   branch = ' %s', -- requires 1 '%s'
+   buffers_number = '﬘ %s' --requires 1 '%d'
 }
 ```
 
@@ -354,12 +356,13 @@ vim.g.bubbly_colors = {
       active = 'blue',
       inactive = 'white',
    },
+   buffers_number = 'cyan'
 }
 ```
 
 ### `g:bubbly_inactive_color`
 
-This variable defines the color used by bubbles when the statusline is inactive. It follows the same structure for colors as [`g:bubbly_colors`](#gbubbly_colors).
+This variable defines the color used by bubbles when the statusline is inactive. It follows the same structure for colors as [`g:bubbly_colors`](#gbubbly_colors) (e.g. it can be `'red'` or `{ foreground = 'red', background = 'blue' }`).
 
 #### Default configuration
 
@@ -412,6 +415,7 @@ vim.g.bubbly_styles = {
       active = 'bold',
       inactive = '',
    },
+   buffers_number = ''
 }
 ```
 
@@ -422,6 +426,7 @@ This variable defines the style for the bubbles in an inactive statusline.
 #### Default configuration
 
 ```lua
+-- Can be '' or 'bold' or 'italic'.
 vim.g.bubbly_inactive_style = ''
 ```
 
