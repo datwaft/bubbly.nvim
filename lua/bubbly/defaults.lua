@@ -60,6 +60,7 @@
          },
       },
       branch = ' %s',
+      total_buffer_number = '﬘ %d',
       lsp_status_diagnostics = {
         error = ' %d',
         warning = '  %d',
@@ -138,6 +139,7 @@
          active = 'blue',
          inactive = 'white',
       },
+      total_buffer_number = 'cyan',
       lsp_status_diagnostics = {
         error = 'red',
         warning = 'yellow',
@@ -187,12 +189,13 @@
          active = 'bold',
          inactive = '',
       },
+      total_buffer_number = '',
       lsp_status_diagnostics = {
         error = '',
         warning = '',
         hint = '',
         info = '',
-      }
+      }   
    }
    M.inactive_style = ''
 -- =====
