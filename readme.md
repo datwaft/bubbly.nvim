@@ -173,7 +173,7 @@ Every string that is not a keyword should be the name of a module inside `lua/bu
 - `filetype`
 - `progress`
 - `total_buffer_number`
-- `lsp_status_diagnostics`
+- `lsp_status.diagnostics`
 
 #### Default configuration
 
