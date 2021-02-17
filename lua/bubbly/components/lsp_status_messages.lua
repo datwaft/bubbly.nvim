@@ -24,24 +24,14 @@ if not status then
 else
     get_messages = get_messages.messages
 end
-local spinner_frames = { '⣾', '⣽', '⣻', '⢿', '⡿', '⣟', '⣯', '⣷' }
-local previous_update_time = os.time()
-local previous_result = nil
-local update_time = 1 -- second
+local spinner_frames = { '⣷', '⣯', '⣟', '⡿', '⢿', '⣻', '⣾', '⣽' }
 
 return function()
     if get_messages == nil then return nil end
 
-    local current_time = os.time()
-    if (current_time - previous_update_time) <= update_time then
-        previous_update_time = current_time
-        return previous_result
-    end
-    previous_update_time = current_time
-
     local messages = get_messages()
 
-    local result = {}
+    local result_str = ''
     for _, msg in ipairs(messages) do
         local contents = msg.name .. ': '
         if msg.progress then
@@ -51,7 +41,7 @@ return function()
           end
 
           if msg.percentage then
-            contents = contents .. ' (' .. msg.percentage .. ')'
+            contents = contents .. ' (' .. math.floor(msg.percentage + 0.5) .. '%)'
           end
 
           if msg.spinner then
@@ -59,29 +49,18 @@ return function()
           end
         elseif msg.status then
           contents = contents .. msg.content
-          --[[if msg.uri then
-            local filename = vim.uri_to_fname(msg.uri)
-            filename = vim.fn.fnamemodify(filename, ':~:.')
-            local space = math.min(60, math.floor(0.6 * vim.fn.winwidth(0)))
-            if #filename > space then
-              filename = vim.fn.pathshorten(filename)
-            end
-
-            contents = '(' .. filename .. ') ' .. contents
-          end]]--
         else
           contents = contents .. msg.content
         end
-        table.insert(result,
-          {
-             data = contents,
-             color = settings.color,
-             style = settings.style,
-          }
-        )
+        result_str = result_str .. ' ' .. contents
     end
 
-    previous_result = result
-    return result
+    return {
+        {
+             data = result_str,
+             color = settings.color,
+             style = settings.style,
+        }
+    }
 end
 
