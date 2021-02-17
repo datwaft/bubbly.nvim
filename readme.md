@@ -18,7 +18,7 @@ This plugin has support for these bubbles, feel free to open an issue or a pull 
 - _Neovim built-in LSP_ current function and diagnostics bubble.
 - Filetype bubble.
 - Progress bubble.
-- Opened buffer number bubble.
+- Total buffer number bubble.
 
 ## Table of Contents
 
