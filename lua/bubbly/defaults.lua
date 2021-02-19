@@ -61,6 +61,12 @@
       },
       branch = ' %s',
       total_buffer_number = '﬘ %d',
+      lsp_status_diagnostics = {
+        error = ' %d',
+        warning = '  %d',
+        hint = ' %d',
+        info = ' %d',
+      }
    }
 -- ====
 -- Tags
@@ -134,6 +140,12 @@
          inactive = 'white',
       },
       total_buffer_number = 'cyan',
+      lsp_status_diagnostics = {
+        error = 'red',
+        warning = 'yellow',
+        hint = 'white',
+        info = 'blue',
+      }
    }
    M.inactive_color = { background = 'lightgrey', foreground = 'foreground' }
 -- ======
@@ -178,6 +190,12 @@
          inactive = '',
       },
       total_buffer_number = '',
+      lsp_status_diagnostics = {
+        error = '',
+        warning = '',
+        hint = '',
+        info = '',
+      }   
    }
    M.inactive_style = ''
 -- =====
