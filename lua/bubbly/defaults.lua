@@ -140,13 +140,15 @@
          inactive = 'white',
       },
       total_buffer_number = 'cyan',
-      lsp_status_messages = 'white',
-      lsp_status_diagnostics = {
-        error = 'red',
-        warning = 'yellow',
-        hint = 'white',
-        info = 'blue',
-      },
+      lsp_status = {
+          messages = 'white',
+          diagnostics = {
+              error = 'red',
+              warning = 'yellow',
+              hint = 'white',
+              info = 'blue',
+          },
+      }
    }
    M.inactive_color = { background = 'lightgrey', foreground = 'foreground' }
 -- ======
@@ -191,13 +193,15 @@
          inactive = '',
       },
       total_buffer_number = '',
-      lsp_status_messages = '',
-      lsp_status_diagnostics = {
-        error = '',
-        warning = '',
-        hint = '',
-        info = '',
-      },
+      lsp_status = {
+          messages = '',
+          diagnostics = {
+              error = '',
+              warning = '',
+              hint = '',
+              info = '',
+          },
+      }
    }
    M.inactive_style = ''
 -- =====

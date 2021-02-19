@@ -4,8 +4,8 @@
 -- Created by kuznetsss <github.com/kuznetsss>
 
 local settings = {
-   color = vim.g.bubbly_colors.lsp_status_messages,
-   style = vim.g.bubbly_styles.lsp_status_messages,
+   color = vim.g.bubbly_colors.lsp_status.messages,
+   style = vim.g.bubbly_styles.lsp_status.messages,
 }
 
 if not settings.color then
