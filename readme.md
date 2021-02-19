@@ -15,6 +15,7 @@ This plugin has support for these bubbles, feel free to open an issue or a pull 
 - _Git_ branch bubble.
 - [_Signify_](https://github.com/mhinz/vim-signify) changes bubble.
 - [_Coc.nvim_](https://github.com/neoclide/coc.nvim) diagnostics bubble.
+- [_Lsp-status_](https://github.com/nvim-lua/lsp-status.nvim) diagnostics bubble.
 - _Neovim built-in LSP_ current function and diagnostics bubble.
 - Filetype bubble.
 - Progress bubble.
@@ -172,6 +173,7 @@ Every string that is not a keyword should be the name of a module inside `lua/bu
 - `filetype`
 - `progress`
 - `total_buffer_number`
+- `lsp_status.diagnostics`
 
 #### Default configuration
 
@@ -273,6 +275,14 @@ vim.g.bubbly_symbols = {
    },
    branch = ' %s', -- requires 1 '%s'
    total_buffer_number = '﬘ %s', --requires 1 '%d'
+   lsp_status = {
+      diagnostics = {
+         error = ' %d',
+         warning = '  %d',
+         hint = ' %d',
+         info = ' %d',
+      },
+   },
 }
 ```
 
@@ -358,6 +368,14 @@ vim.g.bubbly_colors = {
       inactive = 'white',
    },
    total_buffer_number = 'cyan',
+   lsp_status = {
+      diagnostics = {
+         error = 'red',
+         warning = 'yellow',
+         hint = 'white',
+         info = 'blue',
+      },
+   },
 }
 ```
 
@@ -417,6 +435,14 @@ vim.g.bubbly_styles = {
       inactive = '',
    },
    total_buffer_number = '',
+   lsp_status = {
+         diagnostics = {
+         error = '',
+         warning = '',
+         hint = '',
+         info = '',
+      },
+   },
 }
 ```
 
