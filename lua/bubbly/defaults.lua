@@ -61,12 +61,14 @@
       },
       branch = ' %s',
       total_buffer_number = '﬘ %d',
-      lsp_status_diagnostics = {
-        error = ' %d',
-        warning = '  %d',
-        hint = ' %d',
-        info = ' %d',
-      }
+      lsp_status = {
+         diagnostics = {
+            error = ' %d',
+            warning = '  %d',
+            hint = ' %d',
+            info = ' %d',
+         },
+      },
    }
 -- ====
 -- Tags
@@ -141,14 +143,14 @@
       },
       total_buffer_number = 'cyan',
       lsp_status = {
-          messages = 'white',
-          diagnostics = {
-              error = 'red',
-              warning = 'yellow',
-              hint = 'white',
-              info = 'blue',
-          },
-      }
+         messages = 'white',
+         diagnostics = {
+            error = 'red',
+            warning = 'yellow',
+            hint = 'white',
+            info = 'blue',
+         },
+      },
    }
    M.inactive_color = { background = 'lightgrey', foreground = 'foreground' }
 -- ======
@@ -196,12 +198,12 @@
       lsp_status = {
           messages = '',
           diagnostics = {
-              error = '',
-              warning = '',
-              hint = '',
-              info = '',
-          },
-      }
+            error = '',
+            warning = '',
+            hint = '',
+            info = '',
+         },
+      },
    }
    M.inactive_style = ''
 -- =====

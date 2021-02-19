@@ -15,12 +15,14 @@ This plugin has support for these bubbles, feel free to open an issue or a pull 
 - _Git_ branch bubble.
 - [_Signify_](https://github.com/mhinz/vim-signify) changes bubble.
 - [_Coc.nvim_](https://github.com/neoclide/coc.nvim) diagnostics bubble.
+- [_Lsp-status_](https://github.com/nvim-lua/lsp-status.nvim) diagnostics bubble.
 - _Neovim built-in LSP_ current function and diagnostics bubble.
 - Filetype bubble.
 - Progress bubble.
 - Total buffer number bubble.
 - [_Lsp-status_](https://github.com/nvim-lua/lsp-status.nvim) diagnostics bubble.
 - [_Lsp-status_](https://github.com/nvim-lua/lsp-status.nvim) messages bubble.
+
 
 ## Table of Contents
 
@@ -277,12 +279,14 @@ vim.g.bubbly_symbols = {
    },
    branch = ' %s', -- requires 1 '%s'
    total_buffer_number = '﬘ %s', --requires 1 '%d'
-   lsp_status_diagnostics = {
-      error = ' %d', -- requires 1 '%d'
-      warning = '  %d', -- requires 1 '%d'
-      hint = ' %d', -- requires 1 '%d'
-      info = ' %d', -- requires 1 '%d'
-   }
+   lsp_status = {
+      diagnostics = {
+         error = ' %d',
+         warning = '  %d',
+         hint = ' %d',
+         info = ' %d',
+      },
+   },
 }
 ```
 
@@ -369,14 +373,14 @@ vim.g.bubbly_colors = {
    },
    total_buffer_number = 'cyan',
    lsp_status = {
-       messages = 'white',
-       diagnostics = {
-          error = 'red',
-          warning = 'yellow',
-          hint = 'white',
-          info = 'blue',
-       }
-   }
+      messages = 'white',
+      diagnostics = {
+         error = 'red',
+         warning = 'yellow',
+         hint = 'white',
+         info = 'blue',
+      },
+   },
 }
 ```
 
@@ -439,12 +443,12 @@ vim.g.bubbly_styles = {
    lsp_status = {
        messages = '',
        diagnostics = {
-          error = '',
-          warning = '',
-          hint = '',
-          info = '',
-       }
-   }
+         error = '',
+         warning = '',
+         hint = '',
+         info = '',
+      },
+   },
 }
 ```
 
