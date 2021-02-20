@@ -31,29 +31,38 @@ return function()
 
    local messages = get_messages()
 
-   local result_str = ''
+   local contents = {}
    for _, msg in ipairs(messages) do
-      local contents = msg.name..': '
+      local parsed_message = ''
       if msg.progress then
-         contents = contents..msg.title
+         parsed_message = parsed_message..msg.title
          if msg.message then
-            contents = contents..' '..msg.message
+            parsed_message = parsed_message..' '..msg.message
          end
 
          if msg.percentage then
-            contents = contents..' ('..math.floor(msg.percentage + 0.5)..'%%)'
+            parsed_message = parsed_message..' ('..math.floor(msg.percentage + 0.5)..'%%)'
          end
 
          if msg.spinner then
-            contents = spinner_frames[(msg.spinner % #spinner_frames) + 1]..' '..contents
+            parsed_message = spinner_frames[(msg.spinner % #spinner_frames) + 1]..' '..parsed_message
          end
       elseif msg.status then
-         contents = contents..msg.content
+         parsed_message = parsed_message..msg.content
       else
-         contents = contents..msg.content
+         parsed_message = parsed_message..msg.content
       end
-      result_str = result_str..' '..contents
+      if contents[msg.name] == nil then
+          contents[msg.name] = parsed_message
+      else
+        contents[msg.name] = contents[msg.name]..', '..parsed_message
+      end
    end
+   local result_str = ''
+   for name,msg in pairs(contents) do
+       result_str = result_str..name..': '..msg..' | '
+   end
+   result_str = result_str:sub(1,-4)
 
    return {{
       data = result_str,
