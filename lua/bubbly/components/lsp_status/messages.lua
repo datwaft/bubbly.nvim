@@ -17,7 +17,7 @@ if not settings.style then
    settings.style = vim.g.bubbly_styles.default
 end
 
-local get_messages = require'bubbly.utils.prerequire''lsp-status.messaging'
+local get_messages = require'bubbly.utils.prerequire''lsp-status/messaging'
 if not get_messages then
    require'bubbly.utils.io'.error[[[BUBBLY.NVIM] => [ERROR] Couldn't load 'lsp-status.messaging' for the component 'lsp_status.messages', the component will be disabled.]]
 else
@@ -41,7 +41,7 @@ return function()
          end
 
          if msg.percentage then
-            contents = contents..' ('..math.floor(msg.percentage + 0.5)..'%)'
+            contents = contents..' ('..math.floor(msg.percentage + 0.5)..'%%)'
          end
 
          if msg.spinner then
