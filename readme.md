@@ -20,6 +20,9 @@ This plugin has support for these bubbles, feel free to open an issue or a pull 
 - Filetype bubble.
 - Progress bubble.
 - Total buffer number bubble.
+- [_Lsp-status_](https://github.com/nvim-lua/lsp-status.nvim) diagnostics bubble.
+- [_Lsp-status_](https://github.com/nvim-lua/lsp-status.nvim) messages bubble.
+
 
 ## Table of Contents
 
@@ -174,6 +177,7 @@ Every string that is not a keyword should be the name of a module inside `lua/bu
 - `progress`
 - `total_buffer_number`
 - `lsp_status.diagnostics`
+- `lsp_status.messages`
 
 #### Default configuration
 
@@ -369,6 +373,7 @@ vim.g.bubbly_colors = {
    },
    total_buffer_number = 'cyan',
    lsp_status = {
+      messages = 'white',
       diagnostics = {
          error = 'red',
          warning = 'yellow',
@@ -436,7 +441,8 @@ vim.g.bubbly_styles = {
    },
    total_buffer_number = '',
    lsp_status = {
-         diagnostics = {
+       messages = '',
+       diagnostics = {
          error = '',
          warning = '',
          hint = '',

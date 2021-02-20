@@ -143,6 +143,7 @@
       },
       total_buffer_number = 'cyan',
       lsp_status = {
+         messages = 'white',
          diagnostics = {
             error = 'red',
             warning = 'yellow',
@@ -195,7 +196,8 @@
       },
       total_buffer_number = '',
       lsp_status = {
-            diagnostics = {
+          messages = '',
+          diagnostics = {
             error = '',
             warning = '',
             hint = '',
