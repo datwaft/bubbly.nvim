@@ -15,13 +15,11 @@ This plugin has support for these bubbles, feel free to open an issue or a pull 
 - _Git_ branch bubble.
 - [_Signify_](https://github.com/mhinz/vim-signify) changes bubble.
 - [_Coc.nvim_](https://github.com/neoclide/coc.nvim) diagnostics bubble.
-- [_Lsp-status_](https://github.com/nvim-lua/lsp-status.nvim) diagnostics bubble.
+- [_Lsp-status_](https://github.com/nvim-lua/lsp-status.nvim) diagnostics and messages bubble.
 - _Neovim built-in LSP_ current function and diagnostics bubble.
 - Filetype bubble.
 - Progress bubble.
 - Total buffer number bubble.
-- [_Lsp-status_](https://github.com/nvim-lua/lsp-status.nvim) diagnostics bubble.
-- [_Lsp-status_](https://github.com/nvim-lua/lsp-status.nvim) messages bubble.
 
 
 ## Table of Contents
@@ -441,8 +439,8 @@ vim.g.bubbly_styles = {
    },
    total_buffer_number = '',
    lsp_status = {
-       messages = '',
-       diagnostics = {
+      messages = '',
+      diagnostics = {
          error = '',
          warning = '',
          hint = '',

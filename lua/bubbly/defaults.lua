@@ -196,8 +196,8 @@
       },
       total_buffer_number = '',
       lsp_status = {
-          messages = '',
-          diagnostics = {
+         messages = '',
+         diagnostics = {
             error = '',
             warning = '',
             hint = '',
