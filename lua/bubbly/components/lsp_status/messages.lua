@@ -26,10 +26,20 @@ end
 
 local spinner_frames = { '⣷', '⣯', '⣟', '⡿', '⢿', '⣻', '⣾', '⣽' }
 
+local timer = vim.loop.new_timer()
+local show_new_messages_allowed = true
+local last_messages = nil
+local allow_update = function()
+    show_new_messages_allowed = true
+end
+
 return function()
    if get_messages == nil then return nil end
 
    local messages = get_messages()
+   if not show_new_messages_allowed then
+       return last_messages
+   end
 
    local contents = {}
    for _, msg in ipairs(messages) do
@@ -64,10 +74,14 @@ return function()
    end
    result_str = result_str:sub(1,-4)
 
-   return {{
+   local result = {{
       data = result_str,
       color = settings.color,
       style = settings.style,
    }}
+   show_new_messages_allowed = false
+   last_messages = result
+   timer:start(500, 0, vim.schedule_wrap(allow_update))
+   return result
 end
 
