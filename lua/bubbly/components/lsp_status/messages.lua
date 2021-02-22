@@ -6,6 +6,7 @@
 local settings = {
    color = vim.g.bubbly_colors.lsp_status.messages,
    style = vim.g.bubbly_styles.lsp_status.messages,
+   timing = vim.g.bubbly_timing.lsp_status.messages,
 }
 
 if not settings.color then
@@ -15,6 +16,10 @@ end
 if not settings.style then
    require'bubbly.utils.io'.warning[[[BUBBLY.NVIM] => [WARNING] Couldn't load style configuration for the component 'lsp_status.messages', the default style will be used.]]
    settings.style = vim.g.bubbly_styles.default
+end
+if not settings.timing then
+   require'bubbly.utils.io'.warning[[[BUBBLY.NVIM] => [WARNING] Couldn't load timing configuration for the component 'lsp_status.messages', the default timing will be used.]]
+   settings.timing = vim.g.bubbly_timing.default
 end
 
 local lsp_status = require'bubbly.utils.prerequire''lsp-status'
@@ -36,7 +41,7 @@ return function()
 
    local messages = lsp_status.messages()
    if not show_new_messages_allowed then
-       return last_messages
+      return last_messages
    end
 
    local contents = {}
@@ -61,14 +66,14 @@ return function()
          parsed_message = parsed_message..msg.content
       end
       if contents[msg.name] == nil then
-          contents[msg.name] = parsed_message
+         contents[msg.name] = parsed_message
       else
-        contents[msg.name] = contents[msg.name]..', '..parsed_message
+         contents[msg.name] = contents[msg.name]..', '..parsed_message
       end
    end
    local result_str = ''
    for name,msg in pairs(contents) do
-       result_str = result_str..name..': '..msg..' | '
+      result_str = result_str..name..': '..msg..' | '
    end
    result_str = result_str:sub(1,-4)
 
@@ -79,7 +84,7 @@ return function()
    }}
    show_new_messages_allowed = false
    last_messages = result
-   timer:start(500, 0, vim.schedule_wrap(allow_update))
+   timer:start(settings.timing.update_delay, 0, vim.schedule_wrap(allow_update))
    return result
 end
 

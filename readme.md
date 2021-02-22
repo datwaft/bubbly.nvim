@@ -54,6 +54,8 @@ This plugin has support for these bubbles, feel free to open an issue or a pull 
             * [Default configuration](#default-configuration-9)
          * [`g:bubbly_width`](#gbubbly_width)
             * [Default configuration](#default-configuration-10)
+         * [`g:bubbly_timing`](#gbubbly_timing)
+            * [Default configuration](#default-configuration-11)
       * [For Developers](#for-developers)
          * [Components](#components)
          * [Autocommands](#autocommands)
@@ -475,6 +477,24 @@ vim.g.bubbly_width = {
 
    progress = {
       rowandcol = 8,
+   },
+}
+```
+
+### `g:bubbly_timing`
+
+This variable defines some timing configuration related to some bubbles.
+
+#### Default configuration
+
+```lua
+vim.g.bubbly_timing = {
+   default = 0,
+
+   lsp_status = {
+      messages = {
+         update_delay = 500, -- ms
+      },
    },
 }
 ```
