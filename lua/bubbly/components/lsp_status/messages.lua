@@ -17,9 +17,9 @@ if not settings.style then
    settings.style = vim.g.bubbly_styles.default
 end
 
-local get_messages = require'bubbly.utils.prerequire''lsp-status'.messages
-if not get_messages then
-   require'bubbly.utils.io'.error[[[BUBBLY.NVIM] => [ERROR] Couldn't load 'lsp-status.messaging' for the component 'lsp_status.messages', the component will be disabled.]]
+local lsp_status = require'bubbly.utils.prerequire''lsp-status'
+if not lsp_status then
+   require'bubbly.utils.io'.error[[[BUBBLY.NVIM] => [ERROR] Couldn't load 'lsp-status' for the component 'lsp_status.messages', the component will be disabled.]]
 end
 
 local spinner_frames = { '⣷', '⣯', '⣟', '⡿', '⢿', '⣻', '⣾', '⣽' }
@@ -32,9 +32,9 @@ local allow_update = function()
 end
 
 return function()
-   if get_messages == nil then return nil end
+   if lsp_status == nil then return nil end
 
-   local messages = get_messages()
+   local messages = lsp_status.messages()
    if not show_new_messages_allowed then
        return last_messages
    end
