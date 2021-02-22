@@ -17,48 +17,69 @@ if not settings.style then
    settings.style = vim.g.bubbly_styles.default
 end
 
-local get_messages = require'bubbly.utils.prerequire''lsp-status.messaging'
-if not get_messages then
-   require'bubbly.utils.io'.error[[[BUBBLY.NVIM] => [ERROR] Couldn't load 'lsp-status.messaging' for the component 'lsp_status.messages', the component will be disabled.]]
-else
-    get_messages = get_messages.messages
+local lsp_status = require'bubbly.utils.prerequire''lsp-status'
+if not lsp_status then
+   require'bubbly.utils.io'.error[[[BUBBLY.NVIM] => [ERROR] Couldn't load 'lsp-status' for the component 'lsp_status.messages', the component will be disabled.]]
 end
 
 local spinner_frames = { '⣷', '⣯', '⣟', '⡿', '⢿', '⣻', '⣾', '⣽' }
 
+local timer = vim.loop.new_timer()
+local show_new_messages_allowed = true
+local last_messages = nil
+local allow_update = function()
+    show_new_messages_allowed = true
+end
+
 return function()
-   if get_messages == nil then return nil end
+   if lsp_status == nil then return nil end
 
-   local messages = get_messages()
+   local messages = lsp_status.messages()
+   if not show_new_messages_allowed then
+       return last_messages
+   end
 
-   local result_str = ''
+   local contents = {}
    for _, msg in ipairs(messages) do
-      local contents = msg.name..': '
+      local parsed_message = ''
       if msg.progress then
-         contents = contents..msg.title
+         parsed_message = parsed_message..msg.title
          if msg.message then
-            contents = contents..' '..msg.message
+            parsed_message = parsed_message..' '..msg.message
          end
 
          if msg.percentage then
-            contents = contents..' ('..math.floor(msg.percentage + 0.5)..'%)'
+            parsed_message = parsed_message..' ('..math.floor(msg.percentage + 0.5)..'%%)'
          end
 
          if msg.spinner then
-            contents = spinner_frames[(msg.spinner % #spinner_frames) + 1]..' '..contents
+            parsed_message = spinner_frames[(msg.spinner % #spinner_frames) + 1]..' '..parsed_message
          end
       elseif msg.status then
-         contents = contents..msg.content
+         parsed_message = parsed_message..msg.content
       else
-         contents = contents..msg.content
+         parsed_message = parsed_message..msg.content
       end
-      result_str = result_str..' '..contents
+      if contents[msg.name] == nil then
+          contents[msg.name] = parsed_message
+      else
+        contents[msg.name] = contents[msg.name]..', '..parsed_message
+      end
    end
+   local result_str = ''
+   for name,msg in pairs(contents) do
+       result_str = result_str..name..': '..msg..' | '
+   end
+   result_str = result_str:sub(1,-4)
 
-   return {{
+   local result = {{
       data = result_str,
       color = settings.color,
       style = settings.style,
    }}
+   show_new_messages_allowed = false
+   last_messages = result
+   timer:start(500, 0, vim.schedule_wrap(allow_update))
+   return result
 end
 
