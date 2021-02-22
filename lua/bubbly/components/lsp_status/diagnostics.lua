@@ -22,14 +22,14 @@ if not settings.style then
    settings.style = vim.g.bubbly_styles.default
 end
 
-local get_diagnostics = require'bubbly.utils.prerequire''lsp-status.diagnostics'
-if not get_diagnostics then
-   require'bubbly.utils.io'.error[[[BUBBLY.NVIM] => [ERROR] Couldn't load 'lsp-status.diagnostics' for the component 'lsp_status.diagnostics', the component will be disabled.]]
+local lsp_status = require'bubbly.utils.prerequire''lsp-status'
+if not lsp_status then
+   require'bubbly.utils.io'.error[[[BUBBLY.NVIM] => [ERROR] Couldn't load 'lsp-status' for the component 'lsp_status.diagnostics', the component will be disabled.]]
 end
 
 return function(inactive)
-    if get_diagnostics == nil or inactive then return nil end
-    local diagnostics = get_diagnostics(vim.api.nvim_get_current_buf())
+    if lsp_status == nil or inactive then return nil end
+    local diagnostics = lsp_status.diagnostics(vim.api.nvim_get_current_buf())
     return {
         {
             data = diagnostics.errors ~= 0 and settings.symbol.error:format(diagnostics.errors),

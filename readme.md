@@ -15,11 +15,12 @@ This plugin has support for these bubbles, feel free to open an issue or a pull 
 - _Git_ branch bubble.
 - [_Signify_](https://github.com/mhinz/vim-signify) changes bubble.
 - [_Coc.nvim_](https://github.com/neoclide/coc.nvim) diagnostics bubble.
-- [_Lsp-status_](https://github.com/nvim-lua/lsp-status.nvim) diagnostics bubble.
+- [_Lsp-status_](https://github.com/nvim-lua/lsp-status.nvim) diagnostics and messages bubble.
 - _Neovim built-in LSP_ current function and diagnostics bubble.
 - Filetype bubble.
 - Progress bubble.
 - Total buffer number bubble.
+
 
 ## Table of Contents
 
@@ -53,6 +54,8 @@ This plugin has support for these bubbles, feel free to open an issue or a pull 
             * [Default configuration](#default-configuration-9)
          * [`g:bubbly_width`](#gbubbly_width)
             * [Default configuration](#default-configuration-10)
+         * [`g:bubbly_timing`](#gbubbly_timing)
+            * [Default configuration](#default-configuration-11)
       * [For Developers](#for-developers)
          * [Components](#components)
          * [Autocommands](#autocommands)
@@ -174,6 +177,7 @@ Every string that is not a keyword should be the name of a module inside `lua/bu
 - `progress`
 - `total_buffer_number`
 - `lsp_status.diagnostics`
+- `lsp_status.messages`
 
 #### Default configuration
 
@@ -369,6 +373,7 @@ vim.g.bubbly_colors = {
    },
    total_buffer_number = 'cyan',
    lsp_status = {
+      messages = 'white',
       diagnostics = {
          error = 'red',
          warning = 'yellow',
@@ -436,7 +441,8 @@ vim.g.bubbly_styles = {
    },
    total_buffer_number = '',
    lsp_status = {
-         diagnostics = {
+      messages = '',
+      diagnostics = {
          error = '',
          warning = '',
          hint = '',
@@ -471,6 +477,24 @@ vim.g.bubbly_width = {
 
    progress = {
       rowandcol = 8,
+   },
+}
+```
+
+### `g:bubbly_timing`
+
+This variable defines some timing configuration related to some bubbles.
+
+#### Default configuration
+
+```lua
+vim.g.bubbly_timing = {
+   default = 0,
+
+   lsp_status = {
+      messages = {
+         update_delay = 500, -- ms
+      },
    },
 }
 ```
