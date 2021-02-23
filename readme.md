@@ -6,7 +6,7 @@
 
 Hello! _Bubbly_ is a plugin created by me with the intention of creating a good looking and efficient status line. _Bubbly_ is modular and easily extensible — more about this later in the [documentation for developers](#for-developers).
 
-As this plugin is tries to be truly modular, you can enable and disable its modules — or bubbles, as I like to call them — with a simple configuration.
+As this plugin tries to be truly modular, you can enable and disable its modules — or bubbles, as I like to call them — with a simple configuration.
 
 This plugin has support for these bubbles, feel free to open an issue or a pull request if you have an idea for a new bubble.
 
