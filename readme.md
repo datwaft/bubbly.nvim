@@ -281,10 +281,10 @@ vim.g.bubbly_symbols = {
    total_buffer_number = '﬘ %s', --requires 1 '%d'
    lsp_status = {
       diagnostics = {
-         error = ' %d',
-         warning = '  %d',
-         hint = ' %d',
-         info = ' %d',
+         error = 'E%d',
+         warning = 'W%d',
+         hint = 'H%d',
+         info = 'I%d',
       },
    },
 }

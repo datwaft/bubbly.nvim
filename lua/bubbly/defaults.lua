@@ -63,10 +63,10 @@
       total_buffer_number = '﬘ %d',
       lsp_status = {
          diagnostics = {
-            error = ' %d',
-            warning = '  %d',
-            hint = ' %d',
-            info = ' %d',
+            error = 'E%d',
+            warning = 'W%d',
+            hint = 'H%d',
+            info = 'I%d',
          },
       },
    }
