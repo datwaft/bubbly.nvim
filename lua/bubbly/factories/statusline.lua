@@ -17,13 +17,13 @@ local construct_statusline = function(list)
          statusline = statusline..bubble
       elseif alignment == 'left' then
          if i ~= 1 then
-            statusline = statusline..' '
+            statusline = statusline..vim.g.bubbly_characters.bubble_separator
          end
          statusline = statusline..bubble
       else
          statusline = statusline..bubble
          if i ~= #list then
-            statusline = statusline..' '
+            statusline = statusline..vim.g.bubbly_characters.bubble_separator
          end
       end
    end

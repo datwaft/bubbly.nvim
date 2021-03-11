@@ -244,6 +244,8 @@ vim.g.bubbly_characters = {
    right = '',
    -- Close character for the tabline.
    close = 'x',
+   -- Bubble separators
+   bubble_separator=' ',
 }
 ```
 
