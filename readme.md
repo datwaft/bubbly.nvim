@@ -520,7 +520,7 @@ function(inactive)
       -- Every table follows the following structure:
       {
          -- This is what the component shows in the statusline
-	 data = 'string',
+         data = 'string',
          -- This is what color the component uses when it is active. It should be the name of a color.
          color = 'string' or { foreground = 'string', background = 'string' },
          -- This is the style the component uses (optional).
@@ -529,6 +529,10 @@ function(inactive)
          pre = 'string',
          -- This is a string to place after the bubble (optional) (usually not used).
          post = 'string',
+         -- Overwrite the left character
+         left = 'string',
+         -- Overwrite the right character
+         right = 'string',
       },
    }
 end
