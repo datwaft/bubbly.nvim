@@ -32,6 +32,7 @@
       left = '',
       right = '',
       close = 'x',
+      bubble_separator = ' ',
    }
 -- =======
 -- Symbols
