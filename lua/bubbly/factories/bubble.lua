@@ -13,7 +13,7 @@ local settings = {
 
 return function(list)
 -- Example of list element:
--- { data: string, color: string or { foreground = string, background = string }, style: string-optional, pre: string-optional, post: string-optional }
+-- { data: string, color: string or { foreground = string, background = string }, style: string-optional, pre: string-optional, post: string-optional, left: string-optional, right: string-optional }
    if type(list) ~= 'table' then return '' end
    -- Render delimiter of the bubble
    local function render_delimiter(delimiter, color)

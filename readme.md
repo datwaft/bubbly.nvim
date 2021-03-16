@@ -239,13 +239,13 @@ This variable is used to define special characters used in the bubbles.
 
 ```lua
 vim.g.bubbly_characters = {
-   -- Bubble delimiters.
+   -- Bubble delimiters
    left = '',
    right = '',
-   -- Close character for the tabline.
+   -- Close character for the tabline
    close = 'x',
    -- Bubble separators
-   bubble_separator=' ',
+   bubble_separator = ' ',
 }
 ```
 

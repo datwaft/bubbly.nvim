@@ -6,6 +6,8 @@
 local bubble_factory = require'bubbly.factories.bubble'
 local filter = require'bubbly.utils.table'.filter
 
+local bubble_separator = vim.g.bubbly_characters.bubble_separator
+
 local construct_statusline = function(list)
    local statusline = ''
    local alignment = 'left'
@@ -17,13 +19,13 @@ local construct_statusline = function(list)
          statusline = statusline..bubble
       elseif alignment == 'left' then
          if i ~= 1 then
-            statusline = statusline..vim.g.bubbly_characters.bubble_separator
+            statusline = statusline..bubble_separator
          end
          statusline = statusline..bubble
       else
          statusline = statusline..bubble
          if i ~= #list then
-            statusline = statusline..vim.g.bubbly_characters.bubble_separator
+            statusline = statusline..bubble_separator
          end
       end
    end
