@@ -107,39 +107,39 @@ You can install this plugin with any package manager you want, for example I use
 ```lua
 vim.cmd [[packadd]]
 return require('packer').startup(function()
-   use {'wbthomason/packer.nvim', opt = true}
-   use {'datwaft/bubbly.nvim', config = function()
-      -- Here you can add the configuration for the plugin
-      vim.g.bubbly_palette = {
-         background = "#34343c",
-         foreground = "#c5cdd9",
-         black = "#3e4249",
-         red = "#ec7279",
-         green = "#a0c980",
-         yellow = "#deb974",
-         blue = "#6cb6eb",
-         purple = "#d38aea",
-         cyan = "#5dbbc1",
-         white = "#c5cdd9",
-         lightgrey = "#57595e",
-         darkgrey = "#404247",
-      }
-      vim.g.bubbly_statusline = {
-         'mode',
+  use {'wbthomason/packer.nvim', opt = true}
+  use {'datwaft/bubbly.nvim', config = function()
+    -- Here you can add the configuration for the plugin
+    vim.g.bubbly_palette = {
+      background = "#34343c",
+      foreground = "#c5cdd9",
+      black = "#3e4249",
+      red = "#ec7279",
+      green = "#a0c980",
+      yellow = "#deb974",
+      blue = "#6cb6eb",
+      purple = "#d38aea",
+      cyan = "#5dbbc1",
+      white = "#c5cdd9",
+      lightgrey = "#57595e",
+      darkgrey = "#404247",
+    }
+    vim.g.bubbly_statusline = {
+      'mode',
 
-         'truncate',
+      'truncate',
 
-         'path',
-         'branch',
-         'signify',
-         'coc',
+      'path',
+      'branch',
+      'signify',
+      'coc',
 
-         'divisor',
+      'divisor',
 
-         'filetype',
-         'progress',
-      }
-   end}
+      'filetype',
+      'progress',
+    }
+  end}
 end)
 ```
 
@@ -183,16 +183,16 @@ Every string that is not a keyword should be the name of a module inside `lua/bu
 
 ```lua
 vim.g.bubbly_statusline = {
-   'mode',
+  'mode',
 
-   'truncate',
+  'truncate',
 
-   'path',
+  'path',
 
-   'divisor',
+  'divisor',
 
-   'filetype',
-   'progress',
+  'filetype',
+  'progress',
 }
 ```
 
@@ -216,18 +216,18 @@ Accepted values are `cterm-colors` naming such as `LightGrey` or `DarkMagenta`, 
 
 ```lua
 vim.g.bubbly_palette = {
-   background = "Black",
-   foreground = "White",
-   black = "Black",
-   red = "Red",
-   green = "Green",
-   yellow = "Yellow",
-   blue = "Blue",
-   purple = "Magenta",
-   cyan = "Cyan",
-   white = "White",
-   lightgrey = "LightGrey",
-   darkgrey = "Grey",
+  background = "Black",
+  foreground = "White",
+  black = "Black",
+  red = "Red",
+  green = "Green",
+  yellow = "Yellow",
+  blue = "Blue",
+  purple = "Magenta",
+  cyan = "Cyan",
+  white = "White",
+  lightgrey = "LightGrey",
+  darkgrey = "Grey",
 }
 ```
 
@@ -239,13 +239,13 @@ This variable is used to define special characters used in the bubbles.
 
 ```lua
 vim.g.bubbly_characters = {
-   -- Bubble delimiters
-   left = '',
-   right = '',
-   -- Close character for the tabline
-   close = 'x',
-   -- Bubble separators
-   bubble_separator = ' ',
+  -- Bubble delimiters
+  left = '',
+  right = '',
+  -- Close character for the tabline
+  close = 'x',
+  -- Bubble separators
+  bubble_separator = ' ',
 }
 ```
 
@@ -257,38 +257,38 @@ This variable is used to define the symbols used in some bubbles. Every string f
 
 ```lua
 vim.g.bubbly_symbols = {
-   default = 'PANIC!',
+  default = 'PANIC!',
 
-   path = {
-      readonly = 'RO',
-      unmodifiable = '',
-      modified = '+',
-   },
-   signify = {
-      added = '+%s', -- requires 1 '%s'
-      modified = '~%s', -- requires 1 '%s'
-      removed = '-%s', -- requires 1 '%s'
-   },
-   coc = {
+  path = {
+    readonly = 'RO',
+    unmodifiable = '',
+    modified = '+',
+  },
+  signify = {
+    added = '+%s', -- requires 1 '%s'
+    modified = '~%s', -- requires 1 '%s'
+    removed = '-%s', -- requires 1 '%s'
+  },
+  coc = {
+    error = 'E%s', -- requires 1 '%s'
+    warning = 'W%s', -- requires 1 '%s'
+  },
+  builtinlsp = {
+    diagnostic_count = {
       error = 'E%s', -- requires 1 '%s'
-      warning = 'W%s', -- requires 1 '%s'
-   },
-   builtinlsp = {
-      diagnostic_count = {
-         error = 'E%s', -- requires 1 '%s'
-         warning = 'W%s', --requires 1 '%s'
-      },
-   },
-   branch = ' %s', -- requires 1 '%s'
-   total_buffer_number = '﬘ %s', --requires 1 '%d'
-   lsp_status = {
-      diagnostics = {
-         error = 'E%d',
-         warning = 'W%d',
-         hint = 'H%d',
-         info = 'I%d',
-      },
-   },
+      warning = 'W%s', --requires 1 '%s'
+    },
+  },
+  branch = ' %s', -- requires 1 '%s'
+  total_buffer_number = '﬘ %s', --requires 1 '%d'
+  lsp_status = {
+    diagnostics = {
+      error = 'E%d',
+      warning = 'W%d',
+      hint = 'H%d',
+      info = 'I%d',
+    },
+  },
 }
 ```
 
@@ -300,22 +300,22 @@ This variable defines the test used in some bubbles, if it's empty the bubble di
 
 ```lua
 vim.g.bubbly_tags = {
-   default = 'HELP ME PLEASE!',
+  default = 'HELP ME PLEASE!',
 
-   mode = {
-      normal = 'NORMAL',
-      insert = 'INSERT',
-      visual = 'VISUAL',
-      visualblock = 'VISUAL-B',
-      command = 'COMMAND',
-      terminal = 'TERMINAL',
-      replace = 'REPLACE',
-      default = 'UNKOWN',
-   },
-   paste = 'PASTE',
-   filetype = {
-      noft = 'no ft',
-   },
+  mode = {
+    normal = 'NORMAL',
+    insert = 'INSERT',
+    visual = 'VISUAL',
+    visualblock = 'VISUAL-B',
+    command = 'COMMAND',
+    terminal = 'TERMINAL',
+    replace = 'REPLACE',
+    default = 'UNKOWN',
+  },
+  paste = 'PASTE',
+  filetype = {
+    noft = 'no ft',
+  },
 }
 ```
 
@@ -327,62 +327,62 @@ This variable defines which colors is used by which bubble. Every color can be a
 
 ```lua
 vim.g.bubbly_colors = {
-   default = 'red',
+  default = 'red',
 
-   mode = {
-      normal = 'green', -- uses by default 'background' as the foreground color.
-      insert = 'blue',
-      visual = 'red',
-      visualblock = 'red',
-      command = 'red',
-      terminal = 'blue',
-      replace = 'yellow',
-      default = 'white'
-   },
-   path = {
-      readonly = { background = 'lightgrey', foreground = 'foreground' },
-      unmodifiable = { background = 'darkgrey', foreground = 'foreground' },
-      path = 'white',
-      modified = { background = 'lightgrey', foreground = 'foreground' },
-   },
-   branch = 'purple',
-   signify = {
-      added = 'green',
-      modified = 'blue',
-      removed = 'red',
-   },
-   paste = 'red',
-   coc = {
+  mode = {
+    normal = 'green', -- uses by default 'background' as the foreground color.
+    insert = 'blue',
+    visual = 'red',
+    visualblock = 'red',
+    command = 'red',
+    terminal = 'blue',
+    replace = 'yellow',
+    default = 'white'
+  },
+  path = {
+    readonly = { background = 'lightgrey', foreground = 'foreground' },
+    unmodifiable = { background = 'darkgrey', foreground = 'foreground' },
+    path = 'white',
+    modified = { background = 'lightgrey', foreground = 'foreground' },
+  },
+  branch = 'purple',
+  signify = {
+    added = 'green',
+    modified = 'blue',
+    removed = 'red',
+  },
+  paste = 'red',
+  coc = {
+    error = 'red',
+    warning = 'yellow',
+    status = { background = 'lightgrey', foreground = 'foreground' },
+  },
+  builtinlsp = {
+    diagnostic_count = {
       error = 'red',
       warning = 'yellow',
-      status = { background = 'lightgrey', foreground = 'foreground' },
-   },
-   builtinlsp = {
-      diagnostic_count = {
-         error = 'red',
-         warning = 'yellow',
-      },
-      current_function = 'purple',
-   },
-   filetype = 'blue',
-   progress = {
-      rowandcol = { background = 'lightgrey', foreground = 'foreground' },
-      percentage = { background = 'darkgrey', foreground = 'foreground' },
-   },
-   tabline = {
-      active = 'blue',
-      inactive = 'white',
-   },
-   total_buffer_number = 'cyan',
-   lsp_status = {
-      messages = 'white',
-      diagnostics = {
-         error = 'red',
-         warning = 'yellow',
-         hint = 'white',
-         info = 'blue',
-      },
-   },
+    },
+    current_function = 'purple',
+  },
+  filetype = 'blue',
+  progress = {
+    rowandcol = { background = 'lightgrey', foreground = 'foreground' },
+    percentage = { background = 'darkgrey', foreground = 'foreground' },
+  },
+  tabline = {
+    active = 'blue',
+    inactive = 'white',
+  },
+  total_buffer_number = 'cyan',
+  lsp_status = {
+    messages = 'white',
+    diagnostics = {
+      error = 'red',
+      warning = 'yellow',
+      hint = 'white',
+      info = 'blue',
+    },
+  },
 }
 ```
 
@@ -404,53 +404,53 @@ This variable defines which style is used by which bubble. Styles can be `''`, `
 
 ```lua
 vim.g.bubbly_styles = {
-   default = 'bold',
+  default = 'bold',
 
-   mode = 'bold',
-   path = {
-      readonly = 'bold',
-      unmodifiable = '',
-      path = '',
-      modified = '',
-   },
-   branch = 'bold',
-   signify = {
-      added = 'bold',
-      modified = 'bold',
-      removed = 'bold',
-   },
-   paste = 'bold',
-   coc = {
-      error = 'bold',
-      warning = 'bold',
-      status = ''
-   },
-   builtinlsp = {
-      diagnostic_count = {
-         error = '',
-         warning = ''
-      },
-      current_function = ''
-   },
-   filetype = '',
-   progress = {
-      rowandcol = '',
-      percentage = '',
-   },
-   tabline = {
-      active = 'bold',
-      inactive = '',
-   },
-   total_buffer_number = '',
-   lsp_status = {
-      messages = '',
-      diagnostics = {
-         error = '',
-         warning = '',
-         hint = '',
-         info = '',
-      },
-   },
+  mode = 'bold',
+  path = {
+    readonly = 'bold',
+    unmodifiable = '',
+    path = '',
+    modified = '',
+  },
+  branch = 'bold',
+  signify = {
+    added = 'bold',
+    modified = 'bold',
+    removed = 'bold',
+  },
+  paste = 'bold',
+  coc = {
+    error = 'bold',
+    warning = 'bold',
+    status = ''
+  },
+  builtinlsp = {
+    diagnostic_count = {
+      error = '',
+      warning = ''
+    },
+    current_function = ''
+  },
+  filetype = '',
+  progress = {
+    rowandcol = '',
+    percentage = '',
+  },
+  tabline = {
+    active = 'bold',
+    inactive = '',
+  },
+  total_buffer_number = '',
+  lsp_status = {
+    messages = '',
+    diagnostics = {
+      error = '',
+      warning = '',
+      hint = '',
+      info = '',
+    },
+  },
 }
 ```
 
@@ -475,11 +475,11 @@ If the value is 0 it doesn't have a minimum width.
 
 ```lua
 vim.g.bubbly_width = {
-   default = 0,
+  default = 0,
 
-   progress = {
-      rowandcol = 8,
-   },
+  progress = {
+    rowandcol = 8,
+  },
 }
 ```
 
@@ -491,13 +491,13 @@ This variable defines some timing configuration related to some bubbles.
 
 ```lua
 vim.g.bubbly_timing = {
-   default = 0,
+  default = 0,
 
-   lsp_status = {
-      messages = {
-         update_delay = 500, -- ms
-      },
-   },
+  lsp_status = {
+    messages = {
+      update_delay = 500, -- ms
+    },
+  },
 }
 ```
 
@@ -517,26 +517,26 @@ The components go inside the `lua/bubbly/components` folder. They should be a Lu
 
 ```lua
 function(inactive)
-   return {
-      -- This is a list of tables
-      -- Every table follows the following structure:
-      {
-         -- This is what the component shows in the statusline
-         data = 'string',
-         -- This is what color the component uses when it is active. It should be the name of a color.
-         color = 'string' or { foreground = 'string', background = 'string' },
-         -- This is the style the component uses (optional).
-         style = '' or 'bold' or 'italic',
-         -- This is a string to place before the bubble (optional) (usually not used).
-         pre = 'string',
-         -- This is a string to place after the bubble (optional) (usually not used).
-         post = 'string',
-         -- Overwrite the left character
-         left = 'string',
-         -- Overwrite the right character
-         right = 'string',
-      },
-   }
+  return {
+    -- This is a list of tables
+    -- Every table follows the following structure:
+    {
+      -- This is what the component shows in the statusline
+      data = 'string',
+      -- This is what color the component uses when it is active. It should be the name of a color.
+      color = 'string' or { foreground = 'string', background = 'string' },
+      -- This is the style the component uses (optional).
+      style = '' or 'bold' or 'italic',
+      -- This is a string to place before the bubble (optional) (usually not used).
+      pre = 'string',
+      -- This is a string to place after the bubble (optional) (usually not used).
+      post = 'string',
+      -- Overwrite the left character
+      left = 'string',
+      -- Overwrite the right character
+      right = 'string',
+    },
+  }
 end
 ```
 
@@ -552,20 +552,20 @@ These go inside the `lua/bubbly/autocommands` folder and should be a Lua file th
 
 ```lua
 return {
-   -- Every table inside the list should follow the following structure:
-   {
-      -- These are the events that activate the autocommand.
-      events = { 'Event1', 'Event2' },
-      -- This is the variable that contains the result of the autocommand.
-      variable = {
-         -- This is the type of the variable, it can be either 'buffer', 'window' or 'global'.
-         type = 'buffer' or 'window' or 'global',
-         -- This is the name the global function will have and also the name of the variable that contains the result.
-         name = 'string',
-      },
-      -- This is the command that is executed by the autocommand, its return value will be saved into the variable.
-      command = function() end,
-   },
+  -- Every table inside the list should follow the following structure:
+  {
+    -- These are the events that activate the autocommand.
+    events = { 'Event1', 'Event2' },
+    -- This is the variable that contains the result of the autocommand.
+    variable = {
+      -- This is the type of the variable, it can be either 'buffer', 'window' or 'global'.
+      type = 'buffer' or 'window' or 'global',
+      -- This is the name the global function will have and also the name of the variable that contains the result.
+      name = 'string',
+    },
+    -- This is the command that is executed by the autocommand, its return value will be saved into the variable.
+    command = function() end,
+  },
 }
 ```
 
