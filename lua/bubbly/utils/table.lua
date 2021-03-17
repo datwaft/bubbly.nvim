@@ -3,66 +3,53 @@
 -- ===========
 -- Created by datwaft <github.com/datwaft>
 
--- ========
--- Preamble
--- ========
+local M = require'bubbly.core.module'.new('utils.table')
 
-   local M = require'bubbly.core.module'.new('utils.table')
-
--- ========
--- Deepcopy
--- ========
-
-   -- Copies a table deeply
-   M.deepcopy = function(orig)
-      local orig_type = type(orig)
-      local copy
-      if orig_type == 'table' then
-         copy = {}
-         for orig_key, orig_value in next, orig, nil do
-            copy[M.deepcopy(orig_key)] = M.deepcopy(orig_value)
-         end
-         setmetatable(copy, M.deepcopy(getmetatable(orig)))
-      else -- number, string, boolean, etc
-         copy = orig
+-- Makes a deep copy of a table
+---@param table table
+---@return table
+function M.deepcopy(table)
+   local type = type(table)
+   local copy
+   if type == 'table' then
+      copy = {}
+      for k, v in pairs(table) do
+         copy[M.deepcopy(k)] = M.deepcopy(v)
       end
-      return copy
+      setmetatable(copy, M.deepcopy(getmetatable(table)))
+   else
+      copy = table
    end
-   -- Extracted from: http://lua-users.org/wiki/CopyTable
+   return copy
+end
+-- Extracted from: http://lua-users.org/wiki/CopyTable
 
--- ======
--- Fusion
--- ======
+-- Returns the union of two tables with priority for the second one
+---@param table1 table
+---@param table2 table
+---@return table
+function M.fusion(table1, table2)
+   if not table2 or type(table2) ~= 'table' then return table1 end
+   if not table1 or type(table1) ~= 'table' then return table2 end
+   local new = M.deepcopy(table1)
+   for k2, v2 in pairs(table2) do
+      if type(v2) == 'table' then v2 = M.fusion(new[k2], v2) end
+      new[k2] = v2
+   end
+   return new
+end
 
-   -- Fuses two tables recursively
-   M.fusion = function(table1, table2)
-      if not table2 or type(table2) ~= 'table' then return table1 end
-      if not table1 or type(table1) ~= 'table' then return table2 end
-      local new = M.deepcopy(table1)
-      for k2, v2 in pairs(table2) do
-         if type(v2) == 'table' then v2 = M.fusion(new[k2], v2) end
-         new[k2] = v2
+-- Returns the list of the elements inside the list that pass the test
+---@param list any[]
+---@param test fun(index: any, value: any): boolean
+function M.filter(list, test)
+   local result = {}
+   for i, v in ipairs(list) do
+      if test(i, v) then
+         table.insert(result, v)
       end
-      return new
    end
+   return result
+end
 
--- ======
--- Filter
--- ======
-
-   -- Takes a list of elements and then calls the test function with each element.
-   M.filter = function(list, test)
-      local result = {}
-      for i, v in ipairs(list) do
-         if test(i, v) then
-            table.insert(result, v)
-         end
-      end
-      return result
-   end
-
--- ============
--- Finalization
--- ============
-
-   return M
+return M

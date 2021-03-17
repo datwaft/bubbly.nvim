@@ -10,21 +10,21 @@ local settings = {
 }
 
 if not settings.color then
-   require'bubbly.utils.io'.warning[[[BUBBLY.NVIM] => [WARNING] Couldn't load color configuration for the component 'lsp_status.messages', the default color will be used.]]
+   require'bubbly.utils.io'.warning[[Couldn't load color configuration for the component 'lsp_status.messages', the default color will be used.]]
    settings.color = vim.g.bubbly_colors.default
 end
 if not settings.style then
-   require'bubbly.utils.io'.warning[[[BUBBLY.NVIM] => [WARNING] Couldn't load style configuration for the component 'lsp_status.messages', the default style will be used.]]
+   require'bubbly.utils.io'.warning[[Couldn't load style configuration for the component 'lsp_status.messages', the default style will be used.]]
    settings.style = vim.g.bubbly_styles.default
 end
 if not settings.timing then
-   require'bubbly.utils.io'.warning[[[BUBBLY.NVIM] => [WARNING] Couldn't load timing configuration for the component 'lsp_status.messages', the default timing will be used.]]
+   require'bubbly.utils.io'.warning[[Couldn't load timing configuration for the component 'lsp_status.messages', the default timing will be used.]]
    settings.timing = vim.g.bubbly_timing.default
 end
 
 local lsp_status = require'bubbly.utils.prerequire''lsp-status'
 if not lsp_status then
-   require'bubbly.utils.io'.error[[[BUBBLY.NVIM] => [ERROR] Couldn't load 'lsp-status' for the component 'lsp_status.messages', the component will be disabled.]]
+   require'bubbly.utils.io'.error[[Couldn't load 'lsp-status' for the component 'lsp_status.messages', the component will be disabled.]]
 end
 
 local spinner_frames = { '⣷', '⣯', '⣟', '⡿', '⢿', '⣻', '⣾', '⣽' }
@@ -32,11 +32,17 @@ local spinner_frames = { '⣷', '⣯', '⣟', '⡿', '⢿', '⣻', '⣾', '⣽' 
 local timer = vim.loop.new_timer()
 local show_new_messages_allowed = true
 local last_messages = nil
-local allow_update = function()
+
+-- Enables updates of new messages
+local function allow_update()
     show_new_messages_allowed = true
 end
 
-return function()
+-- Returns bubble that shows lsp-status messages
+---@param inactive boolean
+---@return Segment[]
+return function(inactive)
+   if inactive then return nil end
    if lsp_status == nil then return nil end
 
    local messages = lsp_status.messages()

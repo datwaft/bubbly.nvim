@@ -3,29 +3,8 @@
 -- ======================
 -- Created by datwaft <github.com/datwaft>
 
---   The palette follows the form:
---   {
---        background = string
---        foreground = string
---        black = string
---        red = string
---        green = string
---        yellow = string
---        blue = string
---        purple = string
---        cyan = string
---        white = string
---        lightgrey = string
---        darkgrey = string
---    }
-
--- ========
--- Preamble
--- ========
-   local highlight_factory = require'bubbly.factories.highlight'
--- ============
--- Finalization
--- ============
-   return function()
-      highlight_factory(vim.g.bubbly_palette)
-   end
+-- Defines vim highlights used in the statusline
+return function()
+  local highlight_factory = require'bubbly.factories.highlight'
+  highlight_factory(vim.g.bubbly_palette)
+end

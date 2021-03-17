@@ -3,74 +3,65 @@
 -- ===============
 -- Created by datwaft <github.com/datwaft>
 
--- ========
--- Preamble
--- ========
+local M = require'bubbly.core.module'.new('utils.highlight')
+local titlecase = require'bubbly.utils.string'.titlecase
 
-   local M = require'bubbly.core.module'.new('utils.highlight')
-   local titlecase = require'bubbly.utils.string'.titlecase
+-- Generates a highlight vim command following :help highlight
+---@param name string
+---@param foreground string
+---@param background string
+---@param special string | nil
+---@return string
+function M.highlight(name, foreground, background, special)
+  local command = 'highlight '
+  command = command..name..' '
+  command = command..'guifg='..foreground..' '
+  command = command..'guibg='..background..' '
+  if special then
+    command = command..'gui='..special..' '
+  end
+  return command
+end
 
--- =========================
--- Generate highlight string
--- =========================
+-- Generates a highlight name
+---@param foreground string | nil
+---@param background string
+---@param special string | nil
+function M.gethighlight(foreground, background, special)
+  if not foreground then foreground = '' end
+  if not special then special = '' end
+  return 'Bubbly'..titlecase(foreground)..titlecase(background)..
+    titlecase(special)
+end
 
-   -- Returns highlight string generated from parameters
-   M.highlight = function(name, foreground, background, special)
-      local command = 'highlight '
-      command = command..name..' '
-      command = command..'guifg='..foreground..' '
-      command = command..'guibg='..background..' '
-      if special then
-         command = command..'gui='..special..' '
-      end
-      return command
-   end
+-- Parses a palette value
+---@param usercolor string
+---@return string
+function M.hlparser(usercolor)
+  if string.sub(usercolor, 1, 1) == '#' then
+    -- Return the string as is if it represents a HEX
+    return usercolor
+  end
 
--- ==================
--- Get highlight name
--- ==================
+  -- Extract Group and foreground/background
+  local hlGroup = string.match(usercolor, "(%w+)%s")
 
-   -- Returns highlight name for parameters
-   M.gethighlight = function(foreground, background, special)
-      if not foreground then foreground = '' end
-      if not special then special = '' end
-      return 'Bubbly'..titlecase(foreground)..titlecase(background)..titlecase(special)
-   end
+  if hlGroup == nil then
+    -- This is the 256 naming colorscheme
+    return usercolor
+  end
 
--- ==================================
--- Extract color from highlight group
--- ==================================
+  local key = string.match(usercolor, "%s(%w+)")
 
-   -- Returns highlight name for parameters
-   M.hlparser = function(usercolor)
-      if string.sub(usercolor, 1, 1) == '#' then
-         -- return the string as is if it represents a HEX
-         return usercolor
-      end
+  -- Get colors from vim
+  hlGroup = vim.api.nvim_get_hl_by_name(hlGroup, true)
+  if hlGroup[key] then
+    -- The color exists, return its HEX form
+    return  string.format("#%x", hlGroup[key])
+  end
 
-      -- Extract Group and foreground/background
-      local hlGroup = string.match(usercolor, "(%w+)%s")
+  -- The color is absent, use a transparent color.
+  return "None"
+end
 
-      if hlGroup == nil then
-         -- This is the 256 naming colorscheme
-         return usercolor
-      end
-
-      local key = string.match(usercolor, "%s(%w+)")
-
-      -- Get colors from vim
-      hlGroup = vim.api.nvim_get_hl_by_name(hlGroup, true)
-      if hlGroup[key] then
-         -- The color exists, return its HEX form
-         return  string.format("#%x", hlGroup[key])
-      end
-
-      -- The color is absent, use a transparent color.
-      return "None"
-   end
-
--- ============
--- Finalization
--- ============
-
-   return M
+return M

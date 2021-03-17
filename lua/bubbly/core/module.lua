@@ -3,6 +3,8 @@
 -- ==================
 -- Created by datwaft <github.com/datwaft>
 
+local io = require'bubbly.utils.io'
+
 local Module = {}
 
 function Module.new(name)
@@ -12,7 +14,8 @@ function Module.new(name)
    }
    setmetatable(module, {
       __index = function(self, key)
-         require'bubbly.utils.io'.warning("[BUBBLY.NVIM] => [WARNING] Tried to index module '"..self.name.."' with invalid key '"..key.."'")
+         io.warning("Tried to index module '"..self.name..
+            "' with invalid key '"..key.."'")
       end
    })
    return module
