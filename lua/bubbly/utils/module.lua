@@ -52,7 +52,7 @@ function M.process_settings(settings, module_name)
   local processed_settings = {}
   for key, setting in pairs(settings) do
     if type(setting) == 'table' then
-      if setting[module_name] == nil then
+      if get_value(setting, module_name) == nil then
         processed_settings[key] = setting.default
       else
         processed_settings[key] = get_value(setting, module_name)
