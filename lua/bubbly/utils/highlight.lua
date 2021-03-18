@@ -28,6 +28,7 @@ end
 ---@param background string
 ---@param special string | nil
 function M.gethighlight(foreground, background, special)
+  dump({foreground = foreground, background = background, special = special})
   if not foreground then foreground = '' end
   if not special then special = '' end
   return 'Bubbly'..titlecase(foreground)..titlecase(background)..
