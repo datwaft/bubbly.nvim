@@ -38,24 +38,27 @@ This plugin has support for these bubbles, feel free to open an issue or a pull 
             * [Default configuration](#default-configuration-1)
          * [`g:bubbly_palette`](#gbubbly_palette)
             * [Default configuration](#default-configuration-2)
-         * [`g:bubbly_characters`](#gbubbly_characters)
+         * [`g:bubbly_filter`](#gbubbly_filter)
             * [Default configuration](#default-configuration-3)
-         * [`g:bubbly_symbols`](#gbubbly_symbols)
+            * [Example configuration](#example-configuration)
+         * [`g:bubbly_characters`](#gbubbly_characters)
             * [Default configuration](#default-configuration-4)
-         * [`g:bubbly_tags`](#gbubbly_tags)
+         * [`g:bubbly_symbols`](#gbubbly_symbols)
             * [Default configuration](#default-configuration-5)
-         * [`g:bubbly_colors`](#gbubbly_colors)
+         * [`g:bubbly_tags`](#gbubbly_tags)
             * [Default configuration](#default-configuration-6)
-         * [`g:bubbly_inactive_color`](#gbubbly_inactive_color)
+         * [`g:bubbly_colors`](#gbubbly_colors)
             * [Default configuration](#default-configuration-7)
-         * [`g:bubbly_styles`](#gbubbly_styles)
+         * [`g:bubbly_inactive_color`](#gbubbly_inactive_color)
             * [Default configuration](#default-configuration-8)
-         * [`g:bubbly_inactive_style`](#gbubbly_inactive_style)
+         * [`g:bubbly_styles`](#gbubbly_styles)
             * [Default configuration](#default-configuration-9)
-         * [`g:bubbly_width`](#gbubbly_width)
+         * [`g:bubbly_inactive_style`](#gbubbly_inactive_style)
             * [Default configuration](#default-configuration-10)
-         * [`g:bubbly_timing`](#gbubbly_timing)
+         * [`g:bubbly_width`](#gbubbly_width)
             * [Default configuration](#default-configuration-11)
+         * [`g:bubbly_timing`](#gbubbly_timing)
+            * [Default configuration](#default-configuration-12)
       * [For Developers](#for-developers)
          * [Components](#components)
          * [Autocommands](#autocommands)
@@ -228,6 +231,37 @@ vim.g.bubbly_palette = {
   white = "White",
   lightgrey = "LightGrey",
   darkgrey = "Grey",
+}
+```
+
+### `g:bubbly_filter`
+
+This variable is used to define a blacklist for in which filetypes do you want to disable some component.
+
+#### Default configuration
+
+```lua
+vim.g.bubbly_filter = {
+  default = {},
+}
+```
+
+#### Example configuration
+
+```lua
+vim.g.bubbly_filter = {
+  branch = {
+    'fern',
+  },
+  total_buffer_number = {
+    'fern',
+  },
+  path = {
+    'fern',
+  },
+  filetype = {
+    'fern',
+  },
 }
 ```
 
