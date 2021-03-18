@@ -4,29 +4,26 @@
 -- Created by datwaft <github.com/datwaft>
 
 local settings = {
-  tag = vim.g.bubbly_tags.filetype,
-  color = vim.g.bubbly_colors.filetype,
-  style = vim.g.bubbly_styles.filetype,
+  tag = vim.g.bubbly_tags,
+  color = vim.g.bubbly_colors,
+  style = vim.g.bubbly_styles,
+  filter = vim.g.bubbly_filter,
 }
 
-if not settings.tag then
-  require'bubbly.utils.io'.warning[[Couldn't load tag configuration for the component 'filetype', the default tag will be used.]]
-  settings.tag = vim.g.bubbly_tags.default
-end
-if not settings.color then
-  require'bubbly.utils.io'.warning[[Couldn't load color configuration for the component 'filetype', the default color will be used.]]
-  settings.color = vim.g.bubbly_colors.default
-end
-if not settings.style then
-  require'bubbly.utils.io'.warning[[Couldn't load style configuration for the component 'filetype', the default style will be used.]]
-  settings.style = vim.g.bubbly_styles.default
-end
+---@type fun(settings: table, module_name: string): table
+local process_settings = require'bubbly.utils.module'.process_settings
+
+settings = process_settings(settings, 'filetype')
+
+---@type fun(filter: table): boolean
+local process_filter = require'bubbly.utils.module'.process_filter
 
 -- Returns bubble that shows current file filetype
 ---@param inactive boolean
 ---@return Segment[]
 return function(inactive)
   if inactive then return nil end
+  if not process_filter(settings.filter) then return nil end
   local filetype = vim.bo.filetype
   if filetype == '' then filetype = settings.tag.noft
   else filetype = filetype:lower() end

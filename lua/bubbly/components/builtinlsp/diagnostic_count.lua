@@ -4,29 +4,26 @@
 -- Created by PatOConnor43 <github.com/PatOConnor43>
 
 local settings = {
-  symbol = vim.g.bubbly_symbols.builtinlsp.diagnostic_count,
-  color = vim.g.bubbly_colors.builtinlsp.diagnostic_count,
-  style = vim.g.bubbly_styles.builtinlsp.diagnostic_count,
+  symbol = vim.g.bubbly_symbols,
+  color = vim.g.bubbly_colors,
+  style = vim.g.bubbly_styles,
+  filter = vim.g.bubbly_filter,
 }
 
-if not settings.symbol then
-  require'bubbly.utils.io'.warning[[Couldn't load symbol configuration for the component 'builtinlsp.diagnostic_count', the default symbol will be used.]]
-  settings.symbol = vim.g.bubbly_symbols.default
-end
-if not settings.color then
-  require'bubbly.utils.io'.warning[[Couldn't load color configuration for the component 'builtinlsp.diagnostic_count', the default color will be used.]]
-  settings.color = vim.g.bubbly_colors.default
-end
-if not settings.style then
-  require'bubbly.utils.io'.warning[[Couldn't load style configuration for the component 'builtinlsp.diagnostic_count', the default style will be used.]]
-  settings.style = vim.g.bubbly_styles.default
-end
+---@type fun(settings: table, module_name: string): table
+local process_settings = require'bubbly.utils.module'.process_settings
+
+settings = process_settings(settings, 'builtinlsp.diagnostic_count')
+
+---@type fun(filter: table): boolean
+local process_filter = require'bubbly.utils.module'.process_filter
 
 -- Returns bubble that shows built-in lsp diagnostics
 ---@param inactive boolean
 ---@return Segment[]
 return function(inactive)
   if inactive then return nil end
+  if not process_filter(settings.filter) then return nil end
   local error_count = vim.lsp.diagnostic.get_count(0, 'Error')
   local warning_count = vim.lsp.diagnostic.get_count(0, 'Warning')
   return {

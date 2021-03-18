@@ -229,6 +229,12 @@
       },
     },
   }
+-- ======
+-- Filter
+-- ======
+  M.filter = {
+    default = {},
+  }
 -- ==========
 -- Statusline
 -- ==========
@@ -260,6 +266,8 @@
     vim.g.bubbly_width = fusion(M.width, vim.g.bubbly_width)
     -- Timing
     vim.g.bubbly_timing = fusion(M.timing, vim.g.bubbly_timing)
+    -- Filter
+    vim.g.bubbly_filter = fusion(M.filter, vim.g.bubbly_filter)
     -- Colors
     vim.g.bubbly_colors = fusion(M.colors, vim.g.bubbly_colors)
     if not vim.g.bubbly_inactive_color then

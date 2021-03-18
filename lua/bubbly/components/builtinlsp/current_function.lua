@@ -4,24 +4,25 @@
 -- Created by PatOConnor43 <github.com/PatOConnor43>
 
 local settings = {
-  color = vim.g.bubbly_colors.builtinlsp.current_function,
-  style = vim.g.bubbly_styles.builtinlsp.current_function,
+  color = vim.g.bubbly_colors,
+  style = vim.g.bubbly_styles,
+  filter = vim.g.bubbly_filter,
 }
 
-if not settings.color then
-  require'bubbly.utils.io'.warning[[Couldn't load color configuration for the component 'builtinlsp.current_function', the default color will be used.]]
-  settings.color = vim.g.bubbly_colors.default
-end
-if not settings.style then
-  require'bubbly.utils.io'.warning[[Couldn't load style configuration for the component 'builtinlsp.current_function', the default style will be used.]]
-  settings.style = vim.g.bubbly_styles.default
-end
+---@type fun(settings: table, module_name: string): table
+local process_settings = require'bubbly.utils.module'.process_settings
+
+settings = process_settings(settings, 'builtinlsp.current_function')
+
+---@type fun(filter: table): boolean
+local process_filter = require'bubbly.utils.module'.process_filter
 
 -- Returns bubble that shows built-in lsp current function
 ---@param inactive boolean
 ---@return Segment[]
 return function(inactive)
   if inactive then return nil end
+  if not process_filter(settings.filter) then return nil end
   local data = vim.b.bubbly_builtinlsp_current_function
   return {{
     data = data,

@@ -4,29 +4,26 @@
 -- Created by datwaft <github.com/datwaft>
 
 local settings = {
-  color = vim.g.bubbly_colors.signify,
-  style = vim.g.bubbly_styles.signify,
-  symbol = vim.g.bubbly_symbols.signify,
+  color = vim.g.bubbly_colors,
+  style = vim.g.bubbly_styles,
+  symbol = vim.g.bubbly_symbols,
+  filter = vim.g.bubbly_filter,
 }
 
-if not settings.color then
-  require'bubbly.utils.io'.warning[[Couldn't load color configuration for the component 'signify', the default color will be used.]]
-  settings.color = vim.g.bubbly_colors.default
-end
-if not settings.style then
-  require'bubbly.utils.io'.warning[[Couldn't load style configuration for the component 'signify', the default style will be used.]]
-  settings.style = vim.g.bubbly_styles.default
-end
-if not settings.symbol then
-  require'bubbly.utils.io'.warning[[Couldn't load symbol configuration for the component 'signify', the default symbol will be used.]]
-  settings.symbol = vim.g.bubbly_symbols.default
-end
+---@type fun(settings: table, module_name: string): table
+local process_settings = require'bubbly.utils.module'.process_settings
+
+settings = process_settings(settings, 'signify')
+
+---@type fun(filter: table): boolean
+local process_filter = require'bubbly.utils.module'.process_filter
 
 -- Returns bubble that shows changes from signify
 ---@param inactive boolean
 ---@return Segment[]
 return function(inactive)
   if inactive then return nil end
+  if not process_filter(settings.filter) then return nil end
   if vim.fn.exists('*sy#repo#get_stats') == 0 then return nil end
   local added, modified, removed = unpack(vim.fn['sy#repo#get_stats']())
   if added == -1 then added = 0 end
