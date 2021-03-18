@@ -25,6 +25,7 @@ local process_filter = require'bubbly.utils.module'.process_filter
 ---@param inactive boolean
 ---@return Segment[]
 return function(inactive)
+  dump(settings)
   if not process_filter(settings.filter) then return nil end
   return {
     {
