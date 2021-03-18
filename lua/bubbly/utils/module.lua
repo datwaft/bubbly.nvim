@@ -19,6 +19,7 @@ function M.process_filter(filter)
       return false
     end
   end
+  return true
 end
 
 -- Gets value in the depths of a table by a key separated by '.'
