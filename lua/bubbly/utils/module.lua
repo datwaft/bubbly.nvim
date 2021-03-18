@@ -37,7 +37,6 @@ end
 local function get_value(table, key)
   local current = table
   local keys = split(key, '.')
-  dump(keys)
   for _, v in ipairs(keys) do
     current = current[v]
     if current == nil then return nil end

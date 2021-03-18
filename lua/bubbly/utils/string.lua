@@ -23,9 +23,12 @@ end
 ---@param delimiter string
 ---@return string[]
 function M.split(str, delimiter)
+  if delimiter == nil then
+    delimiter = '%s'
+  end
   local result = {}
-  for match in (str..delimiter):gmatch("(.-)"..delimiter) do
-    result[#result] = match
+  for value in string.gmatch(str, "([^"..delimiter.."]+)") do
+    result[#result + 1] = value
   end
   return result
 end
