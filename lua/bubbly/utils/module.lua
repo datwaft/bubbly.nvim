@@ -13,6 +13,7 @@ local split = require'bubbly.utils.string'.split
 ---@param filter table
 ---@return boolean
 function M.process_filter(filter)
+  if filter == nil then return true end
   local filetype = vim.bo.filetype
   for _, value in ipairs(filter) do
     if filetype == value then
