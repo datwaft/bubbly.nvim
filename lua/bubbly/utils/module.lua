@@ -5,7 +5,6 @@
 
 local M = require'bubbly.core.module'.new('utils.module')
 
-local io = require'bubbly.utils.io'
 local split = require'bubbly.utils.string'.split
 
 -- Checks if current filetype is in the filter list
@@ -17,14 +16,7 @@ function M.process_filter(filter)
   local filetype = vim.bo.filetype
   for _, value in ipairs(filter) do
     if filetype == value then
-      if filter.mode == 'blacklist' then
-        return false
-      elseif filter.mode == 'whitelist' then
-        return true
-      else
-        io.warning'A filter has an invalid mode, it will show the component'
-        return true
-      end
+      return false
     end
   end
 end
