@@ -4,29 +4,26 @@
 -- Created by datwaft <github.com/datwaft>
 
 local settings = {
-  symbol = vim.g.bubbly_symbols.coc,
-  color = vim.g.bubbly_colors.coc,
-  style = vim.g.bubbly_styles.coc,
+  symbol = vim.g.bubbly_symbols,
+  color = vim.g.bubbly_colors,
+  style = vim.g.bubbly_styles,
+  filter = vim.g.bubbly_filter,
 }
 
-if not settings.symbol then
-  require'bubbly.utils.io'.warning[[Couldn't load symbol configuration for the component 'coc', the default symbol will be used.]]
-  settings.symbol = vim.g.bubbly_symbols.default
-end
-if not settings.color then
-  require'bubbly.utils.io'.warning[[Couldn't load color configuration for the component 'coc', the default color will be used.]]
-  settings.color = vim.g.bubbly_colors.default
-end
-if not settings.style then
-  require'bubbly.utils.io'.warning[[Couldn't load style configuration for the component 'coc', the default style will be used.]]
-  settings.style = vim.g.bubbly_styles.default
-end
+---@type fun(settings: table, module_name: string): table
+local process_settings = require'bubbly.utils.module'.process_settings
+
+settings = process_settings(settings, 'coc')
+
+---@type fun(filter: table): boolean
+local process_filter = require'bubbly.utils.module'.process_filter
 
 -- Returns bubble that shows coc.nvim diagnostics
 ---@param inactive boolean
 ---@return Segment[]
 return function(inactive)
   if inactive then return nil end
+  if not process_filter(settings.filter) then return nil end
   local info = vim.b.coc_diagnostic_info
   if info == nil or next(info) == nil then return nil end
   return {

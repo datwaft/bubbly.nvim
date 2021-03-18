@@ -4,30 +4,28 @@
 -- Created by datwaft <github.com/datwaft>
 
 local settings = {
-  symbol = vim.g.bubbly_symbols.path,
-  color = vim.g.bubbly_colors.path,
-  inactive_color = vim.g.bubbly_inactive_color,
-  style = vim.g.bubbly_styles.path,
-  inactive_style = vim.g.bubbly_inactive_style,
+  symbol = vim.g.bubbly_symbols,
+  color = vim.g.bubbly_colors,
+  style = vim.g.bubbly_styles,
+  filter = vim.g.bubbly_filter,
 }
 
-if not settings.symbol then
-  require'bubbly.utils.io'.warning[[Couldn't load symbol configuration for the component 'path', the default symbol will be used.]]
-  settings.symbol = vim.g.bubbly_symbols.default
-end
-if not settings.color then
-  require'bubbly.utils.io'.warning[[Couldn't load color configuration for the component 'path', the default color will be used.]]
-  settings.color = vim.g.bubbly_colors.default
-end
-if not settings.style then
-  require'bubbly.utils.io'.warning[[Couldn't load style configuration for the component 'path', the default style will be used.]]
-  settings.style = vim.g.bubbly_styles.default
-end
+---@type fun(settings: table, module_name: string): table
+local process_settings = require'bubbly.utils.module'.process_settings
+
+settings = process_settings(settings, 'path')
+
+settings.inactive_color = vim.g.bubbly_inactive_color
+settings.inactive_style = vim.g.bubbly_inactive_style
+
+---@type fun(filter: table): boolean
+local process_filter = require'bubbly.utils.module'.process_filter
 
 -- Returns bubble that shows current file path
 ---@param inactive boolean
 ---@return Segment[]
 return function(inactive)
+  if not process_filter(settings.filter) then return nil end
   return {
     inactive or {
       data = vim.bo.ro and settings.symbol.readonly,

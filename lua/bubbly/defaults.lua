@@ -229,6 +229,12 @@
       },
     },
   }
+-- ======
+-- Filter
+-- ======
+  M.filter = {
+    default = { mode = 'blacklist' },
+  }
 -- ==========
 -- Statusline
 -- ==========

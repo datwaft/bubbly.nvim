@@ -4,30 +4,28 @@
 -- Created by datwaft <github.com/datwaft>
 
 local settings = {
-  color = vim.g.bubbly_colors.progress,
-  inactive_color = vim.g.bubbly_inactive_color,
-  style = vim.g.bubbly_styles.progress,
-  inactive_style = vim.g.bubbly_inactive_style,
-  width = vim.g.bubbly_width.progress,
+  color = vim.g.bubbly_colors,
+  style = vim.g.bubbly_styles,
+  width = vim.g.bubbly_width,
+  filter = vim.g.bubbly_filter,
 }
 
-if not settings.color then
-  require'bubbly.utils.io'.warning[[Couldn't load color configuration for the component 'progress', the default color will be used.]]
-  settings.color = vim.g.bubbly_colors.default
-end
-if not settings.style then
-  require'bubbly.utils.io'.warning[[Couldn't load style configuration for the component 'progress', the default style will be used.]]
-  settings.style = vim.g.bubbly_styles.default
-end
-if not settings.width then
-  require'bubbly.utils.io'.warning[[Couldn't load width configuration for the component 'progress', the default width will be used.]]
-  settings.width = vim.g.bubbly_width.default
-end
+---@type fun(settings: table, module_name: string): table
+local process_settings = require'bubbly.utils.module'.process_settings
+
+settings = process_settings(settings, 'progress')
+
+settings.inactive_color = vim.g.bubbly_inactive_color
+settings.inactive_style = vim.g.bubbly_inactive_style
+
+---@type fun(filter: table): boolean
+local process_filter = require'bubbly.utils.module'.process_filter
 
 -- Returns bubble that shows cursor position in file
 ---@param inactive boolean
 ---@return Segment[]
 return function(inactive)
+  if not process_filter(settings.filter) then return nil end
   return {
     {
       data = '%-'..settings.width.rowandcol..'.(%l:%c%)',

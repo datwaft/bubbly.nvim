@@ -18,4 +18,16 @@ function M.titlecase(str)
   return result
 end
 
+-- Returns a list of strings as a result of splitting the original string by the delimiter
+---@param str string
+---@param delimiter string
+---@return string[]
+function M.split(str, delimiter)
+  local result = {}
+  for match in (str..delimiter):gmatch("(.-)"..delimiter) do
+    result[#result] = match
+  end
+  return result
+end
+
 return M

@@ -4,29 +4,26 @@
 -- Created by datwaft <github.com/datwaft>
 
 local settings = {
-  symbol = vim.g.bubbly_symbols.branch,
-  color = vim.g.bubbly_colors.branch,
-  style = vim.g.bubbly_styles.branch,
+  symbol = vim.g.bubbly_symbols,
+  color = vim.g.bubbly_colors,
+  style = vim.g.bubbly_styles,
+  filter = vim.g.bubbly_filter,
 }
 
-if not settings.symbol then
-  require'bubbly.utils.io'.warning[[Couldn't load symbol configuration for the component 'branch', the default symbol will be used.]]
-  settings.symbol = vim.g.bubbly_symbols.default
-end
-if not settings.color then
-  require'bubbly.utils.io'.warning[[Couldn't load color configuration for the component 'branch', the default color will be used.]]
-  settings.color = vim.g.bubbly_colors.default
-end
-if not settings.style then
-  require'bubbly.utils.io'.warning[[Couldn't load style configuration for the component 'branch', the default style will be used.]]
-  settings.style = vim.g.bubbly_styles.default
-end
+---@type fun(settings: table, module_name: string): table
+local process_settings = require'bubbly.utils.module'.process_settings
+
+settings = process_settings(settings, 'branch')
+
+---@type fun(filter: table): boolean
+local process_filter = require'bubbly.utils.module'.process_filter
 
 -- Returns bubble that shows current file branch
 ---@param inactive boolean
 ---@return Segment[]
 return function(inactive)
   if inactive then return nil end
+  if not process_filter(settings.filter) then return nil end
   local data = vim.b.bubbly_branch
   if data ~= '' then
     data = settings.symbol:format(data)

@@ -3,21 +3,18 @@
 -- ===============
 -- Created by datwaft <github.com/datwaft>
 
-local bubble_factory = require'bubbly.factories.bubble'
 local settings = {
-  color = vim.g.bubbly_colors.tabline,
-  style = vim.g.bubbly_styles.tabline,
-  character = vim.g.bubbly_characters.close,
+  color = vim.g.bubbly_colors,
+  style = vim.g.bubbly_styles,
 }
 
-if not settings.color then
-  print[[Couldn't load color configuration for the component 'tabline', the default color will be used.]]
-  settings.color = vim.g.bubbly_colors.default
-end
-if not settings.style then
-  print[[Couldn't load style configuration for the component 'tabline', the default style will be used.]]
-  settings.style = vim.g.bubbly_styles.default
-end
+---@type fun(settings: table, module_name: string): table
+local process_settings = require'bubbly.utils.module'.process_settings
+settings = process_settings(settings, 'tabline')
+
+settings.character = vim.g.bubbly_characters.close
+
+local bubble_factory = require'bubbly.factories.bubble'
 
 -- Returns an tabline string following :help 'tabline'
 ---@return string
