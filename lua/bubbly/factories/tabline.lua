@@ -31,7 +31,7 @@ return function()
     local style = this == i and settings.style.active or settings.style.inactive
     tabline[#tabline + 1] = {
       { pre = '%'..i..'T', data = tabname, post = '%T', color = color, style = style },
-      { pre = '%'..i..'X', data = settings.character, post = '%X', color = { background = 'darkgrey', foreground = 'foreground' } },
+      { pre = '%'..i..'X', data = settings.character, post = '%X', color = settings.color.close },
     }
   end
   local result = ''
