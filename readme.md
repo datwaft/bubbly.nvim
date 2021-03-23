@@ -406,6 +406,7 @@ vim.g.bubbly_colors = {
   tabline = {
     active = 'blue',
     inactive = 'white',
+    close = 'darkgrey',
   },
   total_buffer_number = 'cyan',
   lsp_status = {
