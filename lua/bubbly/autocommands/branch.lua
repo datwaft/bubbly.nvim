@@ -4,7 +4,7 @@
 -- Created by datwaft <github.com/datwaft>
 
 return {{
-  events = { 'BufEnter' },
+  events = { 'BufEnter', 'FocusGained', 'VimResume' },
   variable = {
     type = 'buffer',
     name = 'bubbly_branch',
