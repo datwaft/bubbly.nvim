@@ -1,5 +1,7 @@
 # BUBBLY.NVIM
 
+**Disclaimer:** A have a full rework planned for the near future, so probably breaking changes are coming.
+
 **Warning:** _Bubbly_ is a **highly experimental** plugin and can have its functionality changed overnight without any warning. I recommend you to check the readme in case the plugin doesn't work as before after an update.
 
 ![image](https://user-images.githubusercontent.com/37723586/101704746-01145500-3a4b-11eb-98a1-1e41a3dbf7cf.png)
