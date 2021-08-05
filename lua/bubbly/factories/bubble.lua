@@ -4,7 +4,6 @@
 -- Created by datwaft <github.com/datwaft>
 
 local gethighlight = require'bubbly.utils.highlight'.gethighlight
-local ensure_highlight_exists = require'bubbly.utils.highlight'.ensure_highlight_exists
 
 local settings = {
   left_character = vim.g.bubbly_characters.left,
@@ -33,9 +32,9 @@ return function(list)
   -- Render delimiter of the bubble
   local function render_delimiter(delimiter, color)
     if type(color) == 'string' then
-      return '%#'..ensure_highlight_exists(gethighlight(nil, color)..'Delimiter')..'#'..delimiter
+      return '%#'..gethighlight(nil, color) ..'Delimiter#'..delimiter
     else
-      return '%#'..ensure_highlight_exists(gethighlight(color.foreground, color.background)..'Delimiter')..'#'..delimiter
+      return '%#'..gethighlight(color.foreground, color.background)..'Delimiter#'..delimiter
     end
   end
   -- Auxiliar function to know if data is last in the list
@@ -74,16 +73,16 @@ return function(list)
       if isfirst then bubble = bubble..render_delimiter(e.left, e.color) end
       -- render data style
       if type(e.color) == 'string' then
-        bubble = bubble..'%#'..ensure_highlight_exists(gethighlight(nil, e.color, e.style))..'#'
+        bubble = bubble..'%#'..gethighlight(nil, e.color, e.style) ..'#'
       else
-        bubble = bubble..'%#'..ensure_highlight_exists(gethighlight(e.color.foreground, e.color.background, e.style))..'#'
+        bubble = bubble..'%#'..gethighlight(e.color.foreground, e.color.background, e.style)..'#'
       end
       -- render data
       if not isfirst then bubble = bubble..' ' end
       bubble = bubble..e.data:gsub('^%s*(.-)%s*$', '%1')
       if not islast then bubble = bubble..' ' end
       -- render right delimiter
-      if islast then bubble = bubble..render_delimiter(e.right, e.color)..'%#'..ensure_highlight_exists('BubblyStatusLine')..'#' end
+      if islast then bubble = bubble..render_delimiter(e.right, e.color)..'%#BubblyStatusLine#' end
       -- render post
       bubble = bubble..e.post
       -- disable isfirst

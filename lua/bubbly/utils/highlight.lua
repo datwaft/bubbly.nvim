@@ -34,22 +34,6 @@ function M.gethighlight(foreground, background, special)
     titlecase(special)
 end
 
--- Ensures that a highlight with given name exists.
----@param name string | nil
----@return string
-function M.ensure_highlight_exists(name)
-  local highlight_cache = vim.g._bubbly_highlight_cache or {}
-  local highlight = highlight_cache[name]
-  if highlight and not highlight.exists then
-    vim.cmd(highlight.cmd)
-    highlight.exists = true
-    highlight_cache[name] = highlight
-    vim.g._bubbly_highlight_cache = highlight_cache
-  end
-  -- Return the highlight name to be able to wrap 'name' with this function call
-  return name
-end
-
 -- Parses a palette value
 ---@param usercolor string
 ---@return string
