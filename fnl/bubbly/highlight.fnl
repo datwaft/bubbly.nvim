@@ -1,7 +1,10 @@
 (module bubbly.highlight
-  {autoload {clj bubbly.lib.cljlib}})
+  {autoload {clj lib.cljlib}})
 
-(local {: inc} clj)
+(local {: inc
+        : nil?
+        : get
+        : empty?} clj)
 
 (defn- hex->dec [hex] (tonumber hex 16))
 
@@ -34,3 +37,36 @@
         gray-error (dist [gv gv gv] [r g b])]
     (if (<= color-error gray-error) (+ 16 color-index)
       (+ 232 gray-index))))
+
+(defn- ->bool [obj]
+  (if obj true false))
+
+(defn- hex-color? [hex-color]
+  (->bool (string.match hex-color "#%w%w%w%w%w%w")))
+
+(defn- extract-highlight [color]
+  (match [(string.match color "(%w+)%s(%w+)")]
+    [group-name key] (or (-?>>
+                           (-?> (vim.api.nvim_get_hl_by_name group-name true)
+                                (. key))
+                           (string.format "#%06x"))
+                         "NONE")
+    _ color))
+
+(defn highlight [group-name
+                 {:fg guifg :bg guibg}
+                 attr-list]
+  (let [attr-list (if (or
+                        (nil? attr-list)
+                        (empty? attr-list)) "NONE"
+                    (table.concat attr-list ","))
+        guifg (extract-highlight guifg)
+        guibg (extract-highlight guibg)
+        ctermfg (if
+                  (hex-color? guifg) (hex->8bit guifg)
+                  guifg)
+        ctermbg (if
+                  (hex-color? guibg) (hex->8bit guibg)
+                  guibg)]
+    (string.format "highlight %s ctermfg=%s ctermbg=%s cterm=%s guifg=%s guibg=%s gui=%s"
+                   group-name ctermfg ctermbg attr-list guifg guibg attr-list)))
