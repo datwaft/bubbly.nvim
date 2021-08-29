@@ -1,7 +1,3 @@
-# ======================
-# BUBBLY.NVIM .GITIGNORE
-# ======================
-
-# Node
-node_modules/
-yarn.lock
+/deps/
+/test/lua/
+/doc/tags
