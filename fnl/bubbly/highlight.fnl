@@ -79,6 +79,8 @@
 (defn highlight [group-name
                  {:fg guifg :bg guibg}
                  ?attr-list]
+  "Returns a highlight vim command to execute to create the expected highlight
+  group based on the parameters"
   (assert (string? group-name)
           (string.format "%s must be a string" group-name))
   (assert (string? guifg)
@@ -106,6 +108,7 @@
                    group-name ctermfg ctermbg ?attr-list guifg guibg ?attr-list)))
 
 (defn get-group-name [fg-name ?bg-name]
+  "Returns the group name to be used for the foregrond and background names"
   (assert (string? fg-name)
           (string.format "%s must be a string" fg-name))
   (assert (or
