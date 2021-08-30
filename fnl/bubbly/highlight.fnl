@@ -3,7 +3,6 @@
 
 (local {: inc
         : nil?
-        : get
         : empty?} clj)
 
 (defn- hex->dec [hex] (tonumber hex 16))
