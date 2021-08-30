@@ -42,7 +42,6 @@ local _2amodule_name_2a = "bubbly.highlight"
 do local _ = ({nil, _1_, nil, {{}, nil, nil, nil}})[2] end
 local _local_8_ = clj
 local empty_3f = _local_8_["empty?"]
-local get = _local_8_["get"]
 local inc = _local_8_["inc"]
 local nil_3f = _local_8_["nil?"]
 local hex__3edec
@@ -155,58 +154,72 @@ do
   t_24_auto["hex-color?"] = v_23_auto
   hex_color_3f = v_23_auto
 end
-local extract_highlight
+local extract_highlight_by_name
 do
   local v_23_auto
-  local function extract_highlight0(color)
-    local _20_ = {string.match(color, "(%w+)%s(%w+)")}
-    if ((type(_20_) == "table") and (nil ~= (_20_)[1]) and (nil ~= (_20_)[2])) then
-      local group_name = (_20_)[1]
-      local key = (_20_)[2]
-      local function _24_()
-        local _21_
+  local function extract_highlight_by_name0(group_name)
+    local ok_3f, value = pcall(vim.api.nvim_get_hl_by_name, group_name, true)
+    if ok_3f then
+      return value
+    end
+  end
+  v_23_auto = extract_highlight_by_name0
+  local t_24_auto = (_1_)["aniseed/locals"]
+  t_24_auto["extract-highlight-by-name"] = v_23_auto
+  extract_highlight_by_name = v_23_auto
+end
+local extract_color
+do
+  local v_23_auto
+  local function extract_color0(color)
+    local _21_ = {string.match(color, "(%w+)%s(%w+)")}
+    if ((type(_21_) == "table") and (nil ~= (_21_)[1]) and (nil ~= (_21_)[2])) then
+      local group_name = (_21_)[1]
+      local key = (_21_)[2]
+      local function _25_()
+        local _22_
         do
-          local _22_ = vim.api.nvim_get_hl_by_name(group_name, true)
-          if _22_ then
-            _21_ = (_22_)[key]
+          local _23_ = extract_highlight_by_name(group_name)
+          if _23_ then
+            _22_ = (_23_)[key]
           else
-            _21_ = _22_
+            _22_ = _23_
           end
         end
-        if _21_ then
-          return string.format("#%06x", _21_)
+        if _22_ then
+          return string.format("#%06x", _22_)
         else
-          return _21_
+          return _22_
         end
       end
-      return (_24_() or "NONE")
+      return (_25_() or "NONE")
     else
-      local _ = _20_
+      local _ = _21_
       return color
     end
   end
-  v_23_auto = extract_highlight0
+  v_23_auto = extract_color0
   local t_24_auto = (_1_)["aniseed/locals"]
-  t_24_auto["extract-highlight"] = v_23_auto
-  extract_highlight = v_23_auto
+  t_24_auto["extract-color"] = v_23_auto
+  extract_color = v_23_auto
 end
 local highlight
 do
   local v_23_auto
   do
     local v_25_auto
-    local function highlight0(group_name, _27_, attr_list)
-      local _arg_28_ = _27_
-      local guibg = _arg_28_["bg"]
-      local guifg = _arg_28_["fg"]
+    local function highlight0(group_name, _28_, attr_list)
+      local _arg_29_ = _28_
+      local guibg = _arg_29_["bg"]
+      local guifg = _arg_29_["fg"]
       local attr_list0
       if (nil_3f(attr_list) or empty_3f(attr_list)) then
         attr_list0 = "NONE"
       else
         attr_list0 = table.concat(attr_list, ",")
       end
-      local guifg0 = extract_highlight(guifg)
-      local guibg0 = extract_highlight(guibg)
+      local guifg0 = extract_color(guifg)
+      local guibg0 = extract_color(guibg)
       local ctermfg
       if hex_color_3f(guifg0) then
         ctermfg = hex__3e8bit(guifg0)

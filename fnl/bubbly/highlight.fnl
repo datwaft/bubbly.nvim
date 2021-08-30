@@ -43,10 +43,14 @@
 (defn- hex-color? [hex-color]
   (->bool (string.match hex-color "#%w%w%w%w%w%w")))
 
-(defn- extract-highlight [color]
+(defn- extract-highlight-by-name [group-name]
+  (let [(ok? value) (pcall vim.api.nvim_get_hl_by_name group-name true)]
+    (when ok? value)))
+
+(defn- extract-color [color]
   (match [(string.match color "(%w+)%s(%w+)")]
     [group-name key] (or (-?>>
-                           (-?> (vim.api.nvim_get_hl_by_name group-name true)
+                           (-?> (extract-highlight-by-name group-name)
                                 (. key))
                            (string.format "#%06x"))
                          "NONE")
@@ -59,8 +63,8 @@
                         (nil? attr-list)
                         (empty? attr-list)) "NONE"
                     (table.concat attr-list ","))
-        guifg (extract-highlight guifg)
-        guibg (extract-highlight guibg)
+        guifg (extract-color guifg)
+        guibg (extract-color guibg)
         ctermfg (if
                   (hex-color? guifg) (hex->8bit guifg)
                   guifg)

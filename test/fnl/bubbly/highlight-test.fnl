@@ -25,6 +25,11 @@
   (t.= "highlight BubblyHighlight ctermfg=NONE ctermbg=16 cterm=bold,italic guifg=NONE guibg=#000000 gui=bold,italic"
        (highlight "BubblyHighlight" {:fg "Test forogroud" :bg "Test background"} [:bold :italic])))
 
+(deftest highlight-group-color-invalid-name
+  (vim.cmd "highlight Test guifg=#123456 guibg=#000000")
+  (t.= "highlight BubblyHighlight ctermfg=NONE ctermbg=16 cterm=bold,italic guifg=NONE guibg=#000000 gui=bold,italic"
+       (highlight "BubblyHighlight" {:fg "INVALIDfsdfds foreground" :bg "Test background"} [:bold :italic])))
+
 (deftest empty-attributes
   (t.= "highlight BubblyHighlight ctermfg=23 ctermbg=23 cterm=NONE guifg=#123456 guibg=#123456 gui=NONE"
        (highlight "BubblyHighlight" {:fg "#123456" :bg "#123456"} [])))
