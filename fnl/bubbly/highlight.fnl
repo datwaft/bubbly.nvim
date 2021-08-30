@@ -7,6 +7,12 @@
 
 (defn- hex->dec [hex] (tonumber hex 16))
 
+(defn- ->bool [obj]
+  (if obj true false))
+
+(defn- hex-color? [hex-color]
+  (->bool (string.match hex-color "#%w%w%w%w%w%w")))
+
 (defn hex->8bit [hex]
   "Converts a hexadecimal color to its nearest 8-bit color
   It's the same implementation that tmux and mpv use"
@@ -36,12 +42,6 @@
         gray-error (dist [gv gv gv] [r g b])]
     (if (<= color-error gray-error) (+ 16 color-index)
       (+ 232 gray-index))))
-
-(defn- ->bool [obj]
-  (if obj true false))
-
-(defn- hex-color? [hex-color]
-  (->bool (string.match hex-color "#%w%w%w%w%w%w")))
 
 (defn- extract-highlight-by-name [group-name]
   (let [(ok? value) (pcall vim.api.nvim_get_hl_by_name group-name true)]
@@ -73,3 +73,9 @@
                   guibg)]
     (string.format "highlight %s ctermfg=%s ctermbg=%s cterm=%s guifg=%s guibg=%s gui=%s"
                    group-name ctermfg ctermbg attr-list guifg guibg attr-list)))
+
+(defn get-group-name [fg-name ?bg-name]
+  (if ?bg-name
+    (string.format "Bubbly%s%s" (fg-name:gsub "^%l" string.upper)
+                   (?bg-name:gsub "^%l" string.upper))
+    (string.format "Bubbly%s" (fg-name:gsub "^%l" string.upper))))
