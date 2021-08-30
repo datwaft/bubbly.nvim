@@ -5,12 +5,13 @@
         : nil?
         : string?
         : vector?
+        : mapv
         : empty?} clj)
 
 (defn- hex->dec [hex]
   "Convert a hexadecimal string into its decimal representation as a number"
   (assert (string? hex)
-          (string.format "%s must be a string" hex-color))
+          (string.format "%s must be a string" hex))
   (tonumber hex 16))
 
 (defn- ->bool [obj]
@@ -22,6 +23,12 @@
   (assert (string? hex-color)
           (string.format "%s must be a string" hex-color))
   (->bool (string.match hex-color "#%w%w%w%w%w%w")))
+
+(defn- title [str]
+  "Returns the string with the first letter as uppercase"
+  (assert (string? str)
+          (string.format "%s must be a string" str))
+  (str:gsub "^%l" string.upper))
 
 (defn hex->8bit [hex]
   "Converts a hexadecimal color to its nearest 8-bit color
@@ -107,15 +114,19 @@
     (string.format "highlight %s ctermfg=%s ctermbg=%s cterm=%s guifg=%s guibg=%s gui=%s"
                    group-name ctermfg ctermbg ?attr-list guifg guibg ?attr-list)))
 
-(defn get-group-name [fg-name ?bg-name]
-  "Returns the group name to be used for the foregrond and background names"
-  (assert (string? fg-name)
-          (string.format "%s must be a string" fg-name))
-  (assert (or
-            (string? ?bg-name)
-            (nil? ?bg-name))
-          (string.format "%s must be a string or nil" bg-name))
-  (if ?bg-name
-    (string.format "Bubbly%s%s" (fg-name:gsub "^%l" string.upper)
-                   (?bg-name:gsub "^%l" string.upper))
-    (string.format "Bubbly%s" (fg-name:gsub "^%l" string.upper))))
+(defn get-group-name [...]
+  "Returns the group name to be used for the foregrond and background names, and the attribute list"
+  (match [...]
+    (where [fg-name bg-name attr-list] (and 
+                                         (string? fg-name)
+                                         (string? bg-name)
+                                         (vector? attr-list))) (.. "Bubbly" (title fg-name) (title bg-name) (-> (mapv title attr-list)
+                                                                                                                (table.concat "")))
+    (where [fg-name attr-list] (and 
+                                 (string? fg-name)
+                                 (vector? attr-list))) (.. "Bubbly" (title fg-name) (-> (mapv title attr-list)
+                                                                                        (table.concat "")))
+    (where [fg-name bg-name] (and
+                               (string? fg-name)
+                               (string? bg-name))) (.. "Bubbly" (title fg-name) (title bg-name))
+    (where [fg-name] (string? fg-name)) (.. "Bubbly" (title fg-name))))

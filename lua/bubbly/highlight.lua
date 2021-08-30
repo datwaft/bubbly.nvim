@@ -43,6 +43,7 @@ do local _ = ({nil, _1_, nil, {{}, nil, nil, nil}})[2] end
 local _local_8_ = clj
 local empty_3f = _local_8_["empty?"]
 local inc = _local_8_["inc"]
+local mapv = _local_8_["mapv"]
 local nil_3f = _local_8_["nil?"]
 local string_3f = _local_8_["string?"]
 local vector_3f = _local_8_["vector?"]
@@ -50,7 +51,7 @@ local hex__3edec
 do
   local v_23_auto
   local function hex__3edec0(hex)
-    assert(string_3f(hex), string.format("%s must be a string", __fnl_global__hex_2dcolor))
+    assert(string_3f(hex), string.format("%s must be a string", hex))
     return tonumber(hex, 16)
   end
   v_23_auto = hex__3edec0
@@ -84,6 +85,18 @@ do
   local t_24_auto = (_1_)["aniseed/locals"]
   t_24_auto["hex-color?"] = v_23_auto
   hex_color_3f = v_23_auto
+end
+local title
+do
+  local v_23_auto
+  local function title0(str)
+    assert(string_3f(str), string.format("%s must be a string", str))
+    return str:gsub("^%l", string.upper)
+  end
+  v_23_auto = title0
+  local t_24_auto = (_1_)["aniseed/locals"]
+  t_24_auto["title"] = v_23_auto
+  title = v_23_auto
 end
 local hex__3e8bit
 do
@@ -259,13 +272,50 @@ do
   local v_23_auto
   do
     local v_25_auto
-    local function get_group_name0(fg_name, _3fbg_name)
-      assert(string_3f(fg_name), string.format("%s must be a string", fg_name))
-      assert((string_3f(_3fbg_name) or nil_3f(_3fbg_name)), string.format("%s must be a string or nil", __fnl_global__bg_2dname))
-      if _3fbg_name then
-        return string.format("Bubbly%s%s", fg_name:gsub("^%l", string.upper), _3fbg_name:gsub("^%l", string.upper))
+    local function get_group_name0(...)
+      local _34_ = {...}
+      local function _35_(...)
+        local fg_name = (_34_)[1]
+        local bg_name = (_34_)[2]
+        local attr_list = (_34_)[3]
+        return (string_3f(fg_name) and string_3f(bg_name) and vector_3f(attr_list))
+      end
+      if (((type(_34_) == "table") and (nil ~= (_34_)[1]) and (nil ~= (_34_)[2]) and (nil ~= (_34_)[3])) and _35_(...)) then
+        local fg_name = (_34_)[1]
+        local bg_name = (_34_)[2]
+        local attr_list = (_34_)[3]
+        return ("Bubbly" .. title(fg_name) .. title(bg_name) .. table.concat(mapv(title, attr_list), ""))
       else
-        return string.format("Bubbly%s", fg_name:gsub("^%l", string.upper))
+        local function _36_(...)
+          local fg_name = (_34_)[1]
+          local attr_list = (_34_)[2]
+          return (string_3f(fg_name) and vector_3f(attr_list))
+        end
+        if (((type(_34_) == "table") and (nil ~= (_34_)[1]) and (nil ~= (_34_)[2])) and _36_(...)) then
+          local fg_name = (_34_)[1]
+          local attr_list = (_34_)[2]
+          return ("Bubbly" .. title(fg_name) .. table.concat(mapv(title, attr_list), ""))
+        else
+          local function _37_(...)
+            local fg_name = (_34_)[1]
+            local bg_name = (_34_)[2]
+            return (string_3f(fg_name) and string_3f(bg_name))
+          end
+          if (((type(_34_) == "table") and (nil ~= (_34_)[1]) and (nil ~= (_34_)[2])) and _37_(...)) then
+            local fg_name = (_34_)[1]
+            local bg_name = (_34_)[2]
+            return ("Bubbly" .. title(fg_name) .. title(bg_name))
+          else
+            local function _38_(...)
+              local fg_name = (_34_)[1]
+              return string_3f(fg_name)
+            end
+            if (((type(_34_) == "table") and (nil ~= (_34_)[1])) and _38_(...)) then
+              local fg_name = (_34_)[1]
+              return ("Bubbly" .. title(fg_name))
+            end
+          end
+        end
       end
     end
     v_25_auto = get_group_name0
