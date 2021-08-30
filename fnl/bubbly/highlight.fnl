@@ -3,19 +3,31 @@
 
 (local {: inc
         : nil?
+        : string?
+        : vector?
         : empty?} clj)
 
-(defn- hex->dec [hex] (tonumber hex 16))
+(defn- hex->dec [hex]
+  "Convert a hexadecimal string into its decimal representation as a number"
+  (assert (string? hex)
+          (string.format "%s must be a string" hex-color))
+  (tonumber hex 16))
 
 (defn- ->bool [obj]
+  "Convert an object into a boolean"
   (if obj true false))
 
 (defn- hex-color? [hex-color]
+  "Returns if a string is a hexadecimal color"
+  (assert (string? hex-color)
+          (string.format "%s must be a string" hex-color))
   (->bool (string.match hex-color "#%w%w%w%w%w%w")))
 
 (defn hex->8bit [hex]
   "Converts a hexadecimal color to its nearest 8-bit color
   It's the same implementation that tmux and mpv use"
+  (assert (hex-color? hex)
+          (string.format "%s must be a hexadecimal color" hex))
   (fn v2ci [v]
     (if
       (< v 48) 0
@@ -44,25 +56,44 @@
       (+ 232 gray-index))))
 
 (defn- extract-highlight-by-name [group-name]
+  "Extracts the highlight group foreground and background color hexadecimal
+  values"
+  (assert (string? group-name)
+          (string.format "%s must be a string" group-name))
   (let [(ok? value) (pcall vim.api.nvim_get_hl_by_name group-name true)]
-    (when ok? value)))
+    (when ok? (collect [k v (pairs value)]
+                (values k (string.format "#%06x" v))))))
 
 (defn- extract-color [color]
+  "Extracts a color foreground or background by group-name and key present in
+  the string like so: 'group-name key'
+  If the string doesn't follow that structure it returns the string"
+  (assert (string? color)
+          (string.format "%s must be a string" color))
   (match [(string.match color "(%w+)%s(%w+)")]
-    [group-name key] (or (-?>>
-                           (-?> (extract-highlight-by-name group-name)
-                                (. key))
-                           (string.format "#%06x"))
+    [group-name key] (or (-?> (extract-highlight-by-name group-name)
+                              (. key))
                          "NONE")
     _ color))
 
 (defn highlight [group-name
                  {:fg guifg :bg guibg}
-                 attr-list]
-  (let [attr-list (if (or
-                        (nil? attr-list)
-                        (empty? attr-list)) "NONE"
-                    (table.concat attr-list ","))
+                 ?attr-list]
+  (assert (string? group-name)
+          (string.format "%s must be a string" group-name))
+  (assert (string? guifg)
+          (string.format "%s must be a string" guifg))
+  (assert (string? guibg)
+          (string.format "%s must be a string" guibg))
+  (assert (or 
+            (nil? ?attr-list)
+            (vector? ?attr-list)
+            (empty? ?attr-list))
+          (string.format "%s must be a vector or nil" ?attr-list))
+  (let [?attr-list (if (or
+                        (nil? ?attr-list)
+                        (empty? ?attr-list)) "NONE"
+                    (table.concat ?attr-list ","))
         guifg (extract-color guifg)
         guibg (extract-color guibg)
         ctermfg (if
@@ -72,9 +103,15 @@
                   (hex-color? guibg) (hex->8bit guibg)
                   guibg)]
     (string.format "highlight %s ctermfg=%s ctermbg=%s cterm=%s guifg=%s guibg=%s gui=%s"
-                   group-name ctermfg ctermbg attr-list guifg guibg attr-list)))
+                   group-name ctermfg ctermbg ?attr-list guifg guibg ?attr-list)))
 
 (defn get-group-name [fg-name ?bg-name]
+  (assert (string? fg-name)
+          (string.format "%s must be a string" fg-name))
+  (assert (or
+            (string? ?bg-name)
+            (nil? ?bg-name))
+          (string.format "%s must be a string or nil" bg-name))
   (if ?bg-name
     (string.format "Bubbly%s%s" (fg-name:gsub "^%l" string.upper)
                    (?bg-name:gsub "^%l" string.upper))

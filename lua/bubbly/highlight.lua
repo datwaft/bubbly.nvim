@@ -44,10 +44,13 @@ local _local_8_ = clj
 local empty_3f = _local_8_["empty?"]
 local inc = _local_8_["inc"]
 local nil_3f = _local_8_["nil?"]
+local string_3f = _local_8_["string?"]
+local vector_3f = _local_8_["vector?"]
 local hex__3edec
 do
   local v_23_auto
   local function hex__3edec0(hex)
+    assert(string_3f(hex), string.format("%s must be a string", __fnl_global__hex_2dcolor))
     return tonumber(hex, 16)
   end
   v_23_auto = hex__3edec0
@@ -55,12 +58,40 @@ do
   t_24_auto["hex->dec"] = v_23_auto
   hex__3edec = v_23_auto
 end
+local __3ebool
+do
+  local v_23_auto
+  local function __3ebool0(obj)
+    if obj then
+      return true
+    else
+      return false
+    end
+  end
+  v_23_auto = __3ebool0
+  local t_24_auto = (_1_)["aniseed/locals"]
+  t_24_auto["->bool"] = v_23_auto
+  __3ebool = v_23_auto
+end
+local hex_color_3f
+do
+  local v_23_auto
+  local function hex_color_3f0(hex_color)
+    assert(string_3f(hex_color), string.format("%s must be a string", hex_color))
+    return __3ebool(string.match(hex_color, "#%w%w%w%w%w%w"))
+  end
+  v_23_auto = hex_color_3f0
+  local t_24_auto = (_1_)["aniseed/locals"]
+  t_24_auto["hex-color?"] = v_23_auto
+  hex_color_3f = v_23_auto
+end
 local hex__3e8bit
 do
   local v_23_auto
   do
     local v_25_auto
     local function hex__3e8bit0(hex)
+      assert(hex_color_3f(hex), string.format("%s must be a hexadecimal color", hex))
       local function v2ci(v)
         if (v < 48) then
           return 0
@@ -70,33 +101,33 @@ do
           return math.floor(((v - 35) / 40))
         end
       end
-      local function dist(_10_, _12_)
-        local _arg_11_ = _10_
-        local A = _arg_11_[1]
-        local B = _arg_11_[2]
-        local C = _arg_11_[3]
-        local _arg_13_ = _12_
-        local a = _arg_13_[1]
-        local b = _arg_13_[2]
-        local c = _arg_13_[3]
+      local function dist(_11_, _13_)
+        local _arg_12_ = _11_
+        local A = _arg_12_[1]
+        local B = _arg_12_[2]
+        local C = _arg_12_[3]
+        local _arg_14_ = _13_
+        local a = _arg_14_[1]
+        local b = _arg_14_[2]
+        local c = _arg_14_[3]
         return (((A - a) ^ 2) + ((B - b) ^ 2) + ((C - c) ^ 2))
       end
       local i2cv = {0, 95, 135, 175, 215, 255}
-      local _let_14_ = {string.match(hex, "#(%w%w)(%w%w)(%w%w)")}
-      local r = _let_14_[1]
-      local g = _let_14_[2]
-      local b = _let_14_[3]
-      local function _16_()
+      local _let_15_ = {string.match(hex, "#(%w%w)(%w%w)(%w%w)")}
+      local r = _let_15_[1]
+      local g = _let_15_[2]
+      local b = _let_15_[3]
+      local function _17_()
         local tbl_12_auto = {}
         for _, v in ipairs({r, g, b}) do
           tbl_12_auto[(#tbl_12_auto + 1)] = hex__3edec(v)
         end
         return tbl_12_auto
       end
-      local _let_15_ = _16_()
-      local r0 = _let_15_[1]
-      local g0 = _let_15_[2]
-      local b0 = _let_15_[3]
+      local _let_16_ = _17_()
+      local r0 = _let_16_[1]
+      local g0 = _let_16_[2]
+      local b0 = _let_16_[3]
       local ir = v2ci(r0)
       local ig = v2ci(g0)
       local ib = v2ci(b0)
@@ -128,39 +159,23 @@ do
   t_24_auto["hex->8bit"] = v_23_auto
   hex__3e8bit = v_23_auto
 end
-local __3ebool
-do
-  local v_23_auto
-  local function __3ebool0(obj)
-    if obj then
-      return true
-    else
-      return false
-    end
-  end
-  v_23_auto = __3ebool0
-  local t_24_auto = (_1_)["aniseed/locals"]
-  t_24_auto["->bool"] = v_23_auto
-  __3ebool = v_23_auto
-end
-local hex_color_3f
-do
-  local v_23_auto
-  local function hex_color_3f0(hex_color)
-    return __3ebool(string.match(hex_color, "#%w%w%w%w%w%w"))
-  end
-  v_23_auto = hex_color_3f0
-  local t_24_auto = (_1_)["aniseed/locals"]
-  t_24_auto["hex-color?"] = v_23_auto
-  hex_color_3f = v_23_auto
-end
 local extract_highlight_by_name
 do
   local v_23_auto
   local function extract_highlight_by_name0(group_name)
+    assert(string_3f(group_name), string.format("%s must be a string", group_name))
     local ok_3f, value = pcall(vim.api.nvim_get_hl_by_name, group_name, true)
     if ok_3f then
-      return value
+      local tbl_9_auto = {}
+      for k, v in pairs(value) do
+        local _20_, _21_ = k, string.format("#%06x", v)
+        if ((nil ~= _20_) and (nil ~= _21_)) then
+          local k_10_auto = _20_
+          local v_11_auto = _21_
+          tbl_9_auto[k_10_auto] = v_11_auto
+        end
+      end
+      return tbl_9_auto
     end
   end
   v_23_auto = extract_highlight_by_name0
@@ -172,29 +187,22 @@ local extract_color
 do
   local v_23_auto
   local function extract_color0(color)
-    local _21_ = {string.match(color, "(%w+)%s(%w+)")}
-    if ((type(_21_) == "table") and (nil ~= (_21_)[1]) and (nil ~= (_21_)[2])) then
-      local group_name = (_21_)[1]
-      local key = (_21_)[2]
-      local function _25_()
-        local _22_
-        do
-          local _23_ = extract_highlight_by_name(group_name)
-          if _23_ then
-            _22_ = (_23_)[key]
-          else
-            _22_ = _23_
-          end
-        end
-        if _22_ then
-          return string.format("#%06x", _22_)
+    assert(string_3f(color), string.format("%s must be a string", color))
+    local _24_ = {string.match(color, "(%w+)%s(%w+)")}
+    if ((type(_24_) == "table") and (nil ~= (_24_)[1]) and (nil ~= (_24_)[2])) then
+      local group_name = (_24_)[1]
+      local key = (_24_)[2]
+      local function _26_()
+        local _25_ = extract_highlight_by_name(group_name)
+        if _25_ then
+          return (_25_)[key]
         else
-          return _22_
+          return _25_
         end
       end
-      return (_25_() or "NONE")
+      return (_26_() or "NONE")
     else
-      local _ = _21_
+      local _ = _24_
       return color
     end
   end
@@ -208,15 +216,19 @@ do
   local v_23_auto
   do
     local v_25_auto
-    local function highlight0(group_name, _28_, attr_list)
-      local _arg_29_ = _28_
-      local guibg = _arg_29_["bg"]
-      local guifg = _arg_29_["fg"]
-      local attr_list0
-      if (nil_3f(attr_list) or empty_3f(attr_list)) then
-        attr_list0 = "NONE"
+    local function highlight0(group_name, _29_, _3fattr_list)
+      local _arg_30_ = _29_
+      local guibg = _arg_30_["bg"]
+      local guifg = _arg_30_["fg"]
+      assert(string_3f(group_name), string.format("%s must be a string", group_name))
+      assert(string_3f(guifg), string.format("%s must be a string", guifg))
+      assert(string_3f(guibg), string.format("%s must be a string", guibg))
+      assert((nil_3f(_3fattr_list) or vector_3f(_3fattr_list) or empty_3f(_3fattr_list)), string.format("%s must be a vector or nil", _3fattr_list))
+      local _3fattr_list0
+      if (nil_3f(_3fattr_list) or empty_3f(_3fattr_list)) then
+        _3fattr_list0 = "NONE"
       else
-        attr_list0 = table.concat(attr_list, ",")
+        _3fattr_list0 = table.concat(_3fattr_list, ",")
       end
       local guifg0 = extract_color(guifg)
       local guibg0 = extract_color(guibg)
@@ -232,7 +244,7 @@ do
       else
         ctermbg = guibg0
       end
-      return string.format("highlight %s ctermfg=%s ctermbg=%s cterm=%s guifg=%s guibg=%s gui=%s", group_name, ctermfg, ctermbg, attr_list0, guifg0, guibg0, attr_list0)
+      return string.format("highlight %s ctermfg=%s ctermbg=%s cterm=%s guifg=%s guibg=%s gui=%s", group_name, ctermfg, ctermbg, _3fattr_list0, guifg0, guibg0, _3fattr_list0)
     end
     v_25_auto = highlight0
     _1_["highlight"] = v_25_auto
@@ -241,5 +253,27 @@ do
   local t_24_auto = (_1_)["aniseed/locals"]
   t_24_auto["highlight"] = v_23_auto
   highlight = v_23_auto
+end
+local get_group_name
+do
+  local v_23_auto
+  do
+    local v_25_auto
+    local function get_group_name0(fg_name, _3fbg_name)
+      assert(string_3f(fg_name), string.format("%s must be a string", fg_name))
+      assert((string_3f(_3fbg_name) or nil_3f(_3fbg_name)), string.format("%s must be a string or nil", __fnl_global__bg_2dname))
+      if _3fbg_name then
+        return string.format("Bubbly%s%s", fg_name:gsub("^%l", string.upper), _3fbg_name:gsub("^%l", string.upper))
+      else
+        return string.format("Bubbly%s", fg_name:gsub("^%l", string.upper))
+      end
+    end
+    v_25_auto = get_group_name0
+    _1_["get-group-name"] = v_25_auto
+    v_23_auto = v_25_auto
+  end
+  local t_24_auto = (_1_)["aniseed/locals"]
+  t_24_auto["get-group-name"] = v_23_auto
+  get_group_name = v_23_auto
 end
 return nil
