@@ -11,24 +11,30 @@ local settings = {
 }
 
 ---@type fun(settings: table, module_name: string): table
-local process_settings = require'bubbly.utils.module'.process_settings
+local process_settings = require("bubbly.utils.module").process_settings
 
-settings = process_settings(settings, 'lsp_status.diagnostics')
+settings = process_settings(settings, "lsp_status.diagnostics")
 
-local lsp_status = require'bubbly.utils.prerequire''lsp-status'
+local lsp_status = require("bubbly.utils.prerequire")("lsp-status")
 if not lsp_status then
-  require'bubbly.utils.io'.error[[Couldn't load 'lsp-status' for the component 'lsp_status.diagnostics', the component will be disabled.]]
+  require("bubbly.utils.io").error(
+    [[Couldn't load 'lsp-status' for the component 'lsp_status.diagnostics', the component will be disabled.]]
+  )
 end
 
 ---@type fun(filter: table): boolean
-local process_filter = require'bubbly.utils.module'.process_filter
+local process_filter = require("bubbly.utils.module").process_filter
 
 -- Returns bubble that shows lsp-status diagnostics
 ---@param inactive boolean
 ---@return Segment[]
 return function(inactive)
-  if lsp_status == nil or inactive then return nil end
-  if not process_filter(settings.filter) then return nil end
+  if lsp_status == nil or inactive then
+    return nil
+  end
+  if not process_filter(settings.filter) then
+    return nil
+  end
   local diagnostics = lsp_status.diagnostics(vim.api.nvim_get_current_buf())
   return {
     {
@@ -50,6 +56,6 @@ return function(inactive)
       data = diagnostics.hints ~= 0 and settings.symbol.hint:format(diagnostics.hints),
       color = settings.color.hint,
       style = settings.style.hint,
-    }
+    },
   }
 end

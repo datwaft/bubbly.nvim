@@ -11,24 +11,36 @@ local settings = {
 }
 
 ---@type fun(settings: table, module_name: string): table
-local process_settings = require'bubbly.utils.module'.process_settings
+local process_settings = require("bubbly.utils.module").process_settings
 
-settings = process_settings(settings, 'signify')
+settings = process_settings(settings, "signify")
 
 ---@type fun(filter: table): boolean
-local process_filter = require'bubbly.utils.module'.process_filter
+local process_filter = require("bubbly.utils.module").process_filter
 
 -- Returns bubble that shows changes from signify
 ---@param inactive boolean
 ---@return Segment[]
 return function(inactive)
-  if inactive then return nil end
-  if not process_filter(settings.filter) then return nil end
-  if vim.fn.exists('*sy#repo#get_stats') == 0 then return nil end
-  local added, modified, removed = unpack(vim.fn['sy#repo#get_stats']())
-  if added == -1 then added = 0 end
-  if modified == -1 then modified = 0 end
-  if removed == -1 then removed = 0 end
+  if inactive then
+    return nil
+  end
+  if not process_filter(settings.filter) then
+    return nil
+  end
+  if vim.fn.exists("*sy#repo#get_stats") == 0 then
+    return nil
+  end
+  local added, modified, removed = unpack(vim.fn["sy#repo#get_stats"]())
+  if added == -1 then
+    added = 0
+  end
+  if modified == -1 then
+    modified = 0
+  end
+  if removed == -1 then
+    removed = 0
+  end
   return {
     {
       data = added ~= 0 and settings.symbol.added:format(added),

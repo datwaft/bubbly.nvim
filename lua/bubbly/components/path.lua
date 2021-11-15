@@ -11,21 +11,23 @@ local settings = {
 }
 
 ---@type fun(settings: table, module_name: string): table
-local process_settings = require'bubbly.utils.module'.process_settings
+local process_settings = require("bubbly.utils.module").process_settings
 
-settings = process_settings(settings, 'path')
+settings = process_settings(settings, "path")
 
 settings.inactive_color = vim.g.bubbly_inactive_color
 settings.inactive_style = vim.g.bubbly_inactive_style
 
 ---@type fun(filter: table): boolean
-local process_filter = require'bubbly.utils.module'.process_filter
+local process_filter = require("bubbly.utils.module").process_filter
 
 -- Returns bubble that shows current file path
 ---@param inactive boolean
 ---@return Segment[]
 return function(inactive)
-  if not process_filter(settings.filter) then return nil end
+  if not process_filter(settings.filter) then
+    return nil
+  end
   return {
     inactive or {
       data = vim.bo.ro and settings.symbol.readonly,
@@ -38,7 +40,7 @@ return function(inactive)
       style = settings.style.unmodifiable,
     },
     {
-      data = '%.30f',
+      data = "%.30f",
       color = inactive and settings.inactive_color or settings.color.path,
       style = inactive and settings.inactive_style or settings.style.path,
     },

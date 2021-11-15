@@ -11,21 +11,23 @@ local settings = {
 }
 
 ---@type fun(settings: table, module_name: string): table
-local process_settings = require'bubbly.utils.module'.process_settings
+local process_settings = require("bubbly.utils.module").process_settings
 
-settings = process_settings(settings, 'mode')
+settings = process_settings(settings, "mode")
 
 settings.inactive_color = vim.g.bubbly_inactive_color
 settings.inactive_style = vim.g.bubbly_inactive_style
 
 ---@type fun(filter: table): boolean
-local process_filter = require'bubbly.utils.module'.process_filter
+local process_filter = require("bubbly.utils.module").process_filter
 
 -- Returns bubble that shows current mode
 ---@param inactive boolean
 ---@return Segment[]
 return function(inactive)
-  if not process_filter(settings.filter) then return nil end
+  if not process_filter(settings.filter) then
+    return nil
+  end
   local mode = vim.fn.mode()
   local data
   local color
@@ -38,37 +40,37 @@ return function(inactive)
   else
     style = settings.style
   end
-  if mode == 'n' then
+  if mode == "n" then
     data = settings.tag.normal
     if not inactive then
       color = settings.color.normal
     end
-  elseif mode == 'i' then
+  elseif mode == "i" then
     data = settings.tag.insert
     if not inactive then
       color = settings.color.insert
     end
-  elseif mode == 'v' or mode == 'V' then
+  elseif mode == "v" or mode == "V" then
     data = settings.tag.visual
     if not inactive then
       color = settings.color.visual
     end
-  elseif mode == '^V' or mode == '' then
+  elseif mode == "^V" or mode == "" then
     data = settings.tag.visualblock
     if not inactive then
       color = settings.color.visualblock
     end
-  elseif mode == 'c' then
+  elseif mode == "c" then
     data = settings.tag.command
     if not inactive then
       color = settings.color.command
     end
-  elseif mode == 't' then
+  elseif mode == "t" then
     data = settings.tag.terminal
     if not inactive then
       color = settings.color.terminal
     end
-  elseif mode == 'R' then
+  elseif mode == "R" then
     data = settings.tag.replace
     if not inactive then
       color = settings.color.replace
@@ -79,5 +81,5 @@ return function(inactive)
       color = settings.color.default
     end
   end
-  return {{ data = data, color = color, style = style }}
+  return { { data = data, color = color, style = style } }
 end

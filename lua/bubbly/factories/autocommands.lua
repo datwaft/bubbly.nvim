@@ -8,11 +8,11 @@
 ---@param events string[]
 ---@return string
 local function processEvents(events)
-  local result = ''
+  local result = ""
   for i, e in ipairs(events) do
-    result = result..e
+    result = result .. e
     if i ~= #events then
-      result = result..','
+      result = result .. ","
     end
   end
   return result
@@ -28,16 +28,16 @@ end
 ---@return string
 local function processVariable(variable)
   local result
-  if variable.type == 'buffer' then
-    result = 'b:'
-  elseif variable.type == 'window' then
-    result = 'w:'
-  elseif variable.type == 'global' then
-    result = 'g:'
+  if variable.type == "buffer" then
+    result = "b:"
+  elseif variable.type == "window" then
+    result = "w:"
+  elseif variable.type == "global" then
+    result = "g:"
   else
-    result = 'g:'
+    result = "g:"
   end
-  result = result..variable.name
+  result = result .. variable.name
   return result
 end
 
@@ -52,10 +52,13 @@ local function autocmd(autocommand)
   local id = autocommand.variable.name
   _G[id] = autocommand.command
   vim.cmd(
-    'autocmd '..
-    processEvents(autocommand.events)..
-    ' * let '..
-    processVariable(autocommand.variable)..' = v:lua.'..id..'()'
+    "autocmd "
+      .. processEvents(autocommand.events)
+      .. " * let "
+      .. processVariable(autocommand.variable)
+      .. " = v:lua."
+      .. id
+      .. "()"
   )
 end
 
@@ -64,9 +67,9 @@ end
 return function(list)
   for _, e in ipairs(list) do
     local type = type(e)
-    if type == 'string' then
+    if type == "string" then
       ---@type Autocommand[]
-      local autocommands = require'bubbly.utils.prerequire'('bubbly.autocommands.'..e:lower())
+      local autocommands = require("bubbly.utils.prerequire")("bubbly.autocommands." .. e:lower())
       if autocommands then
         for _, autocommand in ipairs(autocommands) do
           autocmd(autocommand)
