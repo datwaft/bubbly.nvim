@@ -50,6 +50,11 @@ M.symbols = {
     modified = "~%s",
     removed = "-%s",
   },
+  gitsigns = {
+    added = "+%s",
+    modified = "~%s",
+    removed = "-%s",
+  },
   coc = {
     error = "E%s",
     warning = "W%s",
@@ -120,6 +125,11 @@ M.colors = {
     modified = "blue",
     removed = "red",
   },
+  gitsigns = {
+    added = "green",
+    modified = "blue",
+    removed = "red",
+  },
   paste = "red",
   coc = {
     error = "red",
@@ -170,6 +180,11 @@ M.styles = {
   },
   branch = "bold",
   signify = {
+    added = "bold",
+    modified = "bold",
+    removed = "bold",
+  },
+  gitsigns = {
     added = "bold",
     modified = "bold",
     removed = "bold",

@@ -16,6 +16,7 @@ This plugin has support for these bubbles, feel free to open an issue or a pull 
 - Current file bubble.
 - _Git_ branch bubble.
 - [_Signify_](https://github.com/mhinz/vim-signify) changes bubble.
+- [_Gitsigns_](https://github.com/lewis6991/gitsigns.nvim) changes bubble.
 - [_Coc.nvim_](https://github.com/neoclide/coc.nvim) diagnostics bubble.
 - [_Lsp-status_](https://github.com/nvim-lua/lsp-status.nvim) diagnostics and messages bubble.
 - _Neovim built-in LSP_ current function and diagnostics bubble.
@@ -23,47 +24,46 @@ This plugin has support for these bubbles, feel free to open an issue or a pull 
 - Progress bubble.
 - Total buffer number bubble.
 
-
 ## Table of Contents
 
-   * [BUBBLY.NVIM](#bubblynvim)
-      * [Table of Contents](#table-of-contents)
-      * [Screenshots](#screenshots)
-      * [Requirements](#requirements)
-      * [Installation](#installation)
-         * [Example of how to install this plugin using packer.nvim](#example-of-how-to-install-this-plugin-using-packernvim)
-      * [Configuration](#configuration)
-         * [`g:bubbly_statusline`](#gbubbly_statusline)
-            * [List of supported modules](#list-of-supported-modules)
-            * [Default configuration](#default-configuration)
-         * [`g:bubbly_tabline`](#gbubbly_tabline)
-            * [Default configuration](#default-configuration-1)
-         * [`g:bubbly_palette`](#gbubbly_palette)
-            * [Default configuration](#default-configuration-2)
-         * [`g:bubbly_filter`](#gbubbly_filter)
-            * [Default configuration](#default-configuration-3)
-            * [Example configuration](#example-configuration)
-         * [`g:bubbly_characters`](#gbubbly_characters)
-            * [Default configuration](#default-configuration-4)
-         * [`g:bubbly_symbols`](#gbubbly_symbols)
-            * [Default configuration](#default-configuration-5)
-         * [`g:bubbly_tags`](#gbubbly_tags)
-            * [Default configuration](#default-configuration-6)
-         * [`g:bubbly_colors`](#gbubbly_colors)
-            * [Default configuration](#default-configuration-7)
-         * [`g:bubbly_inactive_color`](#gbubbly_inactive_color)
-            * [Default configuration](#default-configuration-8)
-         * [`g:bubbly_styles`](#gbubbly_styles)
-            * [Default configuration](#default-configuration-9)
-         * [`g:bubbly_inactive_style`](#gbubbly_inactive_style)
-            * [Default configuration](#default-configuration-10)
-         * [`g:bubbly_width`](#gbubbly_width)
-            * [Default configuration](#default-configuration-11)
-         * [`g:bubbly_timing`](#gbubbly_timing)
-            * [Default configuration](#default-configuration-12)
-      * [For Developers](#for-developers)
-         * [Components](#components)
-         * [Autocommands](#autocommands)
+- [BUBBLY.NVIM](#bubblynvim)
+  - [Table of Contents](#table-of-contents)
+  - [Screenshots](#screenshots)
+  - [Requirements](#requirements)
+  - [Installation](#installation)
+    - [Example of how to install this plugin using packer.nvim](#example-of-how-to-install-this-plugin-using-packernvim)
+  - [Configuration](#configuration)
+    - [`g:bubbly_statusline`](#gbubbly_statusline)
+      - [List of supported modules](#list-of-supported-modules)
+      - [Default configuration](#default-configuration)
+    - [`g:bubbly_tabline`](#gbubbly_tabline)
+      - [Default configuration](#default-configuration-1)
+    - [`g:bubbly_palette`](#gbubbly_palette)
+      - [Default configuration](#default-configuration-2)
+    - [`g:bubbly_filter`](#gbubbly_filter)
+      - [Default configuration](#default-configuration-3)
+      - [Example configuration](#example-configuration)
+    - [`g:bubbly_characters`](#gbubbly_characters)
+      - [Default configuration](#default-configuration-4)
+    - [`g:bubbly_symbols`](#gbubbly_symbols)
+      - [Default configuration](#default-configuration-5)
+    - [`g:bubbly_tags`](#gbubbly_tags)
+      - [Default configuration](#default-configuration-6)
+    - [`g:bubbly_colors`](#gbubbly_colors)
+      - [Default configuration](#default-configuration-7)
+    - [`g:bubbly_inactive_color`](#gbubbly_inactive_color)
+      - [Default configuration](#default-configuration-8)
+    - [`g:bubbly_styles`](#gbubbly_styles)
+      - [Default configuration](#default-configuration-9)
+    - [`g:bubbly_inactive_style`](#gbubbly_inactive_style)
+      - [Default configuration](#default-configuration-10)
+    - [`g:bubbly_width`](#gbubbly_width)
+      - [Default configuration](#default-configuration-11)
+    - [`g:bubbly_timing`](#gbubbly_timing)
+      - [Default configuration](#default-configuration-12)
+  - [For Developers](#for-developers)
+    - [Components](#components)
+    - [Autocommands](#autocommands)
 
 ## Screenshots
 
@@ -137,6 +137,7 @@ return require('packer').startup(function()
       'path',
       'branch',
       'signify',
+      'gitsigns',
       'coc',
 
       'divisor',
@@ -175,6 +176,7 @@ Every string that is not a keyword should be the name of a module inside `lua/bu
 - `path`
 - `branch`
 - `signify`
+- `gitsigns`
 - `coc`
 - `builtinlsp.diagnostic_count`
 - `builtinlsp.current_function`
@@ -305,6 +307,11 @@ vim.g.bubbly_symbols = {
     modified = '~%s', -- requires 1 '%s'
     removed = '-%s', -- requires 1 '%s'
   },
+  gitsigns = {
+    added = '+%s', -- requires 1 '%s'
+    modified = '~%s', -- requires 1 '%s'
+    removed = '-%s', -- requires 1 '%s'
+  },
   coc = {
     error = 'E%s', -- requires 1 '%s'
     warning = 'W%s', -- requires 1 '%s'
@@ -387,6 +394,11 @@ vim.g.bubbly_colors = {
     modified = 'blue',
     removed = 'red',
   },
+  gitsigns = {
+    added = 'green',
+    modified = 'blue',
+    removed = 'red',
+  },
   paste = 'red',
   coc = {
     error = 'red',
@@ -452,6 +464,11 @@ vim.g.bubbly_styles = {
   },
   branch = 'bold',
   signify = {
+    added = 'bold',
+    modified = 'bold',
+    removed = 'bold',
+  },
+  gitsigns = {
     added = 'bold',
     modified = 'bold',
     removed = 'bold',
@@ -577,7 +594,7 @@ function(inactive)
 end
 ```
 
-Usually  every part of the bubble gets its data from the `g:bubbly_something` variables, to be fully configurable.
+Usually every part of the bubble gets its data from the `g:bubbly_something` variables, to be fully configurable.
 
 You can use components like [`path`](https://github.com/datwaft/bubbly.nvim/blob/master/lua/bubbly/components/path.lua) as a reference to create your own.
 
