@@ -3,8 +3,8 @@
 -- ===============
 -- Created by datwaft <github.com/datwaft>
 
-local M = require'bubbly.core.module'.new('utils.highlight')
-local titlecase = require'bubbly.utils.string'.titlecase
+local M = require("bubbly.core.module").new("utils.highlight")
+local titlecase = require("bubbly.utils.string").titlecase
 
 -- Generates a highlight vim command following :help highlight
 ---@param name string
@@ -13,12 +13,12 @@ local titlecase = require'bubbly.utils.string'.titlecase
 ---@param special string | nil
 ---@return string
 function M.highlight(name, foreground, background, special)
-  local command = 'highlight '
-  command = command..name..' '
-  command = command..'guifg='..foreground..' '
-  command = command..'guibg='..background..' '
+  local command = "highlight "
+  command = command .. name .. " "
+  command = command .. "guifg=" .. foreground .. " "
+  command = command .. "guibg=" .. background .. " "
   if special then
-    command = command..'gui='..special..' '
+    command = command .. "gui=" .. special .. " "
   end
   return command
 end
@@ -28,10 +28,13 @@ end
 ---@param background string
 ---@param special string | nil
 function M.gethighlight(foreground, background, special)
-  if not foreground then foreground = '' end
-  if not special then special = '' end
-  return 'Bubbly'..titlecase(foreground)..titlecase(background)..
-    titlecase(special)
+  if not foreground then
+    foreground = ""
+  end
+  if not special then
+    special = ""
+  end
+  return "Bubbly" .. titlecase(foreground) .. titlecase(background) .. titlecase(special)
 end
 
 -- Ensures that a highlight with given name exists.
@@ -54,7 +57,7 @@ end
 ---@param usercolor string
 ---@return string
 function M.hlparser(usercolor)
-  if string.sub(usercolor, 1, 1) == '#' then
+  if string.sub(usercolor, 1, 1) == "#" then
     -- Return the string as is if it represents a HEX
     return usercolor
   end
@@ -73,7 +76,7 @@ function M.hlparser(usercolor)
   hlGroup = vim.api.nvim_get_hl_by_name(hlGroup, true)
   if hlGroup[key] then
     -- The color exists, return its HEX form
-    return  string.format("#%x", hlGroup[key])
+    return string.format("#%x", hlGroup[key])
   end
 
   -- The color is absent, use a transparent color.
