@@ -17,7 +17,9 @@ settings = process_settings(settings, "lsp_status.diagnostics")
 
 local lsp_status = require("bubbly.utils.prerequire")("lsp-status")
 if not lsp_status then
-  require("bubbly.utils.io").error([[Couldn't load 'lsp-status' for the component 'lsp_status.diagnostics', the component will be disabled.]])
+  require("bubbly.utils.io").error(
+    [[Couldn't load 'lsp-status' for the component 'lsp_status.diagnostics', the component will be disabled.]]
+  )
 end
 
 ---@type fun(filter: table): boolean
