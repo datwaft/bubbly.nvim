@@ -2,6 +2,8 @@
 
 **Disclaimer:** A have a full rework planned for the near future, so probably breaking changes are coming.
 
+**Disclaimer 2:** The rework has been delayed for a while until I finish my preparations for starting my master's degree, small bugs will still be fixed but the full rework with lots of enhancements won't be for a while at least.
+
 **Warning:** _Bubbly_ is a **highly experimental** plugin and can have its functionality changed overnight without any warning. I recommend you to check the readme in case the plugin doesn't work as before after an update.
 
 ![image](https://user-images.githubusercontent.com/37723586/101704746-01145500-3a4b-11eb-98a1-1e41a3dbf7cf.png)
