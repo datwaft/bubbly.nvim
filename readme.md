@@ -364,6 +364,56 @@ vim.g.bubbly_tags = {
 }
 ```
 
+You can also map filetypes to custom names e.g.
+
+```lua
+vim.g.bubbly_tags = {
+  default = 'HELP ME PLEASE!',
+
+  mode = {
+    normal = 'NORMAL',
+    insert = 'INSERT',
+    visual = 'VISUAL',
+    visualblock = 'VISUAL-B',
+    command = 'COMMAND',
+    terminal = 'TERMINAL',
+    replace = 'REPLACE',
+    default = 'UNKOWN',
+  },
+  paste = 'PASTE',
+  filetype = {
+    noft = '<none>',
+    conf = ' config',
+    config = ' config',
+    css = ' css',
+    diff = '繁 diff',
+    dockerfile = ' docker',
+    email = ' mail',
+    gitconfig = ' git config',
+    html = ' html',
+    javascript = ' javascript',
+    javascriptreact = ' javascript',
+    json = ' json',
+    less = ' less',
+    lua = ' lua',
+    mail = ' mail',
+    make = ' make',
+    markdown = ' markdown',
+    php = ' php',
+    plain = ' text',
+    plaintext = ' text',
+    python = ' python',
+    sass = ' sass',
+    scss = ' scss',
+    text = ' text',
+    typescript = ' typescript',
+    typescriptreact = ' typescript',
+    vim = ' vim',
+    xml = '謹 xml',
+  },
+}
+```
+
 ### `g:bubbly_colors`
 
 This variable defines which colors is used by which bubble. Every color can be a string with the name of the color or a table with `foreground` and `background` keys, which define which color is used for foreground and background.
