@@ -31,6 +31,8 @@ return function(inactive)
   local filetype = vim.bo.filetype
   if filetype == "" then
     filetype = settings.tag.noft
+  elseif settings.tag[filetype:lower()] ~= nil then
+    filetype = settings.tag[filetype:lower()]
   else
     filetype = filetype:lower()
   end
