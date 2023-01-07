@@ -1,10 +1,12 @@
 # BUBBLY.NVIM
 
-**Disclaimer:** A have a full rework planned for the near future, so probably breaking changes are coming.
+## Important
 
-**Disclaimer 2:** The rework has been delayed for a while until I finish my preparations for starting my master's degree, small bugs will still be fixed but the full rework with lots of enhancements won't be for a while at least.
+This plugin has been archived. It originally was made as a proof of concept of a [`'statusline'`](https://neovim.io/doc/user/options.html#'statusline') with bubbles as components. It was my first plugin so the implementation was very inefficient and it was created before some of the fixes made to `%{`, so it's not a modern implementation anymore.
 
-**Warning:** _Bubbly_ is a **highly experimental** plugin and can have its functionality changed overnight without any warning. I recommend you to check the readme in case the plugin doesn't work as before after an update.
+I will probably come to create another statusline plugin in the future, as it was fun to create this one, for at least my personal use.
+
+---
 
 ![image](https://user-images.githubusercontent.com/37723586/101704746-01145500-3a4b-11eb-98a1-1e41a3dbf7cf.png)
 
